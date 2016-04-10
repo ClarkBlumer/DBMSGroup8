@@ -20,6 +20,17 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+            
+        
+            //Connecting to database
+                $this->load->database();
+                $query = $this->db->query("SELECT * FROM TBL_USERS");
+                var_dump($query->result());
+                
+            //Close db connection
+                $this->db->close();
+
 		$this->load->view('welcome_message');
+
 	}
 }
