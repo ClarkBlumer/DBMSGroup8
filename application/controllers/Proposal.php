@@ -13,12 +13,21 @@
  */
 class Proposal extends CI_Controller {
     //put your code here
-    private $data = [];
+    private $data;
     
     function Proposal() {
         parent::Controller();
         
         $this->load->model('proposal_model');
+    }
+    
+    function prepareform(){
+        
+        //get acad orgs
+        $acadOrgVal = $this->Formvalues_model->getAcadOrg();
+        $data['acadOrgVal'] = $acadOrgVal;
+        
+        
     }
     
     public function addproposal(){
