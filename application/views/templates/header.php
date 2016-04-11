@@ -15,25 +15,21 @@ CodeIgniter/BootStrap Template
         
         <!--Loading Bootstrap CSS-->
         <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
-        <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" type="text/css" />
+        <link href="<?php echo base_url("assets/css/bootstrap.css"); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/sb-admin.css'); ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/plugins/morris.css'); ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/font-awesome.min.css'); ?>" rel="stylesheet">
         
         <!--Loading custom bootstrap css-->
         <link href="<?php echo base_url('assets/css/custom.css'); ?>" rel="stylesheet">
 		
-		<!-- new style sheet -->
-		
-		<!--   -->
-		
-		
-		<link href="<?php echo base_url('assets/newcss/css/sb-admin.css'); ?>" rel="stylesheet">
-		<link href="<?php echo base_url('assets/newcss/css/bootstrap.min.css'); ?>" rel="stylesheet">
-		<link href="<?php echo base_url('assets/newcss/css/plugins/morris.css'); ?>" rel="stylesheet">
-		<link href="<?php echo base_url('assets/newcss/css/font-awesome.min.css'); ?>" rel="stylesheet">
-		
-		
+        <!-- new style sheet -->
 
-				
+        <!--   -->
+
+			
     </head>
     <body>
         <!--Start UMS Header Bar-->

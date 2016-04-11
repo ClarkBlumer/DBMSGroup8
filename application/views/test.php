@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
- 
-
-
-</head>
-
-<body>
 
   <div id="wrapper">
     <!-- Navigation -->
@@ -176,7 +166,3 @@
 
 
  
-
-</body>
-
-</html>
