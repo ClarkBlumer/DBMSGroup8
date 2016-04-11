@@ -20,7 +20,20 @@ CodeIgniter/BootStrap Template
         
         <!--Loading custom bootstrap css-->
         <link href="<?php echo base_url('assets/css/custom.css'); ?>" rel="stylesheet">
-        
+		
+		<!-- new style sheet -->
+		
+		<!--   -->
+		
+		
+		<link href="<?php echo base_url('assets/newcss/css/sb-admin.css'); ?>" rel="stylesheet">
+		<link href="<?php echo base_url('assets/newcss/css/bootstrap.min.css'); ?>" rel="stylesheet">
+		<link href="<?php echo base_url('assets/newcss/css/plugins/morris.css'); ?>" rel="stylesheet">
+		<link href="<?php echo base_url('assets/newcss/css/font-awesome.min.css'); ?>" rel="stylesheet">
+		
+		
+
+				
     </head>
     <body>
         <!--Start UMS Header Bar-->
