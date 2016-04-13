@@ -9,17 +9,29 @@ CodeIgniter/BootStrap Template
         <title>UM Course Sharing</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script src="<?php echo base_url("assets/js/custom.js"); ?>"></script>
+
+
+
+
+
+
+
         
         <!--Loading CSS for UM System Header-->
         <link href="http://www.umsystem.edu/css/umsbar.css" rel="stylesheet" type="text/css" />
         
         <!--Loading Bootstrap CSS-->
+        
         <link href="<?php echo base_url("assets/css/bootstrap.css"); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/sb-admin.css'); ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/plugins/morris.css'); ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/font-awesome.min.css'); ?>" rel="stylesheet">
+        <link href="<?php echo base_url("assets/css/custom.css"); ?>" rel="stylesheet" type="text/css" />
+
         
         <!--Loading custom bootstrap css-->
         <link href="<?php echo base_url('assets/css/custom.css'); ?>" rel="stylesheet">

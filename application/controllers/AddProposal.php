@@ -33,6 +33,12 @@ class AddProposal extends CI_Controller {
 
         //get offer status values
         $data['offer_status'] = $this->Formvalues_model->getOfferStatus();
+        
+        //get institutions
+        $data['institution'] = $this->Formvalues_model->getInstitution();
+        
+        //get institutions
+        $data['career'] = $this->Formvalues_model->getCareer();
 
         $this->load->view('templates/header',$data);
         $this->load->view('pages/addproposal',$data);

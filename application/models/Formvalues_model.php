@@ -51,7 +51,7 @@ class Formvalues_model extends CI_Model{
     
     //Get academic careers for dropdown values
     function getCareer() {
-        $this->db->select("ACAD_CAREER, DESCRSHORT");
+        $this->db->select("ACAD_CAREER, DESCR");
         $this->db->from('TBL_CAREER');
 
         $query = $this->db->get();
