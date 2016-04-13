@@ -14,7 +14,6 @@ CodeIgniter/BootStrap Template
         <link href="http://www.umsystem.edu/css/umsbar.css" rel="stylesheet" type="text/css" />
         
         <!--Loading Bootstrap CSS-->
-        <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
         <link href="<?php echo base_url("assets/css/bootstrap.css"); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/sb-admin.css'); ?>" rel="stylesheet">
@@ -24,12 +23,7 @@ CodeIgniter/BootStrap Template
         
         <!--Loading custom bootstrap css-->
         <link href="<?php echo base_url('assets/css/custom.css'); ?>" rel="stylesheet">
-		
-        <!-- new style sheet -->
 
-        <!--   -->
-
-			
     </head>
     <body>
         <!--Start UMS Header Bar-->
@@ -53,7 +47,7 @@ CodeIgniter/BootStrap Template
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">WebSiteName</a>
+                        <a class="navbar-brand" href="#">Inter-Campus Course Share</a>
                     </div>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
