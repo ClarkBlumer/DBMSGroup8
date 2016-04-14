@@ -11,14 +11,7 @@ CodeIgniter/BootStrap Template
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <script src="<?php echo base_url("assets/js/custom.js"); ?>"></script>
-
-
-
-
-
-
-
-        
+   
         <!--Loading CSS for UM System Header-->
         <link href="http://www.umsystem.edu/css/umsbar.css" rel="stylesheet" type="text/css" />
         
@@ -63,8 +56,8 @@ CodeIgniter/BootStrap Template
                     </div>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#">Page 1</a></li>
+                            <li class="active"><a href="<?php echo base_url();?>">Home</a></li>
+                            <li><a href="<?php echo base_url('index.php/addproposal')?>">Enter Proposal</a></li>
                             <li><a href="#">Page 2</a></li>
                             <li><a href="#">Page 3</a></li>
                         </ul>
