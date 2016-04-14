@@ -39,54 +39,60 @@
                         <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                     </div>
                 </div>
-                
                 <div class="form-group">
                     <label class="control-label col-xs-3 col-md-3" for="prop_budget_requested">Proposed Primare Courses</label>
-                    <div class="table">
-                          <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Institution</th>
-                                    <th>Career</th>
-                                    <th>Subject</th>
-                                    <th>Catalog Number</th>
-                                    <th>Title</th>
-                                    <th>Topic</th>
-                                    <th>Description</th>
-                                    <th>Course Status</th>
-                                    <th>Requested Course budget</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>                                        
-                                        <select class="form-control" name="size">
-                                            <!--Dynamically adding term values to dropdown-->
-                                            <?php 
-                                            foreach ($institution as $array) { ?>
-                                                    <option value="<?php echo $array['INSTITUTION'];?>"><?php echo $array['INSTIT_DESCR'];?></option>
-                                            <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select class="form-control" name="size">
-                                            <!--Dynamically adding term values to dropdown-->
-                                            <?php 
-                                            foreach ($career as $array) { ?>
-                                                    <option value="<?php echo $array['ACAD_CAREER'];?>"><?php echo $array['DESCR'];?></option>
-                                            <?php
-                                            }
-                                            
-                                            ?>
-                                        </select>                                    
-                                    </td>
-                                    <td>john@example.com</td>
-                                    <th>Institution</th>
-                                    <th>Career</th>
-                                    <th>Subject</th>
-                                </tr>
+                </div>
+                    <div class="form-group">
+                    
+                    
+                            <div class="multi-field-wrapper">
+                                <div class="multi-fields">
+                                    <div class="multi-field">
+                                        <div class="form-group">                                            
+                                            <fieldset class="col-xs-2 selectContainer">
+                                                <label class="control-label col-xs-3 col-md-3" for="prop_budget_requested">Institution</label>
+                                                <select id="INSTITUTION" class="form-control" name="size">
+                                                    <!--Dynamically adding term values to dropdown-->
+                                                     <?php 
+                                                    foreach ($institution as $array) { ?>
+                                                            <option value="<?php echo $array['INSTITUTION'];?>"><?php echo $array['INSTIT_DESCR'];?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </fieldset>
+                                            <fieldset class="col-xs-2 selectContainer">
+                                                <label class="control-label col-xs-3 col-md-3" for="prop_budget_requested">Career</label>
+                                                <select id="ACAD_CAREER" class="form-control" name="size">
+                                                    <!--Dynamically adding term values to dropdown-->
+                                                     <?php 
+                                                    foreach ($career as $array) { ?>
+                                                            <option value="<?php echo $array['ACAD_CAREER'];?>"><?php echo $array['DESCR'];?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </fieldset>
+
+                                            <fieldset class="form-group">                                                
+                                                <label class="control-label" for="SUBJECT">Subject</label>
+                                                <input id="SUBJECT" type="text" class="form-control input-sm">
+                                                <label class="control-label" for="CATALOG_NUM">Catalog Number</label>   
+                                                <input id="CATALOG_NUM" type="text" class="form-control">
+                                                <label class="control-label" for="CATALOG_NUM">Course Title</label>   
+                                                <input id="DESCR" type="text" class="form-control">
+                                                <label class="control-label" for="COURSE_TOPIC">Course Topic</label>   
+                                                <input id="COURSE_TOPIC" type="text" class="form-control">
+                                            </fieldset>
+                                        </div>
+                                        
+                                        <button type="button" class="add-field">Add field</button>
+                                        <button type="button" class="remove-field">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                                
                             </tbody>
                         </table>
                     </div>                    
@@ -98,12 +104,10 @@
             </form>
         </fieldset>
     </div>
+
+
+
     
 </div>
 
-
-<?php
-   var_dump($offer_term);
-   var_dump($career);
-   
 

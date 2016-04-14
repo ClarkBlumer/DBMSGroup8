@@ -26,9 +26,19 @@
          <!--JavaScript data file for flot charts-->
          <script type="text/javascript" src="<?php echo base_url("assets/js/plugins/flot/flot-data.js"); ?>"></script>
 		 
-		 
-
-		
+<script>
+$('.multi-field-wrapper').each(function() {
+    var $wrapper = $('.multi-fields', this);
+    $(".add-field", $(this)).click(function(e) {
+        $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('').focus();
+    });
+    $('.multi-field .remove-field', $wrapper).click(function() {
+        if ($('.multi-field', $wrapper).length > 1)
+            $(this).parent('.multi-field').remove();
+    });
+});
+</script>
+	
     </body>
 </html>
 
