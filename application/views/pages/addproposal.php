@@ -3,7 +3,7 @@
     <div class="col-lg-10">
         <fieldset>
             <legend >Enter New Proposal</legend>
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/addproposal/save" method="post">
                 
                 <!--Anticipated Offer Term-->
                 <div class="form-group">
@@ -35,8 +35,7 @@
                 <div class="form-group">
                     <label class="control-label col-xs-3 col-md-3" for="prop_budget_requested">Proposal Description</label>
                     <div class="col-xs-9 input-group">
-                        <textarea rows="4" class="form-control" ></textarea> 
-                        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                        <textarea rows="4" class="form-control" ></textarea>                         
                     </div>
                 </div>
                 
@@ -54,6 +53,7 @@
                                                 <label class="control-label" for="prop_budget_requested">Institution</label>
                                                 <select id="INSTITUTION" class="form-control" name="size">
                                                     <!--Dynamically adding term values to dropdown-->
+                                                    
                                                      <?php 
                                                     foreach ($institution as $array) { ?>
                                                             <option value="<?php echo $array['INSTITUTION'];?>"><?php echo $array['INSTIT_DESCR'];?></option>
@@ -62,6 +62,7 @@
                                                     ?>
                                                 </select>
                                             </fieldset>
+                                            
                                             <fieldset class="col-xs-2 selectContainer">
                                                 <label class="control-label" for="prop_budget_requested">Career</label>
                                                 <select id="ACAD_CAREER" class="form-control" name="size">
@@ -85,23 +86,23 @@
                                                 <label class="control-label" for="COURSE_TOPIC">Course Topic</label>   
                                                 <input id="COURSE_TOPIC" type="text" class="form-control">
                                             </fieldset>
+                                            
                                         </div>
-                                        
-                                        <button type="button" class="add-field btn btn-default">Add field</button>
                                         <button type="button" class="remove-field btn btn-default">Remove</button>
+                                        
                                     </div>
+                                    
+                                    
                                 </div>
+                                <button type="button" class="add-field btn btn-default">Add Primary Course</button>
                             </div>
-                    
-                                
-                            </tbody>
-                        </table>
+                        
+                        <!-- Form Buttons: Submit, Reset -->
+                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
                     </div>                    
-                </div>                  
                 
-                <!-- Form Buttons: Submit, Reset -->
-                <button type="submit" class="btn btn-default">Submit</button>
-                <button type="reset" class="btn btn-danger">Reset</button>
+                
             </form>
         </fieldset>
     </div>

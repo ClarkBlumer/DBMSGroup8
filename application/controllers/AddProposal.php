@@ -46,6 +46,7 @@ class AddProposal extends CI_Controller {
     }
     
     public function save () {
+        var_dump($this->input->post());
         
     }
         
