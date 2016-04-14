@@ -38,7 +38,36 @@ $('.multi-field-wrapper').each(function() {
     });
 });
 </script>
+<script>
+$('.date-picker').datepicker();
+
+$(".date-picker").on("change", function () {
+    var id = $(this).attr("id");
+    var val = $("label[for='" + id + "']").text();
+    $("#msg").text(val + " changed");
+
+</script>
 	
     </body>
+    
+<script>
+$(document).ready(function () {
+    toggleFields(); //call this first so we start out with the correct visibility depending on the selected form values
+    //this will call our toggleFields function every time the selection value of our underAge field changes
+    $("#propOfferStatus").change(function () {
+        toggleFields();
+    });
+
+});
+
+function toggleFields() {
+    if ($("#propOfferStatus").val() === "Awarded")
+        $("#awardTerm").show();
+    else{
+        $("#awardTerm").hide();
+        $("#awardTerm").val("");
+}   }
+</script>
+
 </html>
 

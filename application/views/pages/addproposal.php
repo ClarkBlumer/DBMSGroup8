@@ -3,13 +3,49 @@
     <div class="col-lg-10">
         <fieldset>
             <legend >Enter New Proposal</legend>
-            <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/addproposal/save" method="post">
+            <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/addproposal/saveProposal" method="post">
+                
+                
+                <input type="hidden" name="userid" value="FRIELJ">
+                <input type="hidden" name="propid" value="">
+                <input type="hidden" name="insert_by" value="FRIELJ">
+                
+                
+                <div class="form-group">
+                    <label class="control-label col-xs-3 col-md-3" for="submitted_by">Submitted By</label>
+                    <div class="col-xs-2 selectContainer">                        
+                        <select  class="form-control" name="submitted_by">
+                            <option value=""></option>
+                            <!--Dynamically adding term values to dropdown-->
+                            <?php 
+                            foreach ($submitted_by as $array) { ?>
+                                    <option value="<?php echo $array['USER_ID'];?>"><?php echo $array['LAST_NAME'].", ".$array['FIRST_NAME'];?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date-picker-2" class="control-label col-xs-3 col-md-3">Award Date</label>
+                    <div class="controls col-xs-3">
+                        <div class="input-group">
+                            <input name="submit_date" id="date-picker-2" type="text" class="date-picker form-control" />
+                            <label for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span>
+
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
                 
                 <!--Anticipated Offer Term-->
                 <div class="form-group">
                     <label class="control-label col-xs-3 col-md-3" for="prop_offer_term">Anticipated Offer Term</label>
-                    <div class="col-xs-2 selectContainer">
-                        <select class="form-control" name="size">
+                    <div class="col-xs-2 selectContainer">                        
+                        <select  class="form-control" name="prop_offer_term">
+                            <option value=""></option>
                             <!--Dynamically adding term values to dropdown-->
                             <?php 
                             foreach ($offer_term as $array) { ?>
@@ -26,87 +62,57 @@
                     <label class="control-label col-xs-3 col-md-3" for="prop_budget_requested">Requested Budget</label>
                     <div class="col-xs-2 input-group">
                         <span class="input-group-addon">$</span>
-                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                        <span class="input-group-addon">.00</span>
+                        <input name="prop_budget_requested" type="text" pattern="^\d*(\.\d{2}$)?" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        
+                    </div>
+                </div>
+                
+                <!--Offer Status-->
+                <div class="form-group">
+                    <label class="control-label col-xs-3 col-md-3" for="prop_offer_status">Offer Status</label>
+                    <div class="col-xs-2 selectContainer">
+                        <select  id="propOfferStatus" name="prop_offer_status" class="form-control">
+                            <!--Dynamically adding term values to dropdown-->
+                            <?php 
+                            foreach ($offer_status as $array) { ?>
+                                    <option value="<?php echo $array['OFFER_STATUS'];?>"><?php echo $array['OFFER_DESCR'];?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+             
+                    <label class="control-label col-xs-3 col-md-3" for="award_term">Award Term</label>
+                    <div class="col-xs-2 selectContainer">
+                        <select id="awardTerm" class="form-control" name="award_term">
+                            <!--Dynamically adding term values to dropdown-->
+                            <option value=""></option>
+                            <?php 
+                            foreach ($offer_term as $array) { ?>
+                                    <option value="<?php echo $array['STRM'];?>"><?php echo $array['DESCRSHORT'];?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
                     </div>
                 </div>
                 
                 <!--Proposal Description-->
                 <div class="form-group">
-                    <label class="control-label col-xs-3 col-md-3" for="prop_budget_requested">Proposal Description</label>
+                    <label class="control-label col-xs-3 col-md-3" for="prop_descr">Proposal Description</label>
                     <div class="col-xs-9 input-group">
-                        <textarea rows="4" class="form-control" ></textarea>                         
+                        <textarea name="prop_descr" rows="4" class="form-control" ></textarea>                         
                     </div>
                 </div>
                 
-                    <div class="form-group">
-                    
-                            <div class="multi-field-wrapper">
-                                <div class="multi-fields">
-                                    <div class="multi-field">
-                                        <div class="form-group">
-                                            <h3>Proposed Primary Course</h3>
-                                        </div>
-                                        
-                                        <div class="form-group">                                            
-                                            <fieldset class="col-xs-2 selectContainer">
-                                                <label class="control-label" for="prop_budget_requested">Institution</label>
-                                                <select id="INSTITUTION" class="form-control" name="size">
-                                                    <!--Dynamically adding term values to dropdown-->
-                                                    
-                                                     <?php 
-                                                    foreach ($institution as $array) { ?>
-                                                            <option value="<?php echo $array['INSTITUTION'];?>"><?php echo $array['INSTIT_DESCR'];?></option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </fieldset>
-                                            
-                                            <fieldset class="col-xs-2 selectContainer">
-                                                <label class="control-label" for="prop_budget_requested">Career</label>
-                                                <select id="ACAD_CAREER" class="form-control" name="size">
-                                                    <!--Dynamically adding term values to dropdown-->
-                                                     <?php 
-                                                    foreach ($career as $array) { ?>
-                                                            <option value="<?php echo $array['ACAD_CAREER'];?>"><?php echo $array['DESCR'];?></option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </fieldset>
-
-                                            <fieldset class="form-group col-md-3">                                                
-                                                <label class="control-label" for="SUBJECT">Subject</label>
-                                                <input id="SUBJECT" type="text" class="form-control input-sm">
-                                                <label class="control-label" for="CATALOG_NUM">Catalog Number</label>   
-                                                <input id="CATALOG_NUM" type="text" class="form-control">
-                                                <label class="control-label" for="CATALOG_NUM">Course Title</label>   
-                                                <input id="DESCR" type="text" class="form-control">
-                                                <label class="control-label" for="COURSE_TOPIC">Course Topic</label>   
-                                                <input id="COURSE_TOPIC" type="text" class="form-control">
-                                            </fieldset>
-                                            
-                                        </div>
-                                        <button type="button" class="remove-field btn btn-default">Remove</button>
-                                        
-                                    </div>
-                                    
-                                    
-                                </div>
-                                <button type="button" class="add-field btn btn-default">Add Primary Course</button>
-                            </div>
-                        
-                        <!-- Form Buttons: Submit, Reset -->
-                        <button type="submit" class="btn btn-default">Submit</button>
-                        <button type="reset" class="btn btn-danger">Reset</button>
-                    </div>                    
                 
+                
+               <button type="submit" class="btn btn-default">Submit</button>
                 
             </form>
         </fieldset>
     </div>
-
+    
 
 
     

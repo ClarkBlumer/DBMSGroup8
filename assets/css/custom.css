@@ -26,3 +26,7 @@ and open the template in the editor.
 
 .entry { border: 1px solid #c0c0c0; }
 
+
+.date-form { margin: 10px; }
+label.control-label span { cursor: pointer; }
+

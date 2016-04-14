@@ -31,8 +31,7 @@ class Formvalues_model extends CI_Model{
 
     //Get offer status for dropdown values
     function getOfferStatus() {
-            $this->db->select("OFFER_STATUS, OFFER_DESCR");
-            $this->db->order_by("OFFER_DESCR", "asc");
+            $this->db->select("OFFER_STATUS, OFFER_DESCR");            
             $this->db->from('TBL_OFFER_STATUS');
 
             $query = $this->db->get();
@@ -82,6 +81,14 @@ class Formvalues_model extends CI_Model{
 
         $query = $this->db->get();
         return $query->result_array();  
+    }
+    
+    function getSubmittedBy(){
+        $this->db->select("*");
+        
+        $this->db->from('TBL_USERS');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
 }

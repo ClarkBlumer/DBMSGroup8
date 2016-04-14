@@ -20,6 +20,7 @@ class AddProposal extends CI_Controller {
         parent::__construct();
         
         $this->load->model('Formvalues_model');
+        $this->load->model('Insert_model');
 
      
 
@@ -39,14 +40,32 @@ class AddProposal extends CI_Controller {
         
         //get institutions
         $data['career'] = $this->Formvalues_model->getCareer();
+        
+        //get users
+        $data['submitted_by'] = $this->Formvalues_model->getSubmittedBy();       
 
         $this->load->view('templates/header',$data);
         $this->load->view('pages/addproposal',$data);
         $this->load->view('templates/footer',$data);
     }
     
-    public function save () {
-        var_dump($this->input->post());
+    public function saveProposal() {
+        //parse post variable
+        foreach ($this->input->post() as $key => $value) {
+            if($key != 'userid')
+            $data[strtoupper($key)] = $value;            
+        }
+        
+        $data['INSERT_DATE'] = date("j-M-Y");
+        $data['INSERT_BY'] = 'TIGERT';
+        $data['MOD_BY'] = 'FRIELJ';
+        $data['MOD_DATE'] = 
+        
+        $this->Insert_model->insertProposal($data);
+        
+        $this->load->view('templates/header',$data);
+        $this->load->view('pages/home',$data);
+        $this->load->view('templates/footer',$data);
         
     }
         
