@@ -18,8 +18,7 @@ class Insert_model extends CI_Model{
         $this->load->database();
     }
     
-    function insertProposal($data){
-        var_dump($data);
+    function insertProposal($data){        
         $this->db->insert('TBL_PROPOSAL', $data);
     }
 }
