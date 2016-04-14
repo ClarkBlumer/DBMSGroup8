@@ -39,18 +39,19 @@
                         <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-xs-3 col-md-3" for="prop_budget_requested">Proposed Primare Courses</label>
-                </div>
+                
                     <div class="form-group">
-                    
                     
                             <div class="multi-field-wrapper">
                                 <div class="multi-fields">
                                     <div class="multi-field">
+                                        <div class="form-group">
+                                            <h3>Proposed Primary Course</h3>
+                                        </div>
+                                        
                                         <div class="form-group">                                            
                                             <fieldset class="col-xs-2 selectContainer">
-                                                <label class="control-label col-xs-3 col-md-3" for="prop_budget_requested">Institution</label>
+                                                <label class="control-label" for="prop_budget_requested">Institution</label>
                                                 <select id="INSTITUTION" class="form-control" name="size">
                                                     <!--Dynamically adding term values to dropdown-->
                                                      <?php 
@@ -62,7 +63,7 @@
                                                 </select>
                                             </fieldset>
                                             <fieldset class="col-xs-2 selectContainer">
-                                                <label class="control-label col-xs-3 col-md-3" for="prop_budget_requested">Career</label>
+                                                <label class="control-label" for="prop_budget_requested">Career</label>
                                                 <select id="ACAD_CAREER" class="form-control" name="size">
                                                     <!--Dynamically adding term values to dropdown-->
                                                      <?php 
@@ -74,7 +75,7 @@
                                                 </select>
                                             </fieldset>
 
-                                            <fieldset class="form-group">                                                
+                                            <fieldset class="form-group col-md-3">                                                
                                                 <label class="control-label" for="SUBJECT">Subject</label>
                                                 <input id="SUBJECT" type="text" class="form-control input-sm">
                                                 <label class="control-label" for="CATALOG_NUM">Catalog Number</label>   
@@ -86,8 +87,8 @@
                                             </fieldset>
                                         </div>
                                         
-                                        <button type="button" class="add-field">Add field</button>
-                                        <button type="button" class="remove-field">Remove</button>
+                                        <button type="button" class="add-field btn btn-default">Add field</button>
+                                        <button type="button" class="remove-field btn btn-default">Remove</button>
                                     </div>
                                 </div>
                             </div>
