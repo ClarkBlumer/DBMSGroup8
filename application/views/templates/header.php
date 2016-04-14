@@ -9,26 +9,31 @@ CodeIgniter/BootStrap Template
         <title>UM Course Sharing</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <script src="<?php echo base_url("assets/js/custom.js"); ?>"></script>
-   
+        
         <!--Loading CSS for UM System Header-->
         <link href="http://www.umsystem.edu/css/umsbar.css" rel="stylesheet" type="text/css" />
         
         <!--Loading Bootstrap CSS-->
-        
-        <link href="<?php echo base_url("assets/css/bootstrap.css"); ?>" rel="stylesheet" type="text/css" />
+        <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+        <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" type="text/css" />
         <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
-        <link href="<?php echo base_url('assets/css/sb-admin.css'); ?>" rel="stylesheet">
-        <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
-        <link href="<?php echo base_url('assets/css/plugins/morris.css'); ?>" rel="stylesheet">
-        <link href="<?php echo base_url('assets/css/font-awesome.min.css'); ?>" rel="stylesheet">
-        <link href="<?php echo base_url("assets/css/custom.css"); ?>" rel="stylesheet" type="text/css" />
-
         
         <!--Loading custom bootstrap css-->
         <link href="<?php echo base_url('assets/css/custom.css'); ?>" rel="stylesheet">
+		
+		<!-- new style sheet -->
+		
+		<!--   -->
+		
+		
+		<link href="<?php echo base_url('assets/newcss/css/sb-admin.css'); ?>" rel="stylesheet">
+		<link href="<?php echo base_url('assets/newcss/css/bootstrap.min.css'); ?>" rel="stylesheet">
+		<link href="<?php echo base_url('assets/newcss/css/plugins/morris.css'); ?>" rel="stylesheet">
+		<link href="<?php echo base_url('assets/newcss/css/font-awesome.min.css'); ?>" rel="stylesheet">
+		
+		
 
+				
     </head>
     <body>
         <!--Start UMS Header Bar-->
@@ -46,26 +51,37 @@ CodeIgniter/BootStrap Template
             </div>
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">Inter-Campus Course Share</a>
-                    </div>
+
                     <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="<?php echo base_url();?>">Home</a></li>
-                            <li><a href="<?php echo base_url('index.php/addproposal')?>">Enter Proposal</a></li>
-                            <li><a href="#">Page 2</a></li>
-                            <li><a href="#">Page 3</a></li>
-                        </ul>
+                        												
+								<div class="btn-group" role="group" aria-label="...">
+								<button type="button" class="btn btn-default"><a href="#">WebsiteName</a></button>
+								  <button type="button" class="btn btn-default"><a href="#">Home</a></button>
+								  <button type="button" class="btn btn-default"><a href="#">About</a></button>
+								  <button type="button" class="btn btn-default"><a href="<?php echo base_url('index.php/addproposal')?>">Enter Proposal</a></button>
+								  <div class="btn-group" role="group">
+									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									  Report and Graphs
+									  <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu">
+									  <li><a href="allCharts">All Charts</a></li>
+									  <li><a href="#">A pie chart of funding requested to campuses</a></li>
+									  <li><a href="#">A pie chart of funding awarded to campuses</a></li>
+									  <li><a href="#">A bar chart of no of courses delivered by primary campus</a></li>
+									  <li><a href="#">A pie chart of courses by discipline i.e nursing, civil engineering</a></li>
+									  <li><a href="#">A line chart of enrollment of students per tem in courses with the attribute of UMSCS</a></li>
+									</ul>
+								  </div>
+								</div>
+                        
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                             <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                         </ul>
                     </div>
+					
+					
                 </div>
               </nav>
         </div>

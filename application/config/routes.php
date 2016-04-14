@@ -53,6 +53,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //$route['404_override'] = '';
 //$route['translate_uri_dashes'] = FALSE;
 
+
+$route['fundingReq']='graphs/fundingReq';
+$route['fundingAwarded']='graphs/fundingAwarded';
+$route['coursesDelivered']='graphs/coursesDelivered';
+$route['coursesDiscip']='graphs/coursesDiscip';
+$route['enrollmentGraph']='graphs/enrollmentGraph';
+$route['allCharts']='graphs/allCharts';
+
 $route['addproposal'] = 'addproposal/index';
 $route['default_controller'] = 'home/view';
 $route['(:any)'] = 'home/view/$1';
+
