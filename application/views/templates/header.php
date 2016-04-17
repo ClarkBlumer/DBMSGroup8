@@ -67,11 +67,11 @@ CodeIgniter/BootStrap Template
 
                                     <li role="separator" class="divider"></li>
 
-                                    <li><a href="#">A pie chart of funding requested to campuses</a></li>
-                                    <li><a href="#">A pie chart of funding awarded to campuses</a></li>
-                                    <li><a href="#">A bar chart of no of courses delivered by primary campus</a></li>
-                                    <li><a href="#">A pie chart of courses by discipline i.e nursing, civil engineering</a></li>
-                                    <li><a href="#">A line chart of enrollment of students per tem in courses with the attribute of UMSCS</a></li>
+                                    <li><a href="#">funding requested to campuses</a></li>
+                                    <li><a href="#">funding awarded to campuses</a></li>
+                                    <li><a href="#">courses delivered by primary campus</a></li>
+                                    <li><a href="#">courses by discipline </a></li>
+                                    <li><a href="#">enrollment of students per term</a></li>
                                 </ul>
                             </li>
 
