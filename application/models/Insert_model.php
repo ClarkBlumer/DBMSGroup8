@@ -18,7 +18,21 @@ class Insert_model extends CI_Model{
         $this->load->database();
     }
     
-    function insertProposal($data){        
+    function insertProposal($data){  
+        $this->db->trans_start();
         $this->db->insert('TBL_PROPOSAL', $data);
+  
+        $propId = $this->db->query(''
+                . 'SELECT *'
+                . 'FROM tbl_proposal '
+                . 'WHERE PROPID = (SELECT MAX(PROPID)FROM tbl_proposal)');
+        $this->db->trans_complete();
+        
+        return $propId->result_array();
+    }
+    
+    function getNewPropId($data){
+        
+        
     }
 }

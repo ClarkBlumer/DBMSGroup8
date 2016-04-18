@@ -90,5 +90,15 @@ class Formvalues_model extends CI_Model{
         $query = $this->db->get();
         return $query->result_array();
     }
+    
+    function getSubject(){
+        $this->db->select("SUBJECT");
+        $this->db->distinct();
+        $this->db->order_by("SUBJECT", "asc");
+        $this->db->from("CSPRDC.PS_CRSE_OFFER");
+        
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
 }

@@ -3,4 +3,3 @@ SET DEFINE OFF;
 Insert into CSADMIN.TBL_COURSE_STATUS (COURSE_STATUS,COURSE_STATUS_DESCR) values ('activ','Active');
 Insert into CSADMIN.TBL_COURSE_STATUS (COURSE_STATUS,COURSE_STATUS_DESCR) values ('inact','In Active');
 Insert into CSADMIN.TBL_COURSE_STATUS (COURSE_STATUS,COURSE_STATUS_DESCR) values ('indev','In Development');
-commit;

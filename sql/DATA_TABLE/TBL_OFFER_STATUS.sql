@@ -5,4 +5,3 @@ Insert into CSADMIN.TBL_OFFER_STATUS (OFFER_STATUS,OFFER_DESCR) values ('awrd','
 Insert into CSADMIN.TBL_OFFER_STATUS (OFFER_STATUS,OFFER_DESCR) values ('deny','Denied');
 Insert into CSADMIN.TBL_OFFER_STATUS (OFFER_STATUS,OFFER_DESCR) values ('canc','Cancelled');
 Insert into CSADMIN.TBL_OFFER_STATUS (OFFER_STATUS,OFFER_DESCR) values ('Wthd','Withdrawn');
-commit;

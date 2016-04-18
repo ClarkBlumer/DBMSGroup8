@@ -56,7 +56,7 @@ CodeIgniter/BootStrap Template
                     </div>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
-						    <li class="active"><a href="<?php echo base_url();?>">Home</a></li>
+                            <li class="active"><a href="<?php echo base_url();?>">Home</a></li>
                             <li class="active"><a href="<?php echo base_url('index.php/getallproposals/index') ?>">Proposals</a></li>
                             <li><a href="<?php echo base_url('index.php/addproposal')?>">Enter Proposal</a></li>
 
