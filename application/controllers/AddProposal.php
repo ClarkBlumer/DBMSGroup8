@@ -29,13 +29,18 @@ class AddProposal extends CI_Controller {
     
     public function index(){
 
-        $data = $this->getComboValues();
+        $data = $this->getComboValues($this->data);
 
         $this->load->view('templates/header',$data);
         $this->load->view('pages/addproposal',$data);
         $this->load->view('templates/footer',$data);
     }
     
+    public function getCV(){
+        
+    }
+
+
     public function getComboValues($data){
         //get offer term
         $data['offer_term'] = $this->Formvalues_model->getTerm();
@@ -77,7 +82,11 @@ class AddProposal extends CI_Controller {
         //$data['MOD_DATE'] = 
        
         $data['insertedProp'] = $this->getNewPropId($data);
+        //var_dump($data);
+        //var_dump($data['insertedProp']);
         $data = $this->getComboValues($data);
+        
+        var_dump($data);
         $this->load->view('templates/header',$data);
         $this->load->view('pages/addproppricourse',$data);
         $this->load->view('templates/footer',$data);

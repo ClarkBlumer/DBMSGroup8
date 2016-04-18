@@ -102,8 +102,9 @@ foreach ($insertedProp as $value) {
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+//var_dump($subject);
+var_dump($insertedProp);
 
-var_dump($subject);
 
 ?>
 
