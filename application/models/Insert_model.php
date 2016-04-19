@@ -18,32 +18,38 @@ class Insert_model extends CI_Model{
         $this->load->database();
     }
     
-    function insertProposal($data){  
+    function insertProposal($data){ 
+        $maxIdArray['table'] = 'TBL_PROPOSAL';
+        $maxIdArray['idfield'] = 'PROPID';
+        
         $this->db->trans_start();
-        $this->db->insert('TBL_PROPOSAL', $data);
+        $this->db->insert($maxIdArray['table'], $data);
   
-        $propId = $this->db->query(''
-                . 'SELECT *'
-                . 'FROM tbl_proposal '
-                . 'WHERE PROPID = (SELECT MAX(PROPID)FROM tbl_proposal)');
+        $propId = $this->getNewId($maxIdArray);
+                    
         $this->db->trans_complete();
         
         return $propId->result_array();
     }
     
-    function getNewPropId($data){
+    function getNewId($maxIdArray){
+        return $this->db->query(''
+                . 'SELECT * '
+                . 'FROM '.$maxIdArray['table'].' '
+                . 'WHERE '.$maxIdArray['idfield'].'= (SELECT MAX('.$maxIdArray['idfield'].') FROM '.$maxIdArray['table'].')');
         
         
     }
     
     function insertPropPriCourse($data){
+        $maxIdArray['table'] = 'TBL_PROP_PRI_COURSES';
+        $maxIdArray['idfield'] = 'PRI_SEQ_NUM';        
+    
         $this->db->trans_start();
-        $this->db->insert('TBL_PROP_PRI_COURSES', $data);
+        $this->db->insert($maxIdArray['table'], $data);
   
-        $propId = $this->db->query(''
-                . 'SELECT *'
-                . 'FROM tbl_prop_pri_courses '
-                . 'WHERE pri_seq_num = (SELECT MAX(pri_seq_num)FROM tbl_prop_pri_courses)');
+        $propId = $this->getNewId($maxIdArray);
+                    
         $this->db->trans_complete();
         
         return $propId->result_array();

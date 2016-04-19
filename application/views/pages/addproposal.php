@@ -31,7 +31,7 @@
                     <label for="date-picker-2" class="control-label col-xs-3 col-md-3">Submit Date</label>
                     <div class="controls col-xs-3">
                         <div class="input-group">
-                            <input name="submit_date" id="date-picker-2" type="text" class="date-picker form-control" />
+                            <input id="submit_date" name="submit_date" id="date-picker-2" type="text" class="date-picker" />
                             <label for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span>
 
                             </label>

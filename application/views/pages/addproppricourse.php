@@ -24,80 +24,72 @@ foreach ($insertedProp as $value) {
 }
 ?>
     <h3>Enter Proposed Primary Course</h3>
- <div class="form-group">
+<form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/addproposal/savePropPriCourse" method="post">
+    <input type="hidden" name="propid" value="<?php echo $value['PROPID']?>">
+    <div class="form-group">
                     
         <div class="multi-field-wrapper">
             <div class="multi-fields">
                 <div class="multi-field">
-                    <div class="form-group">
-                        <h3>Proposed Primary Course</h3>
-                    </div>
+                        <div class="form-group">                                            
+                            <fieldset class="col-xs-2 selectContainer">
+                                <label class="control-label" for="prop_budget_requested">Institution</label>
+                                <select id="INSTITUTION" class="form-control" name="institution[]">
+                                    <!--Dynamically adding term values to dropdown-->
 
-                    <div class="form-group">                                            
-                        <fieldset class="col-xs-2 selectContainer">
-                            <label class="control-label" for="prop_budget_requested">Institution</label>
-                            <select id="INSTITUTION" class="form-control" name="size">
-                                <!--Dynamically adding term values to dropdown-->
+                                     <?php 
+                                    foreach ($institution as $array) { ?>
+                                            <option value="<?php echo $array['INSTITUTION'];?>"><?php echo $array['INSTIT_DESCR'];?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </fieldset>
 
-                                 <?php 
-                                foreach ($institution as $array) { ?>
-                                        <option value="<?php echo $array['INSTITUTION'];?>"><?php echo $array['INSTIT_DESCR'];?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        </fieldset>
+                            <fieldset class="col-xs-2 selectContainer">
+                                <label class="control-label" for="prop_budget_requested">Career</label>
+                                <select id="ACAD_CAREER" class="form-control" name="career[]">
+                                    <!--Dynamically adding term values to dropdown-->
+                                     <?php 
+                                    foreach ($career as $array) { ?>
+                                            <option value="<?php echo $array['ACAD_CAREER'];?>"><?php echo $array['DESCR'];?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                           </fieldset>
 
-                        <fieldset class="col-xs-2 selectContainer">
-                            <label class="control-label" for="prop_budget_requested">Career</label>
-                            <select id="ACAD_CAREER" class="form-control" name="size">
-                                <!--Dynamically adding term values to dropdown-->
-                                 <?php 
-                                foreach ($career as $array) { ?>
-                                        <option value="<?php echo $array['ACAD_CAREER'];?>"><?php echo $array['DESCR'];?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        </fieldset>
-
-                        <fieldset class="form-group col-md-3">                                                
-                            <label class="control-label" for="SUBJECT">Subject</label>
-                            <input id="SUBJECT" type="text" class="form-control input-sm">
-                            <label class="control-label" for="CATALOG_NUM">Catalog Number</label>   
-                            <input id="CATALOG_NUM" type="text" class="form-control">
-                            <label class="control-label" for="CATALOG_NUM">Course Title</label>   
-                            <input id="DESCR" type="text" class="form-control">
-                            <label class="control-label" for="COURSE_TOPIC">Course Topic</label>   
-                            <input id="COURSE_TOPIC" type="text" class="form-control">
-                        </fieldset>
-
-                    </div>
-                    <fieldset class="form-group col-md-3">
-                    <button type="button" class="remove-field btn btn-default">Remove</button>
-                    </fieldset>
+                            <fieldset class="form-group col-md-3">                                             
+                                <label class="control-label" for="SUBJECT">Subject</label>
+                                <input name="subject[]" id="SUBJECT" type="text" class="form-control input-sm">
+                                <label class="control-label" for="CATALOG_NUM">Catalog Number</label>   
+                                <input name="catalog_num[]"id="CATALOG_NUM" type="text" class="form-control">
+                                <label class="control-label" for="CATALOG_NUM">Course Title</label>   
+                                <input name="descr[]" id="DESCR" type="text" class="form-control">
+                                <label class="control-label" for="DESCR_TOPICS">Course Topic</label>   
+                                <input name="descr_topics[]" id="DESCR_TOPICS" type="text" class="form-control">
+                            </fieldset>
+                             
+                        </div>
+                    
+                        <button type="button" class="remove-field btn btn-default">Remove</button>
 
                 </div>
 
-
             </div>
-            <fieldset class="form-group col-md-3">
-                <button type="button" class="add-field btn btn-default">Add Primary Course</button>
-            </fieldset>
-            </div>
-            <fieldset class="form-group col-md-3">
-                <button type="button" class="add-field btn btn-default">Add Primary Course</button>
-            </fieldset>
+         
+            <button type="button" class="add-field btn btn-default">Add Primary Course</button>
+        
         </div>
 
         <!-- Form Buttons: Submit, Reset -->
-
-   
-    <fieldset class="form-group col-md-3">
         <button type="submit" class="btn btn-default">Submit</button>
-        <button type="reset" class="btn btn-danger">Reset</button> 
-    </fieldset>
+        <button type="reset" class="btn btn-danger">Reset</button>
+   
+    </div>
+</form>
 </div>
+
 <?php
 
 /* 

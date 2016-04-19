@@ -70,11 +70,7 @@ class AddProposal extends CI_Controller {
     
     public function saveProposal() {
         //parse post variable
-        foreach ($this->input->post() as $key => $value) {
-            if($key != 'userid')
-            $data[strtoupper($key)] = $value;
-            
-        }
+        $data = $this->arrayToUpper();
         
         $data['INSERT_DATE'] = date("j-M-Y");
         $data['INSERT_BY'] = 'TIGERT';
@@ -86,7 +82,7 @@ class AddProposal extends CI_Controller {
         //var_dump($data['insertedProp']);
         $data = $this->getComboValues($data);
         
-        var_dump($data);
+
         $this->load->view('templates/header',$data);
         $this->load->view('pages/addproppricourse',$data);
         $this->load->view('templates/footer',$data);
@@ -97,26 +93,60 @@ class AddProposal extends CI_Controller {
         return $this->Insert_model->insertPropPriCourse($data);
         
     }
-
-    public function savePropPriCourse(){
-        var_dump($this->input->post());
+    
+    public function arrayToUpper(){
         foreach ($this->input->post() as $key => $value) {
             if($key != 'userid')
                 $data[strtoupper($key)] = $value;
             
         }
+        return $data;
+    }
+
+    public function savePropPriCourse(){
         
+        $data = $this->arrayToUpper();
+
+        $arraySize = $this->getArraySize($data);
         
-        $data['MOD_BY'] = 'FRIELJ';
-        //$data['MOD_DATE'] = 
+        for ($i=0;$i<$arraySize;$i++){
+            foreach ($data as $key => $value) {
+                if (is_array($value)){
+                    
+                    $query[$key] = $value[$i];
+                } else {
+                    $query[$key] = $value;
+                }
+
+            }
+            $query['MOD_BY'] = 'FRIELJ';
+            var_dump($query);
+            $newCourseSeq = $this->getPriCourseSeq($query);
+            var_dump($newCourseSeq);
+        
+        }
+        
        
-        $data['insertedPropPriCourse'] = $this->getPriCourseSeq($data);
-        //var_dump($data);
-        //var_dump($data['insertedProp']);
+       
+
         $data = $this->getComboValues($data);
         
-        var_dump($data);        
         
+    
+    }
+    public function parseQueryData($data){
+
+            
+       
+    }
+    
+    public function getArraySize($data){
+        foreach ($data as $key => $value) {
+            if (is_array($value)){
+                $arraySize = count($value);
+                return $arraySize;
+            }
+        }
     }
         
 }
