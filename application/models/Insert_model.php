@@ -13,7 +13,7 @@
  */
 class Insert_model extends CI_Model{
     //put your code here
-        function Formvalues_model (){
+    function Formvalues_model (){
         parent::__construct();
         $this->load->database();
     }
@@ -53,6 +53,13 @@ class Insert_model extends CI_Model{
         $this->db->trans_complete();
         
         return $propId->result_array();
-    }        
+    }  
+    
+    function insertPropSecCourse($data){
+        
+        
+    }
+    
+
     
 }

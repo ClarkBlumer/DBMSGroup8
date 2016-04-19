@@ -21,6 +21,7 @@ class AddProposal extends CI_Controller {
         
         $this->load->model('Formvalues_model');
         $this->load->model('Insert_model');
+        $this->load->model('QueryCourses_model');
 
      
 
@@ -94,6 +95,10 @@ class AddProposal extends CI_Controller {
         
     }
     
+    public function getPriCourses($data){
+        return $this->QueryCourses_model->getPrimaryCourses($data);
+    }
+    
     public function arrayToUpper(){
         foreach ($this->input->post() as $key => $value) {
             if($key != 'userid')
@@ -120,24 +125,24 @@ class AddProposal extends CI_Controller {
 
             }
             $query['MOD_BY'] = 'FRIELJ';
-            var_dump($query);
-            $newCourseSeq = $this->getPriCourseSeq($query);
-            var_dump($newCourseSeq);
-        
-        }
-        
-       
-       
 
+            $newCourseSeq = $this->getPriCourseSeq($query);
+
+        }
+        $data['proposal'] = $this->QueryCourses_model->getProposal($data);
+        $data['priCourses'] = $this->getPriCourses($data);
+        
         $data = $this->getComboValues($data);
         
-        
-    
+        $this->load->view('templates/header',$data);
+        $this->load->view('pages/addpropseccourse',$data);
+        $this->load->view('templates/footer',$data);
+ 
     }
-    public function parseQueryData($data){
 
-            
-       
+    public function savePropSecCourse(){
+        
+         
     }
     
     public function getArraySize($data){
