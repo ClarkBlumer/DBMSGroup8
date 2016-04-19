@@ -35,4 +35,18 @@ class Insert_model extends CI_Model{
         
         
     }
+    
+    function insertPropPriCourse($data){
+        $this->db->trans_start();
+        $this->db->insert('TBL_PROP_PRI_COURSES', $data);
+  
+        $propId = $this->db->query(''
+                . 'SELECT *'
+                . 'FROM tbl_prop_pri_courses '
+                . 'WHERE pri_seq_num = (SELECT MAX(pri_seq_num)FROM tbl_prop_pri_courses)');
+        $this->db->trans_complete();
+        
+        return $propId->result_array();
+    }        
+    
 }

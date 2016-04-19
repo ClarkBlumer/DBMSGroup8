@@ -15,17 +15,18 @@ foreach ($insertedProp as $value) {
             <div class="col-xs-4" >Submit Date: <?php echo $value['SUBMIT_DATE'];?></div> 
         </div>
         <div class="panel-body">
-            <div class="col-xs-4">Anticipated Offer Term: <?php echo $value['PROP_OFFER_TERM'];?></div>
+            <div class="col-xs-4">Anticipated Offer Term: <?php echo $value['PROP_OFFER_TERM'];?></div>            
             <div class="col-xs-4">Offer Status: <?php echo $value['PROP_OFFER_STATUS'];?></div>
-            <div class="col-xs-4">Award Term: <?php echo $value['AWARD_TERM'];?></div>            
+            <div class="col-xs-4">Award Term: <?php echo $value['AWARD_TERM'];?></div>  
         </div>
     </div>
 <?php
 }
 ?>
     <h3>Enter Proposed Primary Course</h3>
-    <form class="form-horizontal" role="form">
-        <input type="hidden" name="PROPID" value="<?php echo $value['PROPID']?>">
+    <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/addproposal/savePropPriCourse" method="post">
+        <?php echo "Prop id: ".$value['PROPID']."\n";?>
+        <input type="hidden" name="propid" value="<?php echo $value['PROPID']?>">
         
         <div class="form-group">
             <label class="control-label col-xs-3 col-md-3" for="instituion">Institution</label>
@@ -43,9 +44,9 @@ foreach ($insertedProp as $value) {
 
 
 
-            <label class="control-label col-xs-3 col-md-3" for="acad_career">Career</label>
+            <label class="control-label col-xs-3 col-md-3" for="career">Career</label>
             <div class="col-xs-2 selectContainer">
-                <select  id="acad_career" name="acad_career" class="form-control">
+                <select  id="career" name="career" class="form-control">
                     <!--Dynamically adding term values to dropdown-->
                     <?php 
                     foreach ($career as $array) { ?>
@@ -91,7 +92,7 @@ foreach ($insertedProp as $value) {
             
   
         
-            
+        <button type="submit" class="btn btn-default">Submit</button>    
     </form>
 </div>
 

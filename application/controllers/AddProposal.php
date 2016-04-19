@@ -93,8 +93,29 @@ class AddProposal extends CI_Controller {
         
     }
     
-    public function savePropPriCourse(){
+    public function getPriCourseSeq($data){
+        return $this->Insert_model->insertPropPriCourse($data);
         
+    }
+
+    public function savePropPriCourse(){
+        var_dump($this->input->post());
+        foreach ($this->input->post() as $key => $value) {
+            if($key != 'userid')
+                $data[strtoupper($key)] = $value;
+            
+        }
+        
+        
+        $data['MOD_BY'] = 'FRIELJ';
+        //$data['MOD_DATE'] = 
+       
+        $data['insertedPropPriCourse'] = $this->getPriCourseSeq($data);
+        //var_dump($data);
+        //var_dump($data['insertedProp']);
+        $data = $this->getComboValues($data);
+        
+        var_dump($data);        
         
     }
         
