@@ -29,6 +29,18 @@ class QueryCourses_model extends CI_Model{
         return $query->result_array();        
     }
     
+    public function getSecondaryCourses($data){
+          
+        $this->db->select("*");
+        $this->db->order_by("PRI_SEQ_NUM", "asc");
+        $this->db->from('TBL_PROP_SEC_COURSES');
+        $this->db->where("PROPID = ".$data['PROPID']);
+        
+        $query = $this->db->get();
+        return $query->result_array();  
+    }
+
+
     public function getProposal($data){
 
         $this->db->select("*");

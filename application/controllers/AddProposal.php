@@ -61,6 +61,9 @@ class AddProposal extends CI_Controller {
         //get subject
         $data['subject'] = $this->Formvalues_model->getSubject();
         
+        //get course status
+        $data['course_status'] = $this->Formvalues_model->getCourseStatus();
+        
         return $data;
     }
     
@@ -96,7 +99,17 @@ class AddProposal extends CI_Controller {
     }
     
     public function getPriCourses($data){
+        
         return $this->QueryCourses_model->getPrimaryCourses($data);
+    }
+    
+    public function getSecCourses($data){
+        return $this->QueryCourses_model->getSecondaryCourses($data);
+    }
+    
+        public function getSecCourseSeq($data){
+        return $this->Insert_model->insertPropSecCourse($data);
+        
     }
     
     public function arrayToUpper(){
@@ -131,6 +144,8 @@ class AddProposal extends CI_Controller {
         }
         $data['proposal'] = $this->QueryCourses_model->getProposal($data);
         $data['priCourses'] = $this->getPriCourses($data);
+        $data['secCourses'] = $this->getSecCourses($data);
+var_dump($data['priCourses']);
         
         $data = $this->getComboValues($data);
         
@@ -141,7 +156,34 @@ class AddProposal extends CI_Controller {
     }
 
     public function savePropSecCourse(){
+                
+        $data = $this->arrayToUpper();
+ 
+        $arraySize = $this->getArraySize($data);
         
+        for ($i=0;$i<$arraySize;$i++){
+            foreach ($data as $key => $value) {
+                if (is_array($value)){
+                    
+                    $query[$key] = $value[$i];
+                } else {
+                    $query[$key] = $value;
+                }
+
+            }
+            $query['MOD_BY'] = 'FRIELJ';
+
+            $newCourseSeq = $this->getSecCourseSeq($query);
+
+        }
+        $data['proposal'] = $this->QueryCourses_model->getProposal($data);
+        $data['secCourses'] = $this->getSecCourses($data);
+        
+        $data = $this->getComboValues($data);
+        
+        $this->load->view('templates/header',$data);
+        $this->load->view('pages/home',$data);
+        $this->load->view('templates/footer',$data);
          
     }
     

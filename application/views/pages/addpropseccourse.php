@@ -1,5 +1,5 @@
 <?php
-var_dump($proposal);
+
 
 foreach ($proposal as $value) {
     //This need to be coded once the login page is completed
@@ -26,9 +26,10 @@ foreach ($proposal as $value) {
 }
 ?>
 
-<h3>Primary Courses</h3>
+<h3>Secondary Courses</h3>
+<form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/addproposal/savePropSecCourse" method="post">
 <?php
-var_dump($priCourses);
+
 foreach ($priCourses as $value) {
     //This need to be coded once the login page is completed
     //$userid = $value['USERID'];
@@ -40,6 +41,7 @@ foreach ($priCourses as $value) {
     <!--Proposal Header-->
     <div class="panel panel-green">
         <div class="panel-heading col-xs-12">
+            <h3 class="col-xs-12">Primary Course Information</h3>
             <div class="col-xs-12" >Primary Sequence: <?php echo $value['PRI_SEQ_NUM'];?></div> 
             <div class="col-xs-3" >Institution: <?php echo $value['INSTITUTION'];?></div> 
             <div class="col-xs-3" >Career: <?php echo $value['CAREER'];?></div>
@@ -50,58 +52,104 @@ foreach ($priCourses as $value) {
                 echo '<div class="col-xs-12">Course Topics: '.$value['DESCR_TOPICS'].'</div>';
             }?>
         </div>
+        
         <div class="panel-body col-xs-12">
-           <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/addproposal/savePropPriCourse" method="post">
-                <input type="hidden" name="propid" value="<?php echo $value['PROPID']?>">
+            <h3 class="col-xs-12">Secondary Course Information</h3>
+            <?php
+                
+            ?>
+<!--           <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/addproposal/savePropSecCourse" method="post">-->
+                <input type="hidden" name="propid" value="<?php echo $value['PROPID'];?>">
+                
                 <div class="form-group">
 
                     <div class="multi-field-wrapper">
                         <div class="multi-fields">
                             <div class="multi-field">
-                                    <div class="form-group">                                            
-                                        <fieldset class="col-xs-2 selectContainer">
-                                            <label class="control-label" for="prop_budget_requested">Institution</label>
-                                            <select id="INSTITUTION" class="form-control" name="institution[]">
-                                                <!--Dynamically adding term values to dropdown-->
+                                    <div class="panel panel-green">
+                                        <input type="hidden" name="pri_seq_num[]" value="<?php echo $value['PRI_SEQ_NUM'];?>">
+                                        <div class="panel-heading col-xs-12">
+                                            <h3 class="col-xs-12">Enter Secondary Course Information</h3>
+                                            <div class="form-group">
+                                                <fieldset class="col-xs-2 selectContainer">
+                                                    <label class="control-label" for="prop_budget_requested">Institution</label>
+                                                    <select id="INSTITUTION" class="form-control col-md-3" name="institution[]">
+                                                        <!--Dynamically adding term values to dropdown-->
 
-                                                 <?php 
-                                                foreach ($institution as $array) { ?>
-                                                        <option value="<?php echo $array['INSTITUTION'];?>"><?php echo $array['INSTIT_DESCR'];?></option>
-                                                <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        </fieldset>
+                                                         <?php 
+                                                        foreach ($institution as $array) { ?>
+                                                                <option value="<?php echo $array['INSTITUTION'];?>"><?php echo $array['INSTIT_DESCR'];?></option>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </fieldset>
 
-                                        <fieldset class="col-xs-2 selectContainer">
-                                            <label class="control-label" for="prop_budget_requested">Career</label>
-                                            <select id="ACAD_CAREER" class="form-control" name="career[]">
-                                                <!--Dynamically adding term values to dropdown-->
-                                                 <?php 
-                                                foreach ($career as $array) { ?>
-                                                        <option value="<?php echo $array['ACAD_CAREER'];?>"><?php echo $array['DESCR'];?></option>
-                                                <?php
-                                                }
-                                                ?>
-                                            </select>
-                                       </fieldset>
+                                                <fieldset class="col-xs-2 selectContainer">
+                                                    <label class="control-label" for="prop_budget_requested">Career</label>
+                                                    <select id="ACAD_CAREER" class="form-control" name="career[]">
+                                                        <!--Dynamically adding career values to dropdown-->
+                                                         <?php 
+                                                        foreach ($career as $array) { ?>
+                                                                <option value="<?php echo $array['ACAD_CAREER'];?>"><?php echo $array['DESCR'];?></option>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </select>                                
+                                                </fieldset>
+                                                <fieldset class="col-xs-4">
+                                                    <label class="control-label " for="SUBJECT">Subject</label>
+                                                    <input name="subject[]" id="SUBJECT" type="text" class="form-control input-sm">
+                                                </fieldset>
+                                                <fieldset class="col-xs-4">     
+                                                    <label class="control-label" for="CATALOG_NUM">Catalog Number</label>   
+                                                    <input name="catalog_num[]"id="CATALOG_NUM" type="text" class="form-control">
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <fieldset class="form-group col-xs-12"> 
+                                                    <label class="control-label" for="CATALOG_NUM">Course Title</label>   
+                                                    <input name="descr[]" id="DESCR" type="text" class="form-control">
+                                                    <label class="control-label" for="DESCR_TOPICS">Course Topic</label>   
+                                                    <input name="descr_topics[]" id="DESCR_TOPICS" type="text" class="form-control">
+                                                </fieldset>
+                                                <fieldset class="form-group col-xs-12">
+                                                    <label class="control-label" for="LONG_DESCR">Course Description</label>   
+                                                    <textarea name="long_descr" rows="4" class="form-control" ></textarea>
+                                                </fieldset>                             
+                                            </div>
 
-                                        <fieldset class="form-group col-md-3">                                             
-                                            <label class="control-label" for="SUBJECT">Subject</label>
-                                            <input name="subject[]" id="SUBJECT" type="text" class="form-control input-sm">
-                                            <label class="control-label" for="CATALOG_NUM">Catalog Number</label>   
-                                            <input name="catalog_num[]"id="CATALOG_NUM" type="text" class="form-control">
-                                            <label class="control-label" for="CATALOG_NUM">Course Title</label>   
-                                            <input name="descr[]" id="DESCR" type="text" class="form-control">
-                                            <label class="control-label" for="DESCR_TOPICS">Course Topic</label>   
-                                            <input name="descr_topics[]" id="DESCR_TOPICS" type="text" class="form-control">
-                                        </fieldset>
+                                            <div class="form-group">
+                                                <fieldset class="col-xs-2 selectContainer">
+                                                    <label class="control-label" for="COURSE_STATUS">Course Status</label>
+                                                    <select id="COURSE_STATUS" class="form-control" name="course_status[]">
+                                                        <!--Dynamically adding course_status values to dropdown-->
+                                                         <?php 
+                                                        foreach ($course_status as $array) { ?>
+                                                                <option value="<?php echo $array['COURSE_STATUS'];?>"><?php echo $array['COURSE_STATUS_DESCR'];?></option>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </select> 
+                                                </fieldset>
+                                                <fieldset class="col-xs-2 selectContainer">
+                                                    <label class="control-label" for="sec_crse_budget">Requested Budget</label>
+                                                    <div class=" input-group">
+                                                        <span class="input-group-addon">$</span>
+                                                        <input name="sec_crse_budget" type="text" pattern="^\d*(\.\d{2}$)?" class="form-control" aria-label="Amount (to the nearest dollar)">
 
+                                                    </div>
+                                                </fieldset>
+
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <button type="button" class="remove-field btn btn-default">Remove</button>
+                    <button type="button" class="remove-field btn btn-block">Remove</button>
 
-                            </div>
+                    </div>
 
                         </div>
 
@@ -110,18 +158,20 @@ foreach ($priCourses as $value) {
                     </div>
 
                     <!-- Form Buttons: Submit, Reset -->
-                    <button type="submit" class="btn btn-default">Submit</button>
-                    <button type="reset" class="btn btn-danger">Reset</button>
+ 
 
                 </div>
-            </form>
+<!--            </form>-->
         </div>
     </div>
-</div>    
+    
+</div>   
+<button type="submit" class="btn btn-default">Submit</button>
+    <button type="reset" class="btn btn-danger">Reset</button>
 <?php
 }
 ?>    
-
+</form>
 
 <?php
 

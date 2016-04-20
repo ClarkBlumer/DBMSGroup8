@@ -56,7 +56,17 @@ class Insert_model extends CI_Model{
     }  
     
     function insertPropSecCourse($data){
+        $maxIdArray['table'] = 'TBL_PROP_SEC_COURSES';
+        $maxIdArray['idfield'] = 'SEC_SEQ_NUM';        
+    
+        $this->db->trans_start();
+        $this->db->insert($maxIdArray['table'], $data);
+  
+        $propId = $this->getNewId($maxIdArray);
+                    
+        $this->db->trans_complete();
         
+        return $propId->result_array();
         
     }
     
