@@ -26,7 +26,8 @@ class Proposal_model extends CI_Model{
               
         $this->db->trans_start();
         $this->db->insert(self::table, $data);  
-        $prop = $this->getNewProposal();                   
+        $prop = $this->getNewProposal(); 
+
         $this->db->trans_complete();
         return $prop;
     }
@@ -36,6 +37,7 @@ class Proposal_model extends CI_Model{
     }
     
     public function getProposal(){
+
         $result = $this->db->query(''
             . 'SELECT * '
             . 'FROM '.self::table.' '
@@ -50,7 +52,7 @@ class Proposal_model extends CI_Model{
             . 'FROM '.self::table.' '
             . 'WHERE '.self::idfield.'= (SELECT MAX('.self::idfield.') FROM '.self::table.')');
     
-    var_dump($result->result_array());
+   
         return $result->result_array();
 
     }

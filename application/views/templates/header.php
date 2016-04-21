@@ -58,7 +58,7 @@ CodeIgniter/BootStrap Template
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="<?php echo base_url();?>">Home</a></li>
                             <li class="active"><a href="<?php echo base_url('index.php/getallproposals/index') ?>">Proposals</a></li>
-                            <li><a href="<?php echo base_url('index.php/addproposal')?>">Enter Proposal</a></li>
+                            <li><a href="<?php echo base_url('index.php/proposal')?>">Enter Proposal</a></li>
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Charts/Reports<span class="caret"></span></a>

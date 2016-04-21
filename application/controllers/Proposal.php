@@ -36,22 +36,24 @@ class Proposal extends CI_Controller{
 
         $data = ArrayToUpper::arrayToUp($this->input->post());
        
-        $data['proposalid'] = $this->Proposal_model->insertProposal($data);
+        $proposalid = $this->Proposal_model->insertProposal($data);
 
-        $proposalid = [];
-        var_dump($data['proposalid']);
-        foreach ($data['proposalid'] as $value) {
+        
+        foreach ($proposalid as $value) {
 
-            $proposalid = $value;
+            $propid = $value;
         }
+        
+        $data['proposal'] = $this->Proposal_model->getProposal($propid['PROPID']);
 
         $this->session->set_userdata('USERID', self::userid);
-        $this->session->set_userdata('PROPID',$proposalid['PROPID']);
-        print_r($this->session->all_userdata());
+        $this->session->set_userdata('PROPID',$propid['PROPID']);
+        
+        $data['dropdowns'] = $this->DropDownValues_model->getDropDown();
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/header',$data);
         $this->load->view('pages/proposalcourses',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
 
     }
     

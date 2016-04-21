@@ -3,7 +3,7 @@
     <div class="col-lg-10">
         <fieldset>
             <legend >Enter New Proposal</legend>
-            <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/proposalcourses" method="post">
+            <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/proposal/insert" method="post">
                 
                 
                 <input type="hidden" name="mod_by" value="FRIELJ">

@@ -30,3 +30,11 @@ and open the template in the editor.
 .date-form { margin: 10px; }
 label.control-label span { cursor: pointer; }
 
+.panel-custom-white {
+    border-color: white;
+}
+.panel-custom-white > .panel-heading {
+    background: white; 
+
+}
+

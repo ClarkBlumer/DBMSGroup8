@@ -29,6 +29,7 @@ class ProposalCourses extends CI_Controller{
         $propid = $this->session->PROPID;
         $data['proposal'] = $this->Proposal_model->getProposal();
         $data['primarycourses'] = $this->ProposalCourses_model->getPrimaryCourses();
+        $data['secondarycourses'] = $this->ProposalCourses_model->getSecondaryCourses();
         $this->load->view('templates/header',$data);
         $this->load->view('pages/proposalcourses', $data);
         $this->load->view('templates/footer',$data);
@@ -36,9 +37,21 @@ class ProposalCourses extends CI_Controller{
     
     public function insertPrimaryCourse(){
         $data = ArrayToUpper::arrayToUp($this->input->post());
-        $this->ProposalCourses_model->insertPrimaryCourse($data);
+        $priseqnum = $this->ProposalCourses_model->insertPrimaryCourse($data);
+        
+        foreach ($priseqnum as $value){
+            $priseq = $value;
+        }
+        $this->session->set_userdata('PRI_SEQ_NUM', $priseq['PRI_SEQ_NUM']);
+        $this->index();
+    }
+    
+    public function insertSecondaryCourse(){
+        $data = ArrayToUpper::arrayToUp($this->input->post());
+        $this->ProposalCourses_model->insertSecondaryCourse($data);
         $data = [];
         $this->index();
     }
+    
     //put your code here
 }
