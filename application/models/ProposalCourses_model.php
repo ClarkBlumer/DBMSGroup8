@@ -30,8 +30,8 @@ class ProposalCourses_model extends CI_Model{
     
     public function insertPrimaryCourse($data){
         
-        $dateTime = new DateTime();
-        $data['INSERT_DATE'] = date('d-M-Y G:i:s');
+        $data['PROPID'] = $this->session->PROPID;
+        $data['MOD_BY'] = 'FRIELJ';
               
         $this->db->trans_start();
         $this->db->insert(self::table, $data);  

@@ -3,7 +3,7 @@
         print_r($this->session->all_userdata());
         $propid = $this->session->PROPID;
         echo "<br><br>Propid: ".$propid;
-        
+        var_dump($dropdowns['institution']);
         var_dump($proposal);
         var_dump($primarycourses);
         if (empty($primarycourses)) echo '<br>damn it works!!!<br>';
@@ -102,8 +102,8 @@ if (empty($primarycourses)){
                                         <!--Dynamically adding term values to dropdown-->
 
                                          <?php 
-                                        foreach ($dropdowns['institution'] as $key => $value) { ?>
-                                                <option value="<?php echo $array['INSTITUTION'];?>"><?php echo $array['INSTIT_DESCR'];?></option>
+                                        foreach ($dropdowns['institution'] as $value) { ?>
+                                                <option value="<?php echo $value['INSTITUTION'];?>"><?php echo $value['INSTIT_DESCR'];?></option>
                                         <?php
                                         }
                                         ?>
@@ -124,7 +124,7 @@ if (empty($primarycourses)){
                                 </fieldset>
                                 <fieldset class="col-xs-4">
                                     <label class="control-label " for="SUBJECT">Subject</label>
-                                    <input name="subject[]" id="SUBJECT" type="text" class="form-control input-sm">
+                                    <input name="subject" id="SUBJECT" type="text" class="form-control input-sm">
                                 </fieldset>
                                 <fieldset class="col-xs-4">     
                                     <label class="control-label" for="CATALOG_NUM">Catalog Number</label>   
@@ -136,9 +136,9 @@ if (empty($primarycourses)){
                             <div class="form-group">
                                 <fieldset class="form-group col-xs-12"> 
                                     <label class="control-label" for="CATALOG_NUM">Course Title</label>   
-                                    <input name="descr[]" id="DESCR" type="text" class="form-control">
+                                    <input name="descr" id="DESCR" type="text" class="form-control">
                                     <label class="control-label" for="DESCR_TOPICS">Course Topic</label>   
-                                    <input name="descr_topics[]" id="DESCR_TOPICS" type="text" class="form-control">
+                                    <input name="descr_topics" id="DESCR_TOPICS" type="text" class="form-control">
                                 </fieldset>
                                 <fieldset class="form-group col-xs-12">
                                     <label class="control-label" for="LONG_DESCR">Course Description</label>   
@@ -149,7 +149,7 @@ if (empty($primarycourses)){
                             <div class="form-group">
                                 <fieldset class="col-xs-2 selectContainer">
                                     <label class="control-label" for="COURSE_STATUS">Course Status</label>
-                                    <select id="COURSE_STATUS" class="form-control" name="course_status[]">
+                                    <select id="COURSE_STATUS" class="form-control" name="course_status">
                                         <!--Dynamically adding course_status values to dropdown-->
                                          <?php 
                                         foreach ($dropdowns['course_status'] as $array) { ?>
