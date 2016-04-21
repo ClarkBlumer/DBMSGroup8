@@ -61,6 +61,8 @@ $route['coursesDiscip']='graphs/coursesDiscip';
 $route['enrollmentGraph']='graphs/enrollmentGraph';
 $route['allCharts']='graphs/allCharts';
 
+$route['proposalcourses'] = 'proposalcourses/index';
+$route['proposal'] = 'proposal/index';
 $route['addproposal'] = 'addproposal/index';
 $route['default_controller'] = 'home/view';
 $route['(:any)'] = 'home/view/$1';

@@ -1,8 +1,9 @@
 <div class="container">
+
     <div class="col-lg-10">
         <fieldset>
             <legend >Enter New Proposal</legend>
-            <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/proposal/insert" method="post">
+            <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/proposalcourses" method="post">
                 
                 
                 <input type="hidden" name="mod_by" value="FRIELJ">
@@ -47,7 +48,7 @@
                             <option value=""></option>
                             <!--Dynamically adding term values to dropdown-->
                             <?php 
-                            foreach ($offer_term as $array) { ?>
+                            foreach ($dropdowns['offer_term'] as $array) { ?>
                                     <option value="<?php echo $array['STRM'];?>"><?php echo $array['DESCRSHORT'];?></option>
                             <?php
                             }
@@ -73,7 +74,7 @@
                         <select  id="propOfferStatus" name="prop_offer_status" class="form-control">
                             <!--Dynamically adding term values to dropdown-->
                             <?php 
-                            foreach ($offer_status as $array) { ?>
+                            foreach ($dropdowns['offer_status'] as $array) { ?>
                                     <option value="<?php echo $array['OFFER_STATUS'];?>"><?php echo $array['OFFER_DESCR'];?></option>
                             <?php
                             }
@@ -87,7 +88,7 @@
                             <!--Dynamically adding term values to dropdown-->
                             <option value=""></option>
                             <?php 
-                            foreach ($offer_term as $array) { ?>
+                            foreach ($dropdowns['offer_term'] as $array) { ?>
                                     <option value="<?php echo $array['STRM'];?>"><?php echo $array['DESCRSHORT'];?></option>
                             <?php
                             }

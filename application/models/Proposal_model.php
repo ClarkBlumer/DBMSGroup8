@@ -12,15 +12,23 @@
  * @author frielj
  */
 class Proposal_model extends CI_Model{
+    const table = 'TBL_PROPOSAL';
+    const idfield = 'PROPID';
+    
     public function __construct() {
         parent::__construct();
-        $table = 'porposal';
     }
     
     public function insertProposal($data){
-        echo "In Proposal_model->insertProposal()";
-        var_dump($data);
         
+        $dateTime = new DateTime();
+        $data['INSERT_DATE'] = date('d-M-Y G:i:s');
+              
+        $this->db->trans_start();
+        $this->db->insert(self::table, $data);  
+        $prop = $this->getNewProposal();                   
+        $this->db->trans_complete();
+        return $prop->result_array();
     }
     
     public function updateProposal(){
@@ -28,11 +36,20 @@ class Proposal_model extends CI_Model{
     }
     
     public function getProposal($propid){
-        
+        $result = $this->db->query(''
+            . 'SELECT * '
+            . 'FROM '.self::table.' '
+            . 'WHERE '.self::idfield.'= '.$this->session->PROPID);
+        return $result->result_array();
     }
     
     public function getNewProposal(){
-        
+        $result = $this->db->query(''
+            . 'SELECT '.self::idfield.' '
+            . 'FROM '.self::table.' '
+            . 'WHERE '.self::idfield.'= (SELECT MAX('.self::idfield.') FROM '.self::table.')');
+        return $result->result_array();
+
     }
     //put your code here
 }
