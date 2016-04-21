@@ -33,21 +33,26 @@ class Proposal extends CI_Controller{
     }
     
     public function insert(){
+
         $data = ArrayToUpper::arrayToUp($this->input->post());
-        var_dump($data);
+       
         $data['proposalid'] = $this->Proposal_model->insertProposal($data);
 
         $proposalid = [];
+        var_dump($data['proposalid']);
         foreach ($data['proposalid'] as $value) {
+
             $proposalid = $value;
         }
+
         $this->session->set_userdata('USERID', self::userid);
         $this->session->set_userdata('PROPID',$proposalid['PROPID']);
-/*
+        print_r($this->session->all_userdata());
+
         $this->load->view('templates/header');
-        $this->load->view('pages/proposalcourses');
+        $this->load->view('pages/proposalcourses',$data);
         $this->load->view('templates/footer');
-*/
+
     }
     
     

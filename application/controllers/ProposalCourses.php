@@ -25,11 +25,10 @@ class ProposalCourses extends CI_Controller{
     }
 
     public function index(){
-
         $data['dropdowns'] = $this->DropDownValues_model->getDropDown();
-        $data['proposal'] = $this->Proposal_model->getProposal($this->session->propid);
+        $propid = $this->session->PROPID;
+        $data['proposal'] = $this->Proposal_model->getProposal();
         $data['primarycourses'] = $this->ProposalCourses_model->getPrimaryCourses();
-        var_dump($data['proposal']);
         $this->load->view('templates/header',$data);
         $this->load->view('pages/proposalcourses', $data);
         $this->load->view('templates/footer',$data);
@@ -37,7 +36,6 @@ class ProposalCourses extends CI_Controller{
     
     public function insertPrimaryCourse(){
         $data = ArrayToUpper::arrayToUp($this->input->post());
-        var_dump($data);
         //$this->ProposalCourses_model->insertPrimaryCourse($data);
         //$this->index();
     }

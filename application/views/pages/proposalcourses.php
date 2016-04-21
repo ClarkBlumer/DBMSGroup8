@@ -3,6 +3,7 @@
         print_r($this->session->all_userdata());
         $propid = $this->session->PROPID;
         echo "<br><br>Propid: ".$propid;
+        
         var_dump($proposal);
         var_dump($primarycourses);
         if (empty($primarycourses)) echo '<br>damn it works!!!<br>';
@@ -97,7 +98,7 @@ if (empty($primarycourses)){
                             <div class="form-group">
                                 <fieldset class="col-xs-2 selectContainer">
                                     <label class="control-label" for="prop_budget_requested">Institution</label>
-                                    <select id="INSTITUTION" class="form-control col-md-3" name="institution[]">
+                                    <select id="INSTITUTION" class="form-control col-md-3" name="institution">
                                         <!--Dynamically adding term values to dropdown-->
 
                                          <?php 
@@ -111,7 +112,7 @@ if (empty($primarycourses)){
 
                                 <fieldset class="col-xs-2 selectContainer">
                                     <label class="control-label" for="prop_budget_requested">Career</label>
-                                    <select id="ACAD_CAREER" class="form-control" name="career[]">
+                                    <select id="ACAD_CAREER" class="form-control" name="career">
                                         <!--Dynamically adding career values to dropdown-->
                                          <?php 
                                         foreach ($dropdowns['career'] as $array) { ?>
@@ -127,7 +128,7 @@ if (empty($primarycourses)){
                                 </fieldset>
                                 <fieldset class="col-xs-4">     
                                     <label class="control-label" for="CATALOG_NUM">Catalog Number</label>   
-                                    <input name="catalog_num[]"id="CATALOG_NUM" type="text" class="form-control">
+                                    <input name="catalog_num" id="CATALOG_NUM" type="text" class="form-control">
                                 </fieldset>
                             </div>
                         </div>
