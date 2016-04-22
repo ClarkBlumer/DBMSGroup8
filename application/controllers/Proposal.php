@@ -38,17 +38,17 @@ class Proposal extends CI_Controller{
        
         $proposalid = $this->Proposal_model->insertProposal($data);
 
-        
+        $propid = [];
         foreach ($proposalid as $value) {
 
             $propid = $value;
         }
-        
-        $data['proposal'] = $this->Proposal_model->getProposal($propid['PROPID']);
 
         $this->session->set_userdata('USERID', self::userid);
         $this->session->set_userdata('PROPID',$propid['PROPID']);
-        
+       
+        $data['proposal'] = $this->Proposal_model->getProposal();
+
         $data['dropdowns'] = $this->DropDownValues_model->getDropDown();
 
         $this->load->view('templates/header',$data);

@@ -29,6 +29,7 @@ class Proposal_model extends CI_Model{
         $prop = $this->getNewProposal(); 
 
         $this->db->trans_complete();
+        var_dump($prop);
         return $prop;
     }
     
@@ -52,7 +53,7 @@ class Proposal_model extends CI_Model{
             . 'FROM '.self::table.' '
             . 'WHERE '.self::idfield.'= (SELECT MAX('.self::idfield.') FROM '.self::table.')');
     
-   
+    var_dump($result->result_array());   
         return $result->result_array();
 
     }
