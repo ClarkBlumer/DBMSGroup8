@@ -38,3 +38,7 @@ label.control-label span { cursor: pointer; }
 
 }
 
+.modal-body-custom {
+    max-height: 800px;
+    max-width: 800px;
+}

@@ -11,9 +11,10 @@ foreach ($proposal as $value) {
     <!--Proposal Header-->
     <div class="panel panel-default">
         <div class="panel-heading col-xs-12">
-            <div class="col-xs-4" >Proposal: <?php echo $value['PROPID'];?></div> 
-            <div class="col-xs-4" >Submitted By: <?php echo $value['SUBMITTED_BY'];?></div> 
-            <div class="col-xs-4" >Submit Date: <?php echo $value['SUBMIT_DATE'];?></div> 
+            <div class="col-xs-3" >Proposal: <?php echo $value['PROPID'];?></div> 
+            <div class="col-xs-3" >Submitted By: <?php echo $value['SUBMITTED_BY'];?></div> 
+            <div class="col-xs-3" >Submit Date: <?php echo $value['SUBMIT_DATE'];?></div>
+            <div class="col-xs-3" ><?php include '/modals/proposal_modal.php';?></div>
         </div>
         <div class="panel-body">
             <div class="col-xs-4">Anticipated Offer Term: <?php echo $value['PROP_OFFER_TERM'];?></div>            
@@ -138,15 +139,15 @@ $j++;
 </div>    
 </div>
           
-          <?php
+<?php
 }
 ?>
  
     
                 
-                <?php
-                include '/modals/proposedsecondarycourse_modal.php';
-                ?>
+<?php
+include '/modals/proposedsecondarycourse_modal.php';
+?>
               
           </div>
 </div>

@@ -18,10 +18,8 @@ class DropDownValues_model extends CI_Model{
     }
     
     function getDropDown(){
-             
-       
-        
-                //get offer term
+
+        //get offer term
         $dropDown['offer_term'] = $this->getTerm();
 
         //get offer status values

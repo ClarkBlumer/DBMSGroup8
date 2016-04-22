@@ -27,7 +27,7 @@
                                        
 		<?php foreach ($proposals as $array) { ?>
           <tr>
-            <td><?php echo $array['PROPID']; ?></td>
+              <td><a href="<?php echo site_url('/proposal/view/'.$array['PROPID']);?>"><?php echo $array['PROPID']; ?></a></td>
             <td><?php echo $array['PROP_OFFER_TERM']; ?></td>
             <td><?php echo $array['PROP_BUDGET_REQUESTED']; ?></td>
             <td><?php echo $array['PROP_OFFER_STATUS']; ?></td>

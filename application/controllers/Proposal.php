@@ -24,12 +24,16 @@ class Proposal extends CI_Controller{
     public function index(){
         echo "in Proposal->index\n";
         
-        $data['dropdowns'] = $this->DropDownValues_model->getDropDown();
+        $data['dropdowns'] = $this->getDropDowns();
 
         $this->load->view('templates/header',$data);
         $this->load->view('pages/proposal', $data);
         $this->load->view('templates/footer',$data);
         
+    }
+    
+    public function getDropDowns(){
+        return  $this->DropDownValues_model->getDropDown();
     }
     
     public function insert(){
@@ -49,12 +53,33 @@ class Proposal extends CI_Controller{
        
         $data['proposal'] = $this->Proposal_model->getProposal();
 
-        $data['dropdowns'] = $this->DropDownValues_model->getDropDown();
+        $data['dropdowns'] = $this->getDropDowns();
 
         $this->load->view('templates/header',$data);
         $this->load->view('pages/proposalcourses',$data);
         $this->load->view('templates/footer',$data);
 
+    }
+    
+    function view($propid){
+        if (!isset($data) || !$data['dropdowns']){
+            echo "<br>getting dropdowns<br>";
+            $data['dropdowns'] = $this->getDropDowns();
+        }
+        //if primary sequence number exists in session, remove it.
+        if ($this->session->PRI_SEQ_NUM){
+            $this->session->unset_userdata('PRI_SEQ_NUM');            
+        }
+        $this->session->set_userdata('PROPID',$propid);
+        print_r($this->session->all_userdata());
+        $data['proposal'] = $this->Proposal_model->getProposal();
+        var_dump($data['proposal']);
+
+        
+        $this->load->view('templates/header',$data);
+        $this->load->view('pages/proposalcourses',$data);
+        $this->load->view('templates/footer',$data);
+        
     }
     
     
