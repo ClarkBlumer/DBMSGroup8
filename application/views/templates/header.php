@@ -63,7 +63,7 @@ CodeIgniter/BootStrap Template
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Charts/Reports<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="allCharts">All Charts</a></li>
+                                    <li><a href="<?php echo base_url('index.php/getBudgetRequested/index') ?>">All Charts</a></li>
 
                                     <li role="separator" class="divider"></li>
 

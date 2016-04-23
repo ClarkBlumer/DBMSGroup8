@@ -17,7 +17,7 @@ $(function() {
             value: 15
         }, {
             label: "Number of funding requested by ROLLA",
-            value: 15
+            value: obj2
         }],
         resize: true
     });
