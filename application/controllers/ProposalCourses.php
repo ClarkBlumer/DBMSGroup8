@@ -28,10 +28,13 @@ class ProposalCourses extends CI_Controller{
         $data['dropdowns'] = $this->DropDownValues_model->getDropDown();
         $propid = $this->session->PROPID;
         $data['proposal'] = $this->Proposal_model->getProposal();
-        $data['clobtext'] = $this->Proposal_model->processClob($data['proposal']);
-        var_dump($data);
-        echo "Clob Text after processing: <p>".$data['clobtext']."</p>";
+        $data['propclobtext'] = $this->Proposal_model->processClob($data['proposal']);
+
+        $clob = $this->Proposal_model->processClob($data['proposal']);
+        $data['propclobtext'] = $clob->load();
+        
         $data['primarycourses'] = $this->ProposalCourses_model->getPrimaryCourses();
+        
         $data['secondarycourses'] = $this->ProposalCourses_model->getSecondaryCourses();
         $this->load->view('templates/header',$data);
         $this->load->view('pages/proposalcourses', $data);
