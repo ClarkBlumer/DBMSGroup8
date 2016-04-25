@@ -50,7 +50,8 @@ class Proposal extends CI_Controller{
         $this->session->set_userdata('PROPID',$propid['PROPID']);
        
         $data['proposal'] = $this->Proposal_model->getProposal();
-
+        $clob = $this->Proposal_model->processClob($data['proposal']);
+        $data['propclobtext'] = $clob->load();
         $data['dropdowns'] = $this->getDropDowns();
 
         $this->load->view('templates/header',$data);
