@@ -14,7 +14,9 @@
 class Graphs extends CI_Controller {
 
   public function allCharts(){
-        $this->load->view('templates/header');
+	  
+	    $data['va'] = 100;
+        $this->load->view('templates/header',$data);
 	
 		$this->load->view('pages/allCharts');
 		

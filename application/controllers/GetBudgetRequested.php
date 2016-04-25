@@ -11,7 +11,7 @@
  *
  * @author frielj
  */
-class Getallproposals extends CI_Controller {
+class GetBudgetRequested extends CI_Controller {
     //put your code here
     private $data;
    
@@ -19,18 +19,18 @@ class Getallproposals extends CI_Controller {
         
         parent::__construct();
         
-        $this->load->model('List_proposals');
+        $this->load->model('Fund_Requested');
     }
     
     public function index(){
 
         //get all proposals
-        $data['proposals'] = $this->List_proposals->getallproposals();
-		
+        $data['bugetRe'] = $this->Fund_Requested->budgetrquested();
+		 $data['va'] = 25;
 
 		
         $this->load->view('templates/header',$data);
-        $this->load->view('pages/listedproposals',$data);
+        $this->load->view('pages/allCharts',$data);
         $this->load->view('templates/footer',$data);
     }  
 }

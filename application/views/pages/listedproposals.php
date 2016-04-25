@@ -37,12 +37,16 @@
             <td><?php echo $array['INSERT_DATE']; ?></td>
             <td><?php echo $array['MOD_BY']; ?></td>
             <td><?php echo $array['MOD_DATE']; ?></td>
-			<td><?php //echo $array['PROP_DESCR']; ?></td>-->		
+			<td><?php //echo $array['PROP_DESCR']; ?></td>-->	
+			
           </tr>
 		<?php
 		} 
 		?>
 		
+		
+		
+
         </tbody>
       </table>
 
