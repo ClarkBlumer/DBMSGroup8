@@ -28,6 +28,9 @@ class ProposalCourses extends CI_Controller{
         $data['dropdowns'] = $this->DropDownValues_model->getDropDown();
         $propid = $this->session->PROPID;
         $data['proposal'] = $this->Proposal_model->getProposal();
+        $data['clobtext'] = $this->Proposal_model->processClob($data['proposal']);
+        var_dump($data);
+        echo "Clob Text after processing: <p>".$data['clobtext']."</p>";
         $data['primarycourses'] = $this->ProposalCourses_model->getPrimaryCourses();
         $data['secondarycourses'] = $this->ProposalCourses_model->getSecondaryCourses();
         $this->load->view('templates/header',$data);
@@ -52,6 +55,8 @@ class ProposalCourses extends CI_Controller{
         $data = [];
         $this->index();
     }
+    
+    
     
     //put your code here
 }

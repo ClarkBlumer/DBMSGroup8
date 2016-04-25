@@ -33,7 +33,9 @@ class Proposal_model extends CI_Model{
         return $prop;
     }
     
-    public function updateProposal(){
+    public function updateProposal($data){
+        $data['PROP_ID'] = $this->session->PROPID;
+        var_dump($data);
         
     }
     
@@ -43,8 +45,23 @@ class Proposal_model extends CI_Model{
             . 'SELECT * '
             . 'FROM '.self::table.' '
             . 'WHERE '.self::idfield.'= '.$this->session->PROPID);
- 
+        
+        foreach ($result->result() as $value) {
+        
+        echo "Clob Text: ".$value->PROP_DESCR->load()."<br>";
+            
+        }
+        
         return $result->result_array();
+    }
+    
+    public function processClob($proposal){
+        $clobtext = null;
+        foreach ($proposal as $value) {
+            $clobtext = $value['PROP_DESCR'];      
+        }
+
+        return $clobtext;
     }
     
     public function getNewProposal(){

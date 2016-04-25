@@ -22,8 +22,6 @@ class Proposal extends CI_Controller{
     }
     
     public function index(){
-        echo "in Proposal->index\n";
-        
         $data['dropdowns'] = $this->getDropDowns();
 
         $this->load->view('templates/header',$data);
@@ -61,9 +59,15 @@ class Proposal extends CI_Controller{
 
     }
     
+    public function update(){
+        $data = ArrayToUpper::arrayToUp($this->input->post());
+        $data['PROPID'] = $this->session->PROPID;
+        
+        var_dump($data);
+    }
+    
     function view($propid){
         if (!isset($data) || !$data['dropdowns']){
-            echo "<br>getting dropdowns<br>";
             $data['dropdowns'] = $this->getDropDowns();
         }
         //if primary sequence number exists in session, remove it.
@@ -71,10 +75,11 @@ class Proposal extends CI_Controller{
             $this->session->unset_userdata('PRI_SEQ_NUM');            
         }
         $this->session->set_userdata('PROPID',$propid);
-        print_r($this->session->all_userdata());
+        
         $data['proposal'] = $this->Proposal_model->getProposal();
-        var_dump($data['proposal']);
-
+        
+        $clob = $this->Proposal_model->processClob($data['proposal']);
+        $data['propclobtext'] = $clob->load();
         
         $this->load->view('templates/header',$data);
         $this->load->view('pages/proposalcourses',$data);

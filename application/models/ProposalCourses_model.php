@@ -36,10 +36,12 @@ class ProposalCourses_model extends CI_Model{
             . 'FROM '.self::secondarycoursetable.' '
             . 'WHERE '.self::propid.'= '.$this->session->PROPID.' '
                 . 'AND '.self::priseqnum.'= '.$this->session->PRI_SEQ_NUM.' ');
+        
+        
         return $result->result_array();
     }
     
-        public function getNewPrimaryCourse(){
+    public function getNewPrimaryCourse(){
         $result = $this->db->query(''
             . 'SELECT '.self::priseqnum.' '
             . 'FROM '.self::primarycoursetable.' '

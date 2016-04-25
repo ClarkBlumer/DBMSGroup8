@@ -1,11 +1,15 @@
 
 <?php
 
+$propinfo = $proposal[0];
+
 foreach ($proposal as $value) {
+    
     //This need to be coded once the login page is completed
     //$userid = $value['USERID'];
     //Temp userid
     $userid = 'FRIELJ';
+    $this->session->set_userdata('PROPID',$value['PROPID']);
 ?>
 <div class="container">
     <!--Proposal Header-->
@@ -19,7 +23,9 @@ foreach ($proposal as $value) {
         <div class="panel-body">
             <div class="col-xs-4">Anticipated Offer Term: <?php echo $value['PROP_OFFER_TERM'];?></div>            
             <div class="col-xs-4">Offer Status: <?php echo $value['PROP_OFFER_STATUS'];?></div>
-            <div class="col-xs-4">Award Term: <?php echo $value['AWARD_TERM'];?></div>  
+            <div class="col-xs-4">Award Term: <?php echo $value['AWARD_TERM'];?></div> 
+            <div class="col-xs-12">Proposal Detail: <?php echo $propclobtext;?></div> 
+               
         </div>
     </div>
 </div>
