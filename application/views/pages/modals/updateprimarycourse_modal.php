@@ -1,21 +1,19 @@
 <div class="container">
-    
-        <div class="col-xs-6">
-    <button type="button" class="btn btn-info btn-md col-xs-6" data-toggle="modal" data-target="#myModal">Click To Enter Secondary Course</button>
-        </div>
-    <div class="col-xs-6"></div>
+<div>
+    <button type="button" class="btn btn-warning btn-xs col-xs-2" data-toggle="modal" data-target="#myUpdatePriModal">Update Primary Course</button>
+</div>
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myUpdatePriModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
       <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Enter Primary Course</h4>
+                <h4 class="modal-title">Update Primary Course</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/proposalcourses/insertsecondarycourse" method="post">
+                <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/proposalcourses/insertprimarycourse" method="post">
                     <div class="panel panel-green">
                         <div class="panel-heading col-xs-12">
                             <div class="form-group">
@@ -86,7 +84,7 @@
                                     <label class="control-label" for="pri_crse_budget">Requested Budget</label>
                                     <div class=" input-group">
                                         <span class="input-group-addon">$</span>
-                                        <input name="sec_crse_budget" type="text" pattern="^\d*(\.\d{2}$)?" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <input name="pri_crse_budget" type="text" pattern="^\d*(\.\d{2}$)?" class="form-control" aria-label="Amount (to the nearest dollar)">
 
                                     </div>
                                 </fieldset>
@@ -106,4 +104,3 @@
     </div>
 </div>    
 </div>
-

@@ -53,6 +53,7 @@ class ProposalCourses extends CI_Controller{
     }
     
     public function insertSecondaryCourse(){
+        
         $data = ArrayToUpper::arrayToUp($this->input->post());
         $this->ProposalCourses_model->insertSecondaryCourse($data);
         $data = [];

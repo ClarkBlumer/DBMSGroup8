@@ -1,18 +1,18 @@
 <div class="container">
-    
-        <div class="col-xs-6">
-    <button type="button" class="btn btn-info btn-md col-xs-6" data-toggle="modal" data-target="#myModal">Click To Enter Secondary Course</button>
+    <div class="col-xs-2"></div>
+        <div class="col-xs-8">
+    <button type="button" class="btn btn-danger btn-xs col-xs-2" data-toggle="modal" data-target="#myUpdateSecModal">Update Secondary Course</button>
         </div>
-    <div class="col-xs-6"></div>
+    <div class="col-xs-2"></div>
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myUpdateSecModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
       <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Enter Primary Course</h4>
+                <h4 class="modal-title">Update Secondary Course</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/proposalcourses/insertsecondarycourse" method="post">
@@ -25,6 +25,8 @@
                                         <!--Dynamically adding term values to dropdown-->
 
                                          <?php 
+                                         echo "In the updatesecondarycourses_modal";
+                                         var_dump($secondarycourses);
                                         foreach ($dropdowns['institution'] as $value) { ?>
                                                 <option value="<?php echo $value['INSTITUTION'];?>"><?php echo $value['INSTIT_DESCR'];?></option>
                                         <?php
@@ -106,4 +108,6 @@
     </div>
 </div>    
 </div>
+
+
 

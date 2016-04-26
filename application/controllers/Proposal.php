@@ -17,7 +17,7 @@ class Proposal extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->model('DropDownValues_model');
-         
+        $this->load->model('ProposalCourses_model');
         $this->load->model('Proposal_model');
     }
     
@@ -52,6 +52,8 @@ class Proposal extends CI_Controller{
         $data['proposal'] = $this->Proposal_model->getProposal();
         $clob = $this->Proposal_model->processClob($data['proposal']);
         $data['propclobtext'] = $clob->load();
+        
+        
         $data['dropdowns'] = $this->getDropDowns();
 
         $this->load->view('templates/header',$data);
@@ -81,6 +83,17 @@ class Proposal extends CI_Controller{
         
         $clob = $this->Proposal_model->processClob($data['proposal']);
         $data['propclobtext'] = $clob->load();
+        
+        var_dump($clob);
+        $data['primarycourses'] = $this->ProposalCourses_model->getPrimaryCourses();
+        var_dump($this->session->all_userdata());
+        var_dump($data['primarycourses']);
+        foreach ($data['primarycourses'] as $value){
+            echo "<br>".$value['PRI_SEQ_NUM']."<br>";
+        }
+        
+        $data['secondarycourses'] = $this->ProposalCourses_model->getSecondaryCourses();
+        var_dump($data['secondarycourses']);
         
         $this->load->view('templates/header',$data);
         $this->load->view('pages/proposalcourses',$data);

@@ -34,8 +34,7 @@ class ProposalCourses_model extends CI_Model{
         $result = $this->db->query(''
             . 'SELECT * '
             . 'FROM '.self::secondarycoursetable.' '
-            . 'WHERE '.self::propid.'= '.$this->session->PROPID.' '
-                . 'AND '.self::priseqnum.'= '.$this->session->PRI_SEQ_NUM.' ');
+            . 'WHERE '.self::propid.'= '.$this->session->PROPID);
         
         
         return $result->result_array();
