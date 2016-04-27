@@ -133,7 +133,7 @@
                                             <?php 
                                             foreach ($dropdowns['offer_term'] as $array) { 
                                                 if ($array['STRM'] == $propinfo['AWARD_TERM']){?>
-                                                    <option value="<?php echo $array['STRM'];?> selected"><?php echo $array['DESCRSHORT'];?></option>
+                                                    <option value="<?php echo $array['STRM'];?>" selected><?php echo $array['DESCRSHORT'];?></option>
                                             <?php
                                                 } else {
                                             ?>

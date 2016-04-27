@@ -36,7 +36,6 @@ class Proposal_model extends CI_Model{
     public function updateProposal($data){
         $data['MOD_BY'] = 'FRIELJ';
         
-        var_dump($data);
         
         $this->db->trans_start();
         $this->db->where('PROPID', $data['PROPID']);
@@ -50,7 +49,7 @@ class Proposal_model extends CI_Model{
     }
     
     public function getProposal(){
-print_r($this->session->all_userdata());
+
         $result = $this->db->query(''
             . 'SELECT * '
             . 'FROM '.self::table.' '
@@ -58,7 +57,7 @@ print_r($this->session->all_userdata());
         
         foreach ($result->result() as $value) {
         
-        echo "Clob Text: ".$value->PROP_DESCR->load()."<br>";
+
             
         }
         
