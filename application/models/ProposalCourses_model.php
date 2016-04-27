@@ -65,19 +65,31 @@ class ProposalCourses_model extends CI_Model{
         
     }
     
+    public function updatePrimaryCourse($data){
+        
+        $this->db->trans_start();
+        $this->db->where('PRI_SEQ_NUM', $data['PRI_SEQ_NUM']);
+        $this->db->update('TBL_PROP_PRI_COURSES', $data);
+        $this->db->trans_complete();
+    }
+    
     public function insertSecondaryCourse($data){
         
         $data['PROPID'] = $this->session->PROPID;
-        $data['PRI_SEQ_NUM'] = $this->session->PRI_SEQ_NUM;
+        
         $data['MOD_BY'] = 'FRIELJ';
               
         $this->db->trans_start();
         $this->db->insert(self::secondarycoursetable, $data);
         //$secseqnum = $this->getNewPrimaryCourse();
         $this->db->trans_complete();
-        
-        
-        
     }
-    //put your code here
+    
+    public function updateSecondaryCourse($data){
+        
+        $this->db->trans_start();
+        $this->db->where('SEC_SEQ_NUM', $data['SEC_SEQ_NUM']);
+        $this->db->update('TBL_PROP_SEC_COURSES', $data);
+        $this->db->trans_complete();
+    }
 }

@@ -1,11 +1,11 @@
 <div class="container">
     
         <div class="col-xs-6">
-    <button type="button" class="btn btn-info btn-md col-xs-6" data-toggle="modal" data-target="#myModal">Click To Enter Secondary Course</button>
+    <button type="button" class="btn btn-info btn-md col-xs-6" data-toggle="modal" data-target="#mySecModal">Click To Enter Secondary Course</button>
         </div>
     <div class="col-xs-6"></div>
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="mySecModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
       <!-- Modal content-->
@@ -16,6 +16,7 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/proposalcourses/insertsecondarycourse" method="post">
+                    <input type="hidden" name="PRI_SEQ_NUM" value="<?php echo $privalue['PRI_SEQ_NUM'];?>"
                     <div class="panel panel-green">
                         <div class="panel-heading col-xs-12">
                             <div class="form-group">

@@ -52,11 +52,23 @@ class ProposalCourses extends CI_Controller{
         $this->index();
     }
     
+    public function updatePrimaryCourse(){
+        $data = ArrayToUpper::arrayToUp($this->input->post());
+        $this->ProposalCourses_model->updatePrimaryCourse($data);
+        $this->index();
+    }
+    
     public function insertSecondaryCourse(){
         
         $data = ArrayToUpper::arrayToUp($this->input->post());
         $this->ProposalCourses_model->insertSecondaryCourse($data);
         $data = [];
+        $this->index();
+    }
+    
+    public function updateSecondaryCourse(){
+        $data = ArrayToUpper::arrayToUp($this->input->post());
+        $this->ProposalCourses_model->updateSecondaryCourse($data);
         $this->index();
     }
     

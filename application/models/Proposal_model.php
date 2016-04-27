@@ -35,7 +35,7 @@ class Proposal_model extends CI_Model{
     
     public function updateProposal($data){
         $data['PROP_ID'] = $this->session->PROPID;
-        var_dump($data);
+
         
     }
     

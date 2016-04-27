@@ -66,7 +66,7 @@ class Proposal extends CI_Controller{
         $data = ArrayToUpper::arrayToUp($this->input->post());
         $data['PROPID'] = $this->session->PROPID;
         
-        var_dump($data);
+
     }
     
     function view($propid){
@@ -84,16 +84,10 @@ class Proposal extends CI_Controller{
         $clob = $this->Proposal_model->processClob($data['proposal']);
         $data['propclobtext'] = $clob->load();
         
-        var_dump($clob);
+
         $data['primarycourses'] = $this->ProposalCourses_model->getPrimaryCourses();
-        var_dump($this->session->all_userdata());
-        var_dump($data['primarycourses']);
-        foreach ($data['primarycourses'] as $value){
-            echo "<br>".$value['PRI_SEQ_NUM']."<br>";
-        }
         
-        $data['secondarycourses'] = $this->ProposalCourses_model->getSecondaryCourses();
-        var_dump($data['secondarycourses']);
+        $data['secondarycourses'] = $this->ProposalCourses_model->getSecondaryCourses();   
         
         $this->load->view('templates/header',$data);
         $this->load->view('pages/proposalcourses',$data);

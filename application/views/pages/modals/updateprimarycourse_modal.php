@@ -1,9 +1,9 @@
 <div class="container">
 <div>
-    <button type="button" class="btn btn-warning btn-xs col-xs-2" data-toggle="modal" data-target="#myUpdatePriModal">Update Primary Course</button>
+    <button type="button" class="btn btn-warning btn-xs col-xs-2" data-toggle="modal" data-target="#myUpdatePriModal<?php echo $i;?>">Update Primary Course</button>
 </div>
 <!-- Modal -->
-<div id="myUpdatePriModal" class="modal fade" role="dialog">
+<div id="myUpdatePriModal<?php echo $i;?>" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
       <!-- Modal content-->
@@ -13,19 +13,28 @@
                 <h4 class="modal-title">Update Primary Course</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/proposalcourses/insertprimarycourse" method="post">
+                <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/proposalcourses/updateprimarycourse" method="post">
+                    <input type="hidden" name="PRI_SEQ_NUM" value="<?php echo $privalue['PRI_SEQ_NUM'];?>">
                     <div class="panel panel-green">
                         <div class="panel-heading col-xs-12">
                             <div class="form-group">
                                 <fieldset class="col-xs-2 selectContainer">
                                     <label class="control-label" for="prop_budget_requested">Institution</label>
+
                                     <select id="INSTITUTION" class="form-control col-md-3" name="institution">
                                         <!--Dynamically adding term values to dropdown-->
 
                                          <?php 
-                                        foreach ($dropdowns['institution'] as $value) { ?>
-                                                <option value="<?php echo $value['INSTITUTION'];?>"><?php echo $value['INSTIT_DESCR'];?></option>
+                                        foreach ($dropdowns['institution'] as $value) { 
+                                            if ($value['INSTITUTION'] == $privalue['INSTITUTION']){?>
+                                                <option value="<?php echo $value['INSTITUTION'];?>" selected><?php echo $value['INSTIT_DESCR'];?></option>
                                         <?php
+                                            } else {
+                                        ?>
+                                                <option value="<?php echo $value['INSTITUTION'];?>"><?php echo $value['INSTIT_DESCR'];?></option>
+                                        
+                                        <?php
+                                            }
                                         }
                                         ?>
                                     </select>
@@ -36,20 +45,30 @@
                                     <select id="ACAD_CAREER" class="form-control" name="career">
                                         <!--Dynamically adding career values to dropdown-->
                                          <?php 
-                                        foreach ($dropdowns['career'] as $array) { ?>
+                                        foreach ($dropdowns['career'] as $array) { 
+                                            if ($value['ACAD_CAREER'] == $privalue['ACAD_CAREER']){?>
+                                                <option value="<?php echo $array['ACAD_CAREER'];?>" selected><?php echo $array['DESCR'];?></option>
+                                        <?php
+                                            } else {
+                                        ?>
                                                 <option value="<?php echo $array['ACAD_CAREER'];?>"><?php echo $array['DESCR'];?></option>
                                         <?php
+                                            }
                                         }
                                         ?>
                                     </select>                                
                                 </fieldset>
                                 <fieldset class="col-xs-4">
                                     <label class="control-label " for="SUBJECT">Subject</label>
-                                    <input name="subject" id="SUBJECT" type="text" class="form-control input-sm">
+                                    <input name="subject" id="SUBJECT" type="text" class="form-control input-sm"
+                                           <?php if ($privalue['SUBJECT'] != null || $privalue['SUBJECT'] != ''){?> 
+                                           value="<?php echo $privalue['SUBJECT'];}?>">
                                 </fieldset>
                                 <fieldset class="col-xs-4">     
                                     <label class="control-label" for="CATALOG_NUM">Catalog Number</label>   
-                                    <input name="catalog_num" id="CATALOG_NUM" type="text" class="form-control">
+                                    <input name="catalog_num" id="CATALOG_NUM" type="text" class="form-control"
+                                           <?php if ($privalue['CATALOG_NUM'] != null || $privalue['CATALOG_NUM'] != ''){?> 
+                                           value="<?php echo $privalue['CATALOG_NUM'];}?>">
                                 </fieldset>
                             </div>
                         </div>
@@ -57,9 +76,13 @@
                             <div class="form-group">
                                 <fieldset class="form-group col-xs-12"> 
                                     <label class="control-label" for="CATALOG_NUM">Course Title</label>   
-                                    <input name="descr" id="DESCR" type="text" class="form-control">
+                                    <input name="descr" id="DESCR" type="text" class="form-control"
+                                           <?php if ($privalue['DESCR'] != null || $privalue['DESCR'] != ''){?> 
+                                           value="<?php echo $privalue['DESCR'];}?>">
                                     <label class="control-label" for="DESCR_TOPICS">Course Topic</label>   
-                                    <input name="descr_topics" id="DESCR_TOPICS" type="text" class="form-control">
+                                    <input name="descr_topics" id="DESCR_TOPICS" type="text" class="form-control"
+                                           <?php if ($privalue['DESCR_TOPICS'] != null || $privalue['DESCR_TOPICS'] != ''){?> 
+                                           value="<?php echo $privalue['DESCR_TOPICS'];}?>">
                                 </fieldset>
                                 <fieldset class="form-group col-xs-12">
                                     <label class="control-label" for="LONG_DESCR">Course Description</label>   
@@ -73,9 +96,16 @@
                                     <select id="COURSE_STATUS" class="form-control" name="course_status">
                                         <!--Dynamically adding course_status values to dropdown-->
                                          <?php 
-                                        foreach ($dropdowns['course_status'] as $array) { ?>
-                                                <option value="<?php echo $array['COURSE_STATUS'];?>"><?php echo $array['COURSE_STATUS_DESCR'];?></option>
+                                        foreach ($dropdowns['course_status'] as $array) { 
+                                            if ($array['COURSE_STATUS'] == $privalue['COURSE_STATUS']){
+                                        ?>
+                                            <option value="<?php echo $array['COURSE_STATUS'];?>" selected><?php echo $array['COURSE_STATUS_DESCR'];?></option>
                                         <?php
+                                            } else {
+                                        ?>
+                                            <option value="<?php echo $array['COURSE_STATUS'];?>"><?php echo $array['COURSE_STATUS_DESCR'];?></option>
+                                        <?php
+                                            }
                                         }
                                         ?>
                                     </select> 
@@ -84,7 +114,9 @@
                                     <label class="control-label" for="pri_crse_budget">Requested Budget</label>
                                     <div class=" input-group">
                                         <span class="input-group-addon">$</span>
-                                        <input name="pri_crse_budget" type="text" pattern="^\d*(\.\d{2}$)?" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <input name="pri_crse_budget" type="text" pattern="^\d*(\.\d{2}$)?" class="form-control" aria-label="Amount (to the nearest dollar)"
+                                               <?php if ($privalue['PRI_CRSE_BUDGET'] != null || $privalue['PRI_CRSE_BUDGET'] != ''){?> 
+                                           value="<?php echo $privalue['PRI_CRSE_BUDGET'];}?>">
 
                                     </div>
                                 </fieldset>

@@ -53,8 +53,8 @@ if (empty($primarycourses)){
     
 <?php
     $i = 1;
-    foreach ($primarycourses as $value) {
-        $priseqnum = $value['PRI_SEQ_NUM'];
+    foreach ($primarycourses as $privalue) {
+        $priseqnum = $privalue['PRI_SEQ_NUM'];
 
 ?>
 
@@ -65,10 +65,10 @@ if (empty($primarycourses)){
             <h4 class="panel-title">
             <a class="panel-title" data-toggle="collapse" data-parent="#accordion1" href="#collapse<?php echo $i;?>">
 
-                      Institution: <?php echo $value['INSTITUTION'];?> 
-                      Career: <?php echo $value['CAREER'];?>
-                      Subject: <?php echo $value['SUBJECT'];?> 
-                      Catalog Num: <?php echo $value['CATALOG_NUM'];?>
+                      Institution: <?php echo $privalue['INSTITUTION'];?> 
+                      Career: <?php echo $privalue['CAREER'];?>
+                      Subject: <?php echo $privalue['SUBJECT'];?> 
+                      Catalog Num: <?php echo $privalue['CATALOG_NUM'];?>
             </a>
             </h4>
         
@@ -76,18 +76,18 @@ if (empty($primarycourses)){
       </div>
       <div id="collapse<?php echo $i;?>" class="panel-collapse collapse">
           <div class="panel-body col-xs-12">
-              <div class="col-xs-10">Course Title: <?php echo $value['DESCR'];?></div> 
+              <div class="col-xs-10">Course Title: <?php echo $privalue['DESCR'];?></div> 
                 <?php
-                    if (!empty($value['DESCR_TOPICS'])){
+                    if (!empty($privalue['DESCR_TOPICS'])){
                 ?>
-                <div class="col-xs-10" >Course Topic: <?php echo $value['DESCR_TOPICS'];?></div> 
+                <div class="col-xs-10" >Course Topic: <?php echo $privalue['DESCR_TOPICS'];?></div> 
                 <?php
                     }
                 ?>
-<!--                <div class="col-xs-10">Course Description: <?php echo $value['LONG_DESCR'];?></div>-->
+<!--                <div class="col-xs-10">Course Description: <?php echo $privalue['LONG_DESCR'];?></div>-->
                 <fieldset>
-                    <div class="col-xs-4" >Course Budget Request: <?php echo $value['PRI_CRSE_BUDGET'];?></div> 
-                    <div class="col-xs-4" >Course Status: <?php echo $value['COURSE_STATUS'];?></div> 
+                    <div class="col-xs-4" >Course Budget Request: <?php echo $privalue['PRI_CRSE_BUDGET'];?></div> 
+                    <div class="col-xs-4" >Course Status: <?php echo $privalue['COURSE_STATUS'];?></div> 
                     <div class="col-xs-3"><?php include '/modals/updateprimarycourse_modal.php'; ?></div>
                 </fieldset>
 
@@ -114,8 +114,6 @@ if (empty($secondarycourses)){
 
     $j = 100;
     foreach ($secondarycourses as $secvalue) {
-        echo "priamary course Pri seq num: ".$priseqnum."<br>";
-        echo "secondrar course Pri seq num: ".$secvalue['PRI_SEQ_NUM']."<br>";
         if ($secvalue['PRI_SEQ_NUM'] == $priseqnum){
 ?>
 

@@ -1,11 +1,11 @@
 <div class="container">
     <div class="col-xs-2"></div>
         <div class="col-xs-8">
-    <button type="button" class="btn btn-danger btn-xs col-xs-2" data-toggle="modal" data-target="#myUpdateSecModal">Update Secondary Course</button>
+    <button type="button" class="btn btn-danger btn-xs col-xs-2" data-toggle="modal" data-target="#myUpdateSecModal<?php echo $j;?>">Update Secondary Course</button>
         </div>
     <div class="col-xs-2"></div>
 <!-- Modal -->
-<div id="myUpdateSecModal" class="modal fade" role="dialog">
+<div id="myUpdateSecModal<?php echo $j;?>" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
       <!-- Modal content-->
@@ -15,7 +15,8 @@
                 <h4 class="modal-title">Update Secondary Course</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/proposalcourses/insertsecondarycourse" method="post">
+                <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/proposalcourses/updatesecondarycourse" method="post">
+                    <input type="hidden" name="SEC_SEQ_NUM" value="<?php echo $secvalue['SEC_SEQ_NUM'];?>">
                     <div class="panel panel-green">
                         <div class="panel-heading col-xs-12">
                             <div class="form-group">
@@ -24,12 +25,17 @@
                                     <select id="INSTITUTION" class="form-control col-md-3" name="institution">
                                         <!--Dynamically adding term values to dropdown-->
 
-                                         <?php 
-                                         echo "In the updatesecondarycourses_modal";
-                                         var_dump($secondarycourses);
-                                        foreach ($dropdowns['institution'] as $value) { ?>
+                                         <?php                                          
+                                        foreach ($dropdowns['institution'] as $value) { 
+                                            if ($value['INSTITUTION'] == $secvalue['INSTITUTION']){
+                                        ?>
+                                                <option value="<?php echo $value['INSTITUTION'];?>" selected><?php echo $value['INSTIT_DESCR'];?></option>
+                                        <?php
+                                            } else {
+                                        ?>
                                                 <option value="<?php echo $value['INSTITUTION'];?>"><?php echo $value['INSTIT_DESCR'];?></option>
                                         <?php
+                                            }
                                         }
                                         ?>
                                     </select>
@@ -40,20 +46,31 @@
                                     <select id="ACAD_CAREER" class="form-control" name="career">
                                         <!--Dynamically adding career values to dropdown-->
                                          <?php 
-                                        foreach ($dropdowns['career'] as $array) { ?>
+                                        foreach ($dropdowns['career'] as $array) { 
+                                            if ($value['ACAD_CAREER'] == $secvalue['ACAD_CAREER']){
+                                        ?>
+                                                <option value="<?php echo $array['ACAD_CAREER'];?>" selected><?php echo $array['DESCR'];?></option>
+                                        <?php
+                                            } else {
+                                        ?>
                                                 <option value="<?php echo $array['ACAD_CAREER'];?>"><?php echo $array['DESCR'];?></option>
                                         <?php
+                                            }
                                         }
                                         ?>
                                     </select>                                
                                 </fieldset>
                                 <fieldset class="col-xs-4">
                                     <label class="control-label " for="SUBJECT">Subject</label>
-                                    <input name="subject" id="SUBJECT" type="text" class="form-control input-sm">
+                                    <input name="subject" id="SUBJECT" type="text" class="form-control input-sm"
+                                           <?php if ($secvalue['SUBJECT'] != null || $secvalue['SUBJECT'] != ''){?> 
+                                           value="<?php echo $secvalue['SUBJECT'];}?>">
                                 </fieldset>
                                 <fieldset class="col-xs-4">     
                                     <label class="control-label" for="CATALOG_NUM">Catalog Number</label>   
-                                    <input name="catalog_num" id="CATALOG_NUM" type="text" class="form-control">
+                                    <input name="catalog_num" id="CATALOG_NUM" type="text" class="form-control"
+                                           <?php if ($secvalue['CATALOG_NUM'] != null || $secvalue['CATALOG_NUM'] != ''){?> 
+                                           value="<?php echo $secvalue['CATALOG_NUM'];}?>">
                                 </fieldset>
                             </div>
                         </div>
@@ -61,9 +78,12 @@
                             <div class="form-group">
                                 <fieldset class="form-group col-xs-12"> 
                                     <label class="control-label" for="CATALOG_NUM">Course Title</label>   
-                                    <input name="descr" id="DESCR" type="text" class="form-control">
+                                    <input name="descr" id="DESCR" type="text" class="form-control"
+                                           >
                                     <label class="control-label" for="DESCR_TOPICS">Course Topic</label>   
-                                    <input name="descr_topics" id="DESCR_TOPICS" type="text" class="form-control">
+                                    <input name="descr_topics" id="DESCR_TOPICS" type="text" class="form-control"
+                                           <?php if ($secvalue['DESCR'] != null || $secvalue['DESCR'] != ''){?> 
+                                           value="<?php echo $secvalue['DESCR'];}?>">
                                 </fieldset>
                                 <fieldset class="form-group col-xs-12">
                                     <label class="control-label" for="LONG_DESCR">Course Description</label>   
@@ -77,9 +97,16 @@
                                     <select id="COURSE_STATUS" class="form-control" name="course_status">
                                         <!--Dynamically adding course_status values to dropdown-->
                                          <?php 
-                                        foreach ($dropdowns['course_status'] as $array) { ?>
-                                                <option value="<?php echo $array['COURSE_STATUS'];?>"><?php echo $array['COURSE_STATUS_DESCR'];?></option>
+                                        foreach ($dropdowns['course_status'] as $array) { 
+                                            if ($array['COURSE_STATUS'] == $secvalue['COURSE_STATUS']){
+                                        ?>
+                                            <option value="<?php echo $array['COURSE_STATUS'];?>" selected><?php echo $array['COURSE_STATUS_DESCR'];?></option>
                                         <?php
+                                            } else {
+                                        ?>
+                                            <option value="<?php echo $array['COURSE_STATUS'];?>"><?php echo $array['COURSE_STATUS_DESCR'];?></option>
+                                        <?php
+                                            }
                                         }
                                         ?>
                                     </select> 
@@ -88,7 +115,9 @@
                                     <label class="control-label" for="pri_crse_budget">Requested Budget</label>
                                     <div class=" input-group">
                                         <span class="input-group-addon">$</span>
-                                        <input name="sec_crse_budget" type="text" pattern="^\d*(\.\d{2}$)?" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        <input name="sec_crse_budget" type="text" pattern="^\d*(\.\d{2}$)?" class="form-control" aria-label="Amount (to the nearest dollar)"
+                                               <?php if ($secvalue['SEC_CRSE_BUDGET'] != null || $secvalue['SEC_CRSE_BUDGET'] != ''){?> 
+                                           value="<?php echo $secvalue['SEC_CRSE_BUDGET'];}?>">
 
                                     </div>
                                 </fieldset>
