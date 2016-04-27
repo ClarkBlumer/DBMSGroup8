@@ -63,9 +63,37 @@ class Proposal extends CI_Controller{
     }
     
     public function update(){
-        $data = ArrayToUpper::arrayToUp($this->input->post());
-        $data['PROPID'] = $this->session->PROPID;
         
+        $data = ArrayToUpper::arrayToUp($this->input->post());
+        echo "PROPID: ".$data['PROPID'];
+        print_r($this->session->all_userdata());
+        
+        
+        $proposalid = $this->Proposal_model->updateProposal($data);
+
+        $propid = [];
+         foreach ($proposalid as $value) {
+
+            $propid = $value;
+        }
+        
+
+        $this->session->set_userdata('USERID', self::userid);
+        $this->session->set_userdata('PROPID',$propid['PROPID']);
+       
+        $data = $this->Proposal_model->getProposal();
+        $data['proposal'] = $data;
+        $clob = $this->Proposal_model->processClob($data['proposal']);
+        $data['propclobtext'] = $clob->load();
+        var_dump($data);
+        $data['dropdowns'] = $this->getDropDowns();
+        $data['primarycourses'] = $this->ProposalCourses_model->getPrimaryCourses();
+        $data['secondarycourses'] = $this->ProposalCourses_model->getSecondaryCourses();
+        
+        
+        $this->load->view('templates/header',$data);
+        $this->load->view('pages/proposalcourses',$data);
+        $this->load->view('templates/footer',$data);
 
     }
     

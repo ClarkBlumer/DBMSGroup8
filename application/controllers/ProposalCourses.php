@@ -71,8 +71,5 @@ class ProposalCourses extends CI_Controller{
         $this->ProposalCourses_model->updateSecondaryCourse($data);
         $this->index();
     }
-    
-    
-    
-    //put your code here
+
 }

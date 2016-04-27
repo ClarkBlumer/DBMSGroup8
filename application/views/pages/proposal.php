@@ -75,9 +75,16 @@
                         <select  id="propOfferStatus" name="prop_offer_status" class="form-control">
                             <!--Dynamically adding term values to dropdown-->
                             <?php 
-                            foreach ($dropdowns['offer_status'] as $array) { ?>
+                            foreach ($dropdowns['offer_status'] as $array) { 
+                                if ($array['OFFER_STATUS'] == 'pend'){
+                            ?>
+                                    <option value="<?php echo $array['OFFER_STATUS'];?>" selected><?php echo $array['OFFER_DESCR'];?></option>
+                            <?php
+                                } else {
+                            ?>
                                     <option value="<?php echo $array['OFFER_STATUS'];?>"><?php echo $array['OFFER_DESCR'];?></option>
                             <?php
+                                }
                             }
                             ?>
                         </select>

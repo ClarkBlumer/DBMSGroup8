@@ -31,7 +31,8 @@
                                 <?php
                                 }    
                                 ?>
-                                <input type="hidden" name="mod_by" value="FRIELJ">                                
+                                <input type="hidden" name="mod_by" value="FRIELJ">
+                                <input type="hidden" name="propid" value="<?php echo $value['PROPID']?>">
                                 
                                 <div class="form-group">
                                     <label class="control-label col-xs-3 col-md-3" for="submitted_by">Submitted By</label>
@@ -105,7 +106,7 @@
                                     <label class="control-label col-xs-3 col-md-3" for="prop_offer_status">Offer Status</label>
                                     <div class="col-xs-2 selectContainer">
                                         <select  id="propOfferStatus" name="prop_offer_status" class="form-control">
-                                            <option value=""></option>
+                                            
                                             <!--Dynamically adding term values to dropdown-->
                                             <?php 
                                             foreach ($dropdowns['offer_status'] as $array) { 

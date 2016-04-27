@@ -34,13 +34,23 @@ class Proposal_model extends CI_Model{
     }
     
     public function updateProposal($data){
-        $data['PROP_ID'] = $this->session->PROPID;
-
+        $data['MOD_BY'] = 'FRIELJ';
+        
+        var_dump($data);
+        
+        $this->db->trans_start();
+        $this->db->where('PROPID', $data['PROPID']);
+        $this->db->update('TBL_PROPOSAL', $data);
+        $prop = $this->getProposal();
+        $this->db->trans_complete();
+        
+        return $prop;
+        
         
     }
     
     public function getProposal(){
-
+print_r($this->session->all_userdata());
         $result = $this->db->query(''
             . 'SELECT * '
             . 'FROM '.self::table.' '
