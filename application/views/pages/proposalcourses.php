@@ -32,7 +32,7 @@ foreach ($proposal as $value) {
             <?php
             } else {
             ?>
-            <div class="col-xs-3 " ><font color="red">Offer Status must be 'award' to enter Shared Courses</font></div>
+            <div class="col-xs-3 " ><font color="red">Offer Status must be 'award' to enter Shared Courses. Update proposal to change status.</font></div>
             <?php
             }
             ?>
