@@ -97,7 +97,7 @@ if (empty($primarycourses)){
                     }
                 ?>
 <!--                <div class="col-xs-10">Course Description: <?php echo $privalue['LONG_DESCR'];?></div>-->
-                <fieldset>
+                <fieldset class="col-xs-12">
                     <div class="col-xs-4" >Course Budget Request: <?php echo $privalue['PRI_CRSE_BUDGET'];?></div> 
                     <div class="col-xs-4" >Course Status: <?php echo $privalue['COURSE_STATUS'];?></div> 
                     <div class="col-xs-3"><?php include '/modals/updateprimarycourse_modal.php'; ?></div>
@@ -153,7 +153,7 @@ if (empty($secondarycourses)){
                     }
                 ?>
 <!--                <div class="col-xs-10">Course Description: <?php echo $secvalue['LONG_DESCR'];?></div>-->
-                <fieldset>
+                <fieldset class="col-xs-11">
                     <div class="col-xs-4" >Course Budget Request: <?php echo $secvalue['SEC_CRSE_BUDGET'];?></div> 
                     <div class="col-xs-4" >Course Status: <?php echo $secvalue['COURSE_STATUS'];?></div> 
                     <div class="col-xs-3"><?php include '/modals/updatesecondarycourse_modal.php'; ?></div>

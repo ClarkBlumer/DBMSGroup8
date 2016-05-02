@@ -1,7 +1,7 @@
 <div class="container">
     <div class="col-xs-2"></div>
         <div class="col-xs-8">
-    <button type="button" class="btn btn-danger btn-xs col-xs-2" data-toggle="modal" data-target="#myUpdateSecModal<?php echo $j;?>">Update Secondary Course</button>
+    <button type="button" class="btn btn-danger btn-xs col-xs-3" data-toggle="modal" data-target="#myUpdateSecModal<?php echo $j;?>">Update Secondary Course</button>
         </div>
     <div class="col-xs-2"></div>
 <!-- Modal -->
