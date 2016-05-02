@@ -18,7 +18,7 @@
                     <div class="panel panel-green">
                         <div class="panel-heading col-xs-12">
                             <div class="form-group">
-                                <fieldset class="col-xs-2 selectContainer">
+                                <fieldset class="col-xs-3 selectContainer">
                                     <label class="control-label" for="prop_budget_requested">Institution</label>
 
                                     <select id="INSTITUTION" class="form-control col-md-3" name="institution">
@@ -40,7 +40,7 @@
                                     </select>
                                 </fieldset>
 
-                                <fieldset class="col-xs-2 selectContainer">
+                                <fieldset class="col-xs-3 selectContainer">
                                     <label class="control-label" for="prop_budget_requested">Career</label>
                                     <select id="ACAD_CAREER" class="form-control" name="career">
                                         <!--Dynamically adding career values to dropdown-->
@@ -58,13 +58,13 @@
                                         ?>
                                     </select>                                
                                 </fieldset>
-                                <fieldset class="col-xs-4">
+                                <fieldset class="col-xs-3">
                                     <label class="control-label " for="SUBJECT">Subject</label>
                                     <input name="subject" id="SUBJECT" type="text" class="form-control input-sm"
                                            <?php if ($privalue['SUBJECT'] != null || $privalue['SUBJECT'] != ''){?> 
                                            value="<?php echo $privalue['SUBJECT'];}?>">
                                 </fieldset>
-                                <fieldset class="col-xs-4">     
+                                <fieldset class="col-xs-3">     
                                     <label class="control-label" for="CATALOG_NUM">Catalog Number</label>   
                                     <input name="catalog_num" id="CATALOG_NUM" type="text" class="form-control"
                                            <?php if ($privalue['CATALOG_NUM'] != null || $privalue['CATALOG_NUM'] != ''){?> 
@@ -91,7 +91,7 @@
                             </div>
 
                             <div class="form-group">
-                                <fieldset class="col-xs-2 selectContainer">
+                                <fieldset class="col-xs-3 selectContainer">
                                     <label class="control-label" for="COURSE_STATUS">Course Status</label>
                                     <select id="COURSE_STATUS" class="form-control" name="course_status">
                                         <!--Dynamically adding course_status values to dropdown-->
@@ -110,7 +110,7 @@
                                         ?>
                                     </select> 
                                 </fieldset>
-                                <fieldset class="col-xs-2 selectContainer">
+                                <fieldset class="col-xs-4 selectContainer">
                                     <label class="control-label" for="pri_crse_budget">Requested Budget</label>
                                     <div class=" input-group">
                                         <span class="input-group-addon">$</span>

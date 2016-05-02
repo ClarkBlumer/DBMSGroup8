@@ -36,7 +36,7 @@
                                 
                                 <div class="form-group">
                                     <label class="control-label col-xs-3 col-md-3" for="submitted_by">Submitted By</label>
-                                    <div class="col-xs-2 selectContainer">                        
+                                    <div class="col-xs-3 selectContainer">                        
                                         <select  class="form-control" name="submitted_by">
                                             <option value=""></option>
                                             <!--Dynamically adding term values to dropdown-->
@@ -149,7 +149,7 @@
                                 <!--Proposal Description-->
                                 <div class="form-group">
                                     <label class="control-label col-xs-3 col-md-3" for="prop_descr">Proposal Description</label>
-                                    <div class="col-xs-3 input-group">
+                                    <div class="col-xs-8 input-group">
                                         <textarea name="prop_descr" rows="4" class="form-control" ><?php echo $propclobtext;?></textarea>                         
                                     </div>
                                 </div>

@@ -38,7 +38,18 @@ label.control-label span { cursor: pointer; }
 
 }
 
-.modal-body-custom {
-    max-height: 800px;
-    max-width: 800px;
+.modal {
+    top: 5%;
+    bottom: 5%;
+    left: 5%;
+    right: 5%;
+}
+
+.modal-dialog{
+    width: 65%;
+}
+
+.modal-body {
+    max-height: 100%;
+    max-width: 90vh;
 }
