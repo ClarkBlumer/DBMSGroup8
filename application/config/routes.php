@@ -62,7 +62,7 @@ $route['enrollmentGraph']='graphs/enrollmentGraph';
 $route['allCharts']='graphs/allCharts';
 
 $route['getallproposals'] = 'getallproposals/index';
-$route['sharedcourse'] = 'sharedcourse/index';
+$route['sharedcourses'] = 'sharedcourses/index';
 $route['proposalcourses'] = 'proposalcourses/index';
 $route['proposal'] = 'proposal/index';
 $route['default_controller'] = 'home/view';
