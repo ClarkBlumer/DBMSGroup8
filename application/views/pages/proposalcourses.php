@@ -28,7 +28,7 @@ foreach ($proposal as $value) {
              <?php 
             if ($value['PROP_OFFER_STATUS'] == 'awrd'){
             ?>
-            <div class="col-xs-3" ><a href="<?php echo base_url();?>index.php/sharedcourses/index">Enter Shared Courses</a></div>
+            <div class="col-xs-3" ><a href="<?php echo base_url();?>index.php/sharedcourses">Enter Shared Courses</a></div>
             <?php
             } else {
             ?>
