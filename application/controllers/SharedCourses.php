@@ -20,15 +20,18 @@ class SharedCourses extends CI_Controller{
         $this->load->model('SharedDropDown_model');
         $this->load->model("SharedCourses_model");
         $this->load->model("Proposal_model");
+        $this->load->library('table');
         //$this->load->model("ProposalCourses_model");
 
     }
 
     public function index(){
+        
         $data['dropdowns'] = $this->SharedDropDown_model->getDropDown();
         
         //$propid = $this->session->PROPID;
         $data['proposal'] = $this->Proposal_model->getProposal();
+        $data['result1'] = $this->SharedCourses_model->selectPriCourses();
         $this->load->view('templates/header',$data);
         $this->load->view('pages/sharedcourses', $data);
         //$this->load->view('pages/insert_pri_shared_course', $data);
@@ -38,6 +41,7 @@ class SharedCourses extends CI_Controller{
     public function getPriCourses(){
         $institution = $this->input->get('institution');
         $i =1;
+        
         $data['selectedInst'] = $this->SharedCourses_model->getClassesByInst($institution);
            echo "<table class='table table-hover'><tr><th>DESCRSHORT</th><th>Institution</th><th>CRSE_ID</th><th>SUBJECT</th><th>CATALOG_NBR</th><th>CLASS_NBR</th><th>CLASS_SECTION</th><th>STRM</th></tr>";
             foreach ($data['selectedInst'] as $value){

@@ -42,6 +42,14 @@ class SharedCourses_model extends CI_Model{
         return $query->result_array();
     }
     
+    function selectPriCourses(){
+        $this->db->select('*');
+        $this->db->from('TBL_SHARED_PRI_COURSES');
+        $this->db->where('PROPID', $this->session->PROPID);
+        $result1 = $this->db->get();
+        return $result1->result_array();
+    }
+    
      function insertPriCourse($data) {
         //$data['PROPID'] = $this->session->PROPID;
         //$data['MOD_BY'] = 'FRIELJ';

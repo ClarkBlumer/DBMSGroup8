@@ -23,6 +23,15 @@ foreach ($proposal as $value) {
 </div>
 <?php
 }
+
+if (empty($result1)){
+    echo "<h2>No Shared Primary Courses Entered</h2>";
+    
+} else {
+    echo "<h3>Primary Courses</h3>";
+    //put tables here
+    echo $this->table->generate($result1);
+}
 ?>
 
 <label class="control-label" for="prop_budget_requested">Institution</label>
@@ -44,6 +53,38 @@ foreach ($proposal as $value) {
     <div id="response"></div>
 </div>
 
+<?php
+if (!empty($result1)){
+    if (empty($result2)){
+        echo "<h2>No Secondary Courses Entered</h2>";
+    } else {
+        echo "<h3>Secondary Courses</h3>";
+        //put tables here
+        echo $this->table->generate($result1);
+        ?>
+        <label class="control-label" for="prop_budget_requested">Institution</label>
+    <div class="form-group">
+        <div class="col-xs-6 selectContainer">
+            <select id='Inst2' class="form-control" name="Institution2" oninput='getByInst2(this.value)'>
+                <option value=""></option>
+                <!--Dynamically adding values to dropdown-->
+                <?php
+                foreach ($dropdowns['institution'] as $value){
+                    $temp = $value['INSTITUTION'];
+                    echo "<option value='$temp'>$temp</option>";
+                }
+                ?>
+            </select>
+        </div>
+        <br><br><br>
+
+        <div id="response"></div>
+    </div>
+<?php
+    }
+    
+} 
+?>
 <script>
 function getByInst(str) {
     if (str == "") {
