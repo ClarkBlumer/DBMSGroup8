@@ -21,6 +21,7 @@ class List_proposals extends CI_Model{
     //Get all proposal informations
     function getallproposals() {
         $this->db->select("*");
+        $this->db->order_by('PROPID', 'asc');
         $this->db->from('TBL_PROPOSAL');
 
         $query = $this->db->get();

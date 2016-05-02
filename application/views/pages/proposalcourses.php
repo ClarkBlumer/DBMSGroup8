@@ -21,9 +21,21 @@ foreach ($proposal as $value) {
             <div class="col-xs-3" ><?php include '/modals/proposal_modal.php';?></div>
         </div>
         <div class="panel-body">
-            <div class="col-xs-4">Anticipated Offer Term: <?php echo $value['PROP_OFFER_TERM'];?></div>            
-            <div class="col-xs-4">Offer Status: <?php echo $value['PROP_OFFER_STATUS'];?></div>
-            <div class="col-xs-4">Award Term: <?php echo $value['AWARD_TERM'];?></div> 
+            <div class="col-xs-3">Anticipated Offer Term: <?php echo $value['PROP_OFFER_TERM'];?></div>            
+            <div class="col-xs-3">Offer Status: <?php echo $value['PROP_OFFER_STATUS'];?></div>
+           
+            <div class="col-xs-3">Award Term: <?php echo $value['AWARD_TERM'];?></div> 
+             <?php 
+            if ($value['PROP_OFFER_STATUS'] == 'awrd'){
+            ?>
+            <div class="col-xs-3" ><a href="<?php echo base_url();?>index.php/getallproposals">Enter Shared Courses</a></div>
+            <?php
+            } else {
+            ?>
+            <div class="col-xs-3 " ><font color="red">Offer Status must be 'award' to enter Shared Courses</font></div>
+            <?php
+            }
+            ?>
             <div class="col-xs-12">Proposal Detail: <?php echo $propclobtext;?></div> 
                
         </div>
