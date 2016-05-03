@@ -32,11 +32,10 @@ class SharedCourses_model extends CI_Model{
         return $query->result_array();
     }
     
-    function getClasses($institution, $term) {
+    function getClassesBySecInst($institution) {
         $this->db->select("*");
-        $this->db->from("BBCRSSHARE.CS_PRI_CRSE");
-        $this->db->where('INSTITUTION', $institution);
-        $this->db->where('DESCRSHORT', $term);
+        $this->db->from("BBCRSSHARE.CS_SEC_CRSE");
+        $this->db->where("INSTITUTION = '$institution'");
         
         $query = $this->db->get();
         return $query->result_array();
@@ -51,14 +50,33 @@ class SharedCourses_model extends CI_Model{
     }
     
      function insertPriCourse($data) {
-        //$data['PROPID'] = $this->session->PROPID;
-        //$data['MOD_BY'] = 'FRIELJ';
-        
         $this->db->trans_start();
         $this->db->set($data);
         var_dump($data);
         $this->db->insert("TBL_SHARED_PRI_COURSES", $data);
         $this->db->trans_complete();
     }
+    
+    function insertSecCourse($data) {
+        $this->db->trans_start();
+        $this->db->set($data);
+        var_dump($data);
+        $this->db->insert("TBL_SHARED_SEC_COURSES", $data);
+        $this->db->trans_complete();
+    }
+    
+    
+    /*
+    function getClasses($institution, $term) {
+        $this->db->select("*");
+        $this->db->from("BBCRSSHARE.CS_PRI_CRSE");
+        $this->db->where('INSTITUTION', $institution);
+        $this->db->where('DESCRSHORT', $term);
+        
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+     */
+
 
 }
