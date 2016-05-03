@@ -2,6 +2,6 @@ this is a test of githu
 
 adding some crap
 
-"Just checking"
+"Just checking test"
 dssdsfdfdfs
 changing some more
