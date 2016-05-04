@@ -66,10 +66,12 @@ class SharedCourses_model extends CI_Model{
     }
     
     function insertXREF($data) {
-        $this->db->trans_start();
-        $this->db->set($data);
-        $this->db->insert("BBCRSSHARE.CRS_XREF", $data);
-        $this->db->trans_complete();
+        if ($data['PRI_STRM'] == $data['SEC_STRM']){
+            $this->db->trans_start();
+            $this->db->set($data);
+            $this->db->insert("BBCRSSHARE.CRS_XREF", $data);
+            $this->db->trans_complete();
+        }
     }
     
 }
