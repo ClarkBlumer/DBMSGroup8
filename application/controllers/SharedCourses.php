@@ -7,13 +7,13 @@
  */
 
 /**
- * Description of ProposalCourses
- *
- * @author Bobby
+ *   Description of SharedCourses
+ *   Author: Robert Fink
+ *   University of Missouri System Shared Courses Application
  */
+
 class SharedCourses extends CI_Controller{
     public $data = [];
-    
 
     public function __construct() {
         parent::__construct();
@@ -21,21 +21,19 @@ class SharedCourses extends CI_Controller{
         $this->load->model("SharedCourses_model");
         $this->load->model("Proposal_model");
         $this->load->library('table');
-        //$this->load->model("ProposalCourses_model");
 
     }
 
     public function index(){
         
         $data['dropdowns'] = $this->SharedDropDown_model->getDropDown();
-        
-        //$propid = $this->session->PROPID;
         $data['proposal'] = $this->Proposal_model->getProposal();
         $data['result1'] = $this->SharedCourses_model->selectPriCourses();
+        $data['result2'] = $this->SharedCourses_model->selectSecCourses();
         $this->load->view('templates/header',$data);
         $this->load->view('pages/sharedcourses', $data);
-        //$this->load->view('pages/insert_pri_shared_course', $data);
         $this->load->view('templates/footer',$data);
+        
     }
     
     public function getPriCourses(){
@@ -54,8 +52,6 @@ class SharedCourses extends CI_Controller{
                 $class_section = $value['CLASS_SECTION'];
                 $descrshort = $value['DESCRSHORT'];
                 $strm = $value['STRM'];
-                //$load_dttm_pc = $value['LOAD_DTTM_PC'];
-                //$lastupddttm_pc = $value['LASTUPDDTTM_PC'];
 
                 ?>
                 <form id='coursesByInst<?php echo $i;?>' class='form-horizontal' role='form' action="<?php echo base_url();?>index.php/sharedcourses/insertSharedPriCourse" method="POST">
@@ -73,8 +69,6 @@ class SharedCourses extends CI_Controller{
                 echo "<input form='coursesByInst$i' type='hidden' name='strm' value='$strm' >";
                 echo "<input form='coursesByInst$i' type='hidden' name='mod_by' value='FRIELJ' >";
                 echo "</form>";
-                //echo "<input type='hidden' name='load_dttm_pc' value='$load_dttm_pc' >";
-                //echo "<input type='hidden' name='lastupddttm' value='$lastupddttm_pc' >";
                 echo "<tr><td>$descrshort</td><td>$institution</td><td><button form='coursesByInst$i' type='submit' class='btn btn-link'>$crse_id</button></td><td>$subject</td><td>$catalog_nbr</td><td>$class_nbr</td><td>$class_section</td><td>$strm</td></tr>";
                 $i++;
             }
@@ -97,15 +91,10 @@ class SharedCourses extends CI_Controller{
                 $class_nbr = $value['CLASS_NBR'];
                 $class_section = $value['CLASS_SECTION'];
                 $strm = $value['STRM'];
-                //$descrshort = $value['DESCRSHORT'];
-                //$load_dttm_pc = $value['LOAD_DTTM_PC'];
-                //$lastupddttm_pc = $value['LASTUPDDTTM_PC'];
-                
-               
+
                 ?>
                 <form id='coursesBySecInst<?php echo $i;?>' class='form-horizontal' role='form' action="<?php echo base_url();?>index.php/sharedcourses/insertSharedSecCourse" method="POST">
                 <?php
-                //$this->input->post('PriSharedCourse', $value);
                 $propid = $value['PROPID'];
                 echo "<input form='coursesBySecInst$i' type='hidden' name='propid' value='$propid' >";
                 echo "<input form='coursesBySecInst$i' type='hidden' name='institution' value='$institution' >";
@@ -137,9 +126,7 @@ class SharedCourses extends CI_Controller{
             "CLASS_SECTION" => $this->input->post('class_section'),
             "MOD_BY" => $this->input->post('mod_by')
         );
-        
-        //var_dump($data);
-                
+                        
         $this->SharedCourses_model->insertPriCourse($data);
        
         redirect('/sharedcourses', 'refresh');
@@ -160,10 +147,25 @@ class SharedCourses extends CI_Controller{
             "CLASS_SECTION" => $this->input->post('class_section'),
             "MOD_BY" => $this->input->post('mod_by')
         );
-        
-        //var_dump($data);
-                
+                        
         $this->SharedCourses_model->insertSecCourse($data);
+
+        redirect('/sharedcourses', 'refresh');
+
+    }
+    
+    public function insertSharedXREF(){
+        
+        $data = array(
+            "PRI_INSTITUTION" => $this->input->post('xref_priInst'),
+            "PRI_STRM" => $this->input->post('xref_priStrm'), //NEED TO FIND HOW TO QUERY THIS VALUE
+            "PRI_CLASS_NBR" => $this->input->post('xref_priClass'),
+            "SEC_INSTITUTION" => $this->input->post('xref_secInst'),            
+            "SEC_STRM" => $this->input->post('xref_secStrm'),
+            "SEC_CLASS_NBR" => $this->input->post('xref_secClass')
+        );
+                        
+        $this->SharedCourses_model->insertXREF($data);
 
         redirect('/sharedcourses', 'refresh');
 
