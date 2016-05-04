@@ -83,7 +83,9 @@ class Proposal extends CI_Controller{
         $data = $this->Proposal_model->getProposal();
         $data['proposal'] = $data;
         $clob = $this->Proposal_model->processClob($data['proposal']);
-        $data['propclobtext'] = $clob->load();
+        if ($clob != null){
+            $data['propclobtext'] = $clob->load();
+        }
 
         $data['dropdowns'] = $this->getDropDowns();
         $data['primarycourses'] = $this->ProposalCourses_model->getPrimaryCourses();
@@ -109,8 +111,10 @@ class Proposal extends CI_Controller{
         $data['proposal'] = $this->Proposal_model->getProposal();
         
         $clob = $this->Proposal_model->processClob($data['proposal']);
-        $data['propclobtext'] = $clob->load();
-        
+
+        if ($clob != null){
+            $data['propclobtext'] = $clob->load();
+        } 
 
         $data['primarycourses'] = $this->ProposalCourses_model->getPrimaryCourses();
         

@@ -36,7 +36,10 @@ foreach ($proposal as $value) {
             <?php
             }
             ?>
-            <div class="col-xs-12">Proposal Detail: <?php echo $propclobtext;?></div> 
+            <div class="col-xs-12">Proposal Detail: <?php 
+                if (isset($propclobtext)){
+                    echo $propclobtext;
+                }?></div> 
                
         </div>
     </div>

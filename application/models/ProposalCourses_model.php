@@ -55,7 +55,7 @@ class ProposalCourses_model extends CI_Model{
         
         $data['PROPID'] = $this->session->PROPID;
         $data['MOD_BY'] = 'FRIELJ';
-              
+          
         $this->db->trans_start();
         $this->db->insert(self::primarycoursetable, $data);
         $priseqnum = $this->getNewPrimaryCourse();

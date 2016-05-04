@@ -55,21 +55,16 @@ class Proposal_model extends CI_Model{
             . 'FROM '.self::table.' '
             . 'WHERE '.self::idfield.'= '.$this->session->PROPID);
         
-        foreach ($result->result() as $value) {
-        
-
-            
-        }
-        
         return $result->result_array();
     }
     
     public function processClob($proposal){
         $clobtext = null;
         foreach ($proposal as $value) {
+
             $clobtext = $value['PROP_DESCR'];      
         }
-
+        
         return $clobtext;
     }
     
