@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  File created - Wednesday-May-04-2016   
+ --  File created - Wednesday-May-04-2016   
 --------------------------------------------------------
 DROP TABLE "CSADMIN"."TBL_ACAD_ORG" cascade constraints;
 DROP TABLE "CSADMIN"."TBL_CAREER" cascade constraints;
