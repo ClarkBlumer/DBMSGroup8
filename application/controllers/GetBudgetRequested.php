@@ -25,7 +25,8 @@ class GetBudgetRequested extends CI_Controller {
     public function index(){
 
         //get all proposals
-        $result = $this->Fund_Requested->budgetrquested();
+        $info = $this->Fund_Requested->budgetrquested();
+        $result = $info['result'];
         $header = "";
         $rowdata = "";
  
@@ -62,7 +63,6 @@ class GetBudgetRequested extends CI_Controller {
                             $temp = $temp.", '".$row."'";
                         }
                     }
-                    echo "<h3>Temp: ".$temp."</h3>";
                 }
             }
             
@@ -71,22 +71,13 @@ class GetBudgetRequested extends CI_Controller {
             }else {
                 $rowdata = $rowdata.", ".$temp."]";
             }
-            
-            var_dump($value);
-            
+              
         }
         
-        $data['cd'] = "['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]";
         $header = $header."], ";
-        echo "<h3>Columns: ".$header."</h3>";           
-        echo "<h3>Row Data: ".$rowdata."</h3>";
+        
 	$data['chartdata'] = $header.$rowdata;
-        echo "<h3>Total Data: ".$data['chartdata']."</h3>";
+        $data['donutdata'] = $info['jsonresult'];
         $this->load->view('templates/header',$data);
         $this->load->view('pages/allCharts',$data);
         $this->load->view('templates/footer',$data);

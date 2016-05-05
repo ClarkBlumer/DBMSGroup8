@@ -22,7 +22,7 @@
                 <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> A pie chart of funding requested to campuses</h3>
               </div>
               <div class="panel-body">
-                <div id="morris-donut-chart"></div>
+                <div id="donut-primary-budget-campus"></div>
                 <div class="text-right">
                   <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
                 </div>

@@ -53,6 +53,18 @@ CodeIgniter/BootStrap Template
       }
     </script>
     
+    <script type="text/javascript">
+    Morris.Donut({
+        element: 'donut-primary-budget-campus',
+        data: [
+          {label: "Download Sales", value: 72},
+          {label: "In-Store Sales", value: 130},
+          {label: "Mail-Order Sales", value: 210}
+        ]
+});
+    
+    </script>
+    
    
 
 
