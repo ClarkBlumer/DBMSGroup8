@@ -31,8 +31,9 @@ class ProposalCourses extends CI_Controller{
         $data['propclobtext'] = $this->Proposal_model->processClob($data['proposal']);
 
         $clob = $this->Proposal_model->processClob($data['proposal']);
-        $data['propclobtext'] = $clob->load();
-        
+        if (isset($clob) || $clob != null){
+            $data['propclobtext'] = $clob->load();
+        }
         $data['primarycourses'] = $this->ProposalCourses_model->getPrimaryCourses();
         
         $data['secondarycourses'] = $this->ProposalCourses_model->getSecondaryCourses();

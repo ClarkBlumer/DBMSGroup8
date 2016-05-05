@@ -1,5 +1,6 @@
 
-<!--${doctype}
+<!DOCTYPE html>
+<!--
 CS 4830: Group 8
 CodeIgniter/BootStrap Template
 -->
@@ -28,9 +29,36 @@ CodeIgniter/BootStrap Template
         
         <!--Loading custom bootstrap css-->
         <link href="<?php echo base_url('assets/css/custom.css'); ?>" rel="stylesheet">
+        
+        <!-- Load Google chart api -->
+        
+<!--PIE Chart: Primary Course Budget by Campus -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          <?php echo $chartdata;?>
+        ]);
+
+        var options = {
+          title: ''
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    
+   
+
 
     </head>
     <body>
+
         <!--Start UMS Header Bar-->
         <div class="umsheader">
             <div class="umsheaderlogo"><a href="http://www.umsystem.edu"><img src="/images/blank.gif" class="umsheaderlink"/></a></div>
@@ -87,6 +115,7 @@ CodeIgniter/BootStrap Template
                 </div>
               </nav>
         </div>
+
 <!--End Course Share Menu Nav!!!-->
 
 

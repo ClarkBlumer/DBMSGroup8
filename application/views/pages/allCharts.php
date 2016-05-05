@@ -14,7 +14,7 @@
           </div>
         </div>
         <!-- /.row -->
-
+<div id="piechart" style="width: 900px; height: 500px;"></div>
         <div class="row">
           <div class="col-lg-4">
             <div class="panel panel-yellow">
@@ -107,22 +107,24 @@
             </div>
         </div>
 
+        
+ 
 
     <script>
 		var obj2 = "<?php echo $va ?>";
 		
-	</script>            
+	          
                 
 	  
-	  <!-- 
+	
 	  // uncomment these when we have the actual data from tables
-	  // and insert them inside the script above 
+	  // and insert them inside the script above   -->
 		//var mizzo = "<?php echo $budget[0]?>";
 		//var rolla = "<?php echo $budget[1]?>";
 		//var kmc =   "<?php echo $budget[2]?>";
 		//var umcl =  "<?php echo $budget[3]?>";
-	  -->
-	  
+	
+	  </script>  
 	 
 	  
 	  

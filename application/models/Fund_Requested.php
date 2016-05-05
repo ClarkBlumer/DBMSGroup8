@@ -20,13 +20,26 @@ class Fund_Requested extends CI_Model{
 
     //Get all proposal informations
     function budgetrquested() {
-        $this->db->select_sum('PROP_BUDGET_REQUESTED');
+       /* $this->db->select_sum('PROP_BUDGET_REQUESTED');
         $this->db->from('TBL_PROPOSAL,TBL_SHARED_PRI_COURSES');
 		$this->db->where('TBL_PROPOSAL.PROPID=TBL_SHARED_PRI_COURSES.PROPID');
 		$this->db->group_by ('INSTITUTION');
 		
         $query = $this->db->get();
-        return $query->result_array();  
+        return $query->result_array();  */
+        
+        $this->db->select('INSTITUTION')
+               ->select_sum('PRI_CRSE_BUDGET')
+               ->from('TBL_PROP_PRI_COURSES')
+               ->group_by('INSTITUTION');
+        $result = $this->db->get();
+        var_dump($result->result_array());
+        $jsonresult = json_encode($result->result_array());
+        var_dump($result->result());
+        echo $jsonresult;
+        return $result;
     }
+    
+    
 
 }
