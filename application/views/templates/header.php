@@ -44,7 +44,7 @@ CodeIgniter/BootStrap Template
         ]);
 
         var options = {
-          title: ''
+          title: 'Historical Primary Course Budget by Campus'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
