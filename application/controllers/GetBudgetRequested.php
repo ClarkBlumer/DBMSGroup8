@@ -77,7 +77,7 @@ class GetBudgetRequested extends CI_Controller {
         $header = $header."], ";
         
 	$data['chartdata'] = $header.$rowdata;
-        $data['donutdata'] = $info['jsonresult'];
+        //$data['donutdata'] = $info['jsonresult'];
         $this->load->view('templates/header',$data);
         $this->load->view('pages/allCharts',$data);
         $this->load->view('templates/footer',$data);

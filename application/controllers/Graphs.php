@@ -12,14 +12,20 @@
  * @author Jeffrey
  */
 class Graphs extends CI_Controller {
-
+       private $data;
+       
+       function __construct(){
+           parent::__construct();
+           $this->load->model('Fund_Requested');         
+       }
+       
+       
   public function allCharts(){
-	  
-	    $data['va'] = 100;
-        $this->load->view('templates/header',$data);
-	
-		$this->load->view('pages/allCharts');
-		
+	    
+              
+	        $data1['fund']= $this->Fund_Requested->fundRequested();
+                $this->load->view('templates/header');
+                $this->load->view('pages/allCharts',$data1);
 		$this->load->view('templates/footer');
     }    
 

@@ -34,36 +34,9 @@ CodeIgniter/BootStrap Template
         
 <!--PIE Chart: Primary Course Budget by Campus -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          <?php echo $chartdata;?>
-        ]);
-
-        var options = {
-          title: 'Historical Primary Course Budget by Campus'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-    </script>
     
-    <script type="text/javascript">
-    Morris.Donut({
-        element: 'donut-primary-budget-campus',
-        data: [
-          {label: "Download Sales", value: 72},
-          {label: "In-Store Sales", value: 130},
-          {label: "Mail-Order Sales", value: 210}
-        ]
-});
     
-    </script>
+  
     
    
 
@@ -103,7 +76,7 @@ CodeIgniter/BootStrap Template
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Charts/Reports<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="<?php echo base_url('index.php/getBudgetRequested/index') ?>">All Charts</a></li>
+                                    <li><a href="<?php echo base_url('index.php/graphs/allCharts') ?>">All Charts</a></li>
 
                                     <li role="separator" class="divider"></li>
 
