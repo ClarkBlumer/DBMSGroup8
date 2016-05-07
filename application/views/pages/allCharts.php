@@ -104,7 +104,7 @@
          echo "var js_array = new Array();\n"; 
          $count = 0;
          
-         foreach($fund as $array){ 
+         foreach($fundRe as $array){ 
              $value = $array['FUNDRE']; $count1=$array['INSTIT'];
              
              echo "js_array['$count1'] = $value;\n";
@@ -113,14 +113,19 @@
          echo "</script>\n"; 
  
          ?> 
- 
+        <br>
+        <br>
         
-        
-	  
-	  
-	  
-	  
-	  
+        <?php
+            echo "<script language='JavaScript'>\n";
+            echo "var fundAw = new Array();\n";
+            foreach ($fundAw as $array){$val = $array['BUDGETAWAR']; $key = $array['INSTIT'];
+            echo "fundAw['$key'] = $val;\n";
+            
+            }
+            echo "</script>\n";
+        ?>  
+       
 	  
       </div>
       <!-- /.container-fluid -->

@@ -76,7 +76,13 @@ class Fund_Requested extends CI_Model{
         
          
     }
-    
+    function fundawarded(){
+        $query = $this->db->query("SELECT SUM(P.PROP_BUDGET_REQUESTED) AS BUDGETAWAR,"
+                . " PRC.INSTITUTION AS INSTIT FROM TBL_PROPOSAL P"
+                . " INNER JOIN TBL_PROP_PRI_COURSES PRC USING(PROPID)"
+                . " WHERE P.PROP_OFFER_STATUS='awrd' GROUP BY PRC.INSTITUTION");
+        return $query->result_array();
+    }
    
     
     
