@@ -44,22 +44,24 @@
               </div>
             </div>
           </div>
-		  
-		  
-          <div class="col-lg-4">
-            <div class="panel panel-primary">
+		 
+            <div class="col-lg-4">
+            <div class="panel panel-red">
               <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>  A bar chart of no of courses delivered by primary campus</h3>
+                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> A pie chart of funding awarded to campuses </h3>
               </div>
               <div class="panel-body">
-                <div id="morris-bar-chart"></div>
+                <div id="morris-line-chart1"></div>
                 <div class="text-right">
                   <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
               </div>
             </div>
           </div>
-		  
+            
+            
+            
+	
 		  
         </div>
         <!-- /.row -->
@@ -121,11 +123,30 @@
             echo "var fundAw = new Array();\n";
             foreach ($fundAw as $array){$val = $array['BUDGETAWAR']; $key = $array['INSTIT'];
             echo "fundAw['$key'] = $val;\n";
-            
             }
             echo "</script>\n";
         ?>  
        
+        
+        <script> var INSTITU = new Array; var KEYY = new Array();  var BUDGET=new Array(); </script>
+        
+        <?php $counter=1;  foreach($fundAw1 as $array){$ins = $array['INSTIT']; $kk = $array['OFTERM']; $budg = $array['FUNDRE']; ?>
+        
+         <script>
+             index     = "<?php echo $counter; ?>";
+          INSTITU[index] = "<?php echo $ins; ?>";
+          KEYY[index]    ="<?php echo $kk; ?>";
+          BUDGET[index]  ="<?php echo  $budg; ?>";  
+        </script>
+        
+        <?php $counter++; }?>
+      
+        
+        
+ 
+        
+        
+        
 	  
       </div>
       <!-- /.container-fluid -->
