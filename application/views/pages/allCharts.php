@@ -10,7 +10,7 @@
         <div class="row">
           <div class="col-lg-12">
             <h2 class="page-header">Charts</h2>
-            <p class="lead">these graph are under revising becaause they do not have the actual data, I will include that as soon as I get the data </a>.</p>
+            <p class="lead"> </a>.</p>
           </div>
         </div>
         <!-- /.row -->
@@ -48,7 +48,7 @@
             <div class="col-lg-4">
             <div class="panel panel-red">
               <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> A pie chart of funding awarded to campuses </h3>
+                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Budged requested by each campus by semester </h3>
               </div>
               <div class="panel-body">
                 <div id="morris-line-chart1"></div>
@@ -71,7 +71,7 @@
             <div class="col-lg-6">
                 <div class="panel panel-red">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> A pie chart of courses by discipline i.e nursing, civil engineering</h3>
+                        <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> A pie chart of total requested by academic year and institution</h3>
                     </div>
                     <div class="panel-body">
                         <div class="flot-chart">
@@ -129,24 +129,27 @@
        
         
         <script> var INSTITU = new Array; var KEYY = new Array();  var BUDGET=new Array(); </script>
-        
         <?php $counter=1;  foreach($fundAw1 as $array){$ins = $array['INSTIT']; $kk = $array['OFTERM']; $budg = $array['FUNDRE']; ?>
-        
          <script>
              index     = "<?php echo $counter; ?>";
           INSTITU[index] = "<?php echo $ins; ?>";
           KEYY[index]    ="<?php echo $kk; ?>";
           BUDGET[index]  ="<?php echo  $budg; ?>";  
         </script>
-        
         <?php $counter++; }?>
       
+
         
-        
- 
-        
-        
-        
+        <script> var ACAD_YEAR = new Array; var INSTITAY = new Array();  var BUDGET_REQAYE=new Array(); </script>
+        <?php $counter=1;  foreach($budRePerAcaYear as $array){$ins = $array['INSTIT']; $kk = $array['ACAD_YEAR']; $budg = $array['BUDGET_REQ']; ?>
+         <script>
+          index     = "<?php echo $counter; ?>";
+          INSTITAY[index] = "<?php echo $ins; ?>";
+          ACAD_YEAR[index]    ="<?php echo $kk; ?>";
+          BUDGET_REQAYE[index]  ="<?php echo  $budg; ?>";  
+        </script>
+        <?php $counter++; }?>
+      
 	  
       </div>
       <!-- /.container-fluid -->

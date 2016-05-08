@@ -23,6 +23,8 @@ class Graphs extends CI_Controller {
   public function allCharts(){
 	        $data1['fundRe']= $this->Fund_Requested->fundRequested();
                 $data1['fundAw']= $this->Fund_Requested->fundawarded();
+                $data1['fundAw1']= $this->Fund_Requested->budgRePerTerm();
+                $data1['budRePerAcaYear']=$this->Fund_Requested->budRePerAcadYear();
                 $this->load->view('templates/header');
                 $this->load->view('pages/allCharts',$data1);
 		$this->load->view('templates/footer');

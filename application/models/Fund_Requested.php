@@ -84,9 +84,25 @@ class Fund_Requested extends CI_Model{
         return $query->result_array();
     }
    
+    function budgRePerTerm(){
+          $query = $this->db->query("SELECT SUM(PR.PROP_BUDGET_REQUESTED) AS FUNDRE, PRC.INSTITUTION AS INSTIT, PR.PROP_OFFER_TERM AS OFTERM"
+                  . " FROM TBL_PROPOSAL PR INNER JOIN TBL_PROP_PRI_COURSES PRC USING(PROPID)"
+                  . " GROUP BY PR.PROP_OFFER_TERM, PRC.INSTITUTION"
+                  . " ORDER BY PR.PROP_OFFER_TERM ASC");
+        return $query->result_array();
+    }
     
-    
-    
+    //A pie chart of total requested by academic year and institution.
+    function budRePerAcadYear(){
+        $query=$this->db->query("SELECT a.ACAD_YEAR, PRC.INSTITUTION AS INSTIT, SUM(P.PROP_BUDGET_REQUESTED) AS BUDGET_REQ"
+                . " FROM TBL_PROPOSAL P"
+                . " INNER JOIN TBL_PROP_PRI_COURSES PRC USING(PROPID)"
+                . " JOIN TBL_TERM a on P.PROP_OFFER_TERM = a.STRM"
+                . " GROUP BY a.ACAD_YEAR, PRC.INSTITUTION"
+                . " ORDER BY a.ACAD_YEAR");
+        
+        return $query->result_array();
+    }
     
 
 }
