@@ -52,51 +52,49 @@ if(typeof fundAw['UMCL']=='undefined'){UMCL=0;}else{UMCL=fundAw['UMCL'];}
         resize: true
     });
 
+// A pie chart of total requested budget by term for each campus
+ 
 
-    // Bar Chart
-    Morris.Bar({
-        element: 'morris-bar-chart',
-        data: [{
-            instituion: 'ROLLA',
-            NoCourses: 137
-        }, {
-            instituion: 'UMCL',
-            NoCourses: 275
-        }, {
-            instituion: 'KMC',
-            NoCourses: 380
-        }, {
-            instituion: 'MU',
-            NoCourses: 655
-        }],
-        xkey: 'instituion',
-        ykeys: ['NoCourses'],
-        labels: ['NoCourses'],
-        barRatio: 0.4,
-        xLabelAngle: 35,
-        hideHover: 'auto',
+
+
+var arr= new Array();
+var str1;
+for(i=0; i<KEYY.length;i++){
+    if (KEYY[i]){bbg=KEYY[i];}else{bbg=90;}   
+    if (BUDGET[i]){bu=BUDGET[i];}else{bu=0;}  
+    if (INSTITU[i]){INs=INSTITU[i];}else{INs=0;}  
+    str1 = INs + '_' + bbg;
+    arr[i]={label: str1, value: bu};
+}
+
+Morris.Donut({
+        element: 'morris-line-chart1',
+        data: arr,
         resize: true
     });
 
 
-
-    Morris.Donut({
+//A pie chart of total requested by academic year and institution.
+var arr1= new Array();
+var str;
+for(i=0; i<5;i++){
+   if (ACAD_YEAR[i]){bbg=ACAD_YEAR[i];}else{bbg=90;}
+   if (BUDGET_REQAYE[i]){bu=BUDGET_REQAYE[i];}else{bu=0;}
+   if (INSTITAY[i]){instt=INSTITAY[i];}else{instt='X';}
+   str = instt+'_'+bbg;
+    arr1[i]={label: str, value: bu};
+}
+Morris.Donut({
         element: 'flot-moving-line-chart',
-        data: [{
-            label: "Number of funding awarded to MU",
-            value: 37
-        }, {
-            label: "Number of funding awarded to UMCL",
-            value: 33
-        }, {
-            label: "Number of funding awarded to KMC",
-            value: 15
-        }, {
-            label: "Number of funding awarded to ROLLA",
-            value: 15
-        }],
+        data: arr1,
         resize: true
     });
+
+
+
+
+
+
 
 
 
