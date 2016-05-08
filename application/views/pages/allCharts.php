@@ -14,7 +14,7 @@
           </div>
         </div>
         <!-- /.row -->
-        <div id="piechart" style="width: 900px; height: 500px;"></div>
+        
         <div class="row">
           <div class="col-lg-4">
             <div class="panel panel-yellow">
@@ -83,10 +83,13 @@
                     </div>
                 </div>
             </div>
+               
+           
+            <div class="row">
             <div class="col-lg-6">
-                <div class="panel panel-primary">
+                <div class="panel panel-red">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> A line chart of enrollment of students per term in courses with the attribute of UMSCS</h3>
+                        <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>A line chart of enrollment of students per term in courses with the attribute of UMSCS</h3>
                     </div>
                     <div class="panel-body">
                         <div class="flot-chart">
@@ -97,7 +100,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>   
+               
         </div>
 
        
