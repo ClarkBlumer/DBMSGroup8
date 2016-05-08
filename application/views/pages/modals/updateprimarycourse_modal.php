@@ -91,7 +91,7 @@
                             </div>
 
                             <div class="form-group">
-                                <fieldset class="col-xs-3 selectContainer">
+                                <fieldset class="col-xs-4 selectContainer">
                                     <label class="control-label" for="COURSE_STATUS">Course Status</label>
                                     <select id="COURSE_STATUS" class="form-control" name="course_status">
                                         <!--Dynamically adding course_status values to dropdown-->
@@ -124,7 +124,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-warning">Submit</button>
                 </form>
             </div>
             <div class="modal-footer">

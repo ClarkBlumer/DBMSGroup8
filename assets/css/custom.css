@@ -48,8 +48,10 @@ label.control-label span { cursor: pointer; }
 .modal-dialog{
     width: 65%;
 }
-
-.modal-body {
+.modal-content {
+    max-width: 100%;
+}
+.modal-body .modal-header{
     max-height: 100%;
     max-width: 90vh;
 }

@@ -149,17 +149,17 @@
                                 <!--Proposal Description-->
                                 <div class="form-group">
                                     <label class="control-label col-xs-3 col-md-3" for="prop_descr">Proposal Description</label>
-                                    <div class="col-xs-8 input-group">
-                                        <textarea name="prop_descr" rows="4" class="form-control" ><?php 
+                                    <div class="col-xs-5 input-group">
+                                        <textarea name="prop_descr" rows="5" class="form-control" ><?php 
                                             if (isset($propclobtext)){
                                                 echo $propclobtext;
                                             }?></textarea>                         
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-default">Submit</button>
+                                <button type="submit" class="btn btn-danger">Submit</button>
                             </form>
                         </fieldset>
-                        <div class="modal-footer">            
+                        <div class="modal-footer col-xs-8">            
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
