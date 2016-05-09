@@ -55,20 +55,25 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="date-picker-2" class="control-label col-xs-3 col-md-3">Submit Date</label>
-                                    <div class="controls col-xs-3">
-                                        <div class="input-group">
-                                            <input id="submit_date" name="submit_date" id="date-picker-2" type="text" class="date-picker" 
-                                                <?php if (isset($propinfo['SUBMIT_DATE'])){?> value="<?php echo $propinfo['SUBMIT_DATE'];}?>"/>
-                                            <label for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span>
-
-                                            </label>
-
-                                        </div>
-                                    </div>
+                                <!--DATE PICKER-->
+                                <div class="form-group ">
+                                 <label class="control-label requiredField col-xs-3 col-md-3" for="submit_date">
+                                  Submit Date
+                                  <span class="asteriskField">
+                                   *
+                                  </span>
+                                 </label>
+                                 <div class="input-group col-xs-2">
+                                  <div class="input-group-addon">
+                                   <i class="fa fa-calendar">
+                                   </i>
+                                  </div>
+                                  <input class="form-control" id="date" name="submit_date" placeholder="dd-m-yyyy" type="text"
+                                         <?php if (isset($propinfo['SUBMIT_DATE'])){?> value="<?php echo $propinfo['SUBMIT_DATE'];}?>"/>
+                                    
+                                 </div>
+                                
                                 </div>
-
                                 <!--Anticipated Offer Term-->
                                 <div class="form-group">
                                     <label class="control-label col-xs-3 col-md-3" for="prop_offer_term">Anticipated Offer Term</label>
