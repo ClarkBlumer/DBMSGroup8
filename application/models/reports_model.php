@@ -11,40 +11,82 @@ class Reports_model extends CI_Model{
         $this->load->database();
     }
     
-    //Get all proposal information
-    function getallreports() {
-        $this->db->select("*");
-        $this->db->order_by('PROPID', 'asc');
-        $this->db->from('TBL_PROPOSAL');
-
-        $query = $this->db->get();
-        return $query->result_array();  
-    }    
     
-    
-    
-    /*  SELECT MAX(P1.PROP_BUDGET_REQUESTED)
+    /*  Find the max budget requested for all proposals for each campus
+     *  SELECT MAX(P1.PROP_BUDGET_REQUESTED)
         AS MAX_BUDGET, INSTITUTION AS INSTIT
         FROM TBL_PROPOSAL P1
         INNER JOIN TBL_PROP_PRI_COURSES CS
-        USING(PROPMAX(P1.PROP_BUDGET_REQUESTED)ID)
-        WHERE P1.PROP_OFFER_STATUS='pend'
+        USING(PROPID)
         GROUP BY CS.INSTITUTION;
      */
-    function getHighestBudgetForPending(){
-        /*
-        $this->db->select_max("PROP_BUDGET_REQUESTED");
-        $this->db->from("TBL_PROPOSAL");
-        $this->db->join("TBL_PROP_PRI_COURSES");
-
-        //$this->db->using("(PROPMAX(P1.PROP_BUDGET_REQUESTED)ID)");
-        $this->db->group_by("INSTITUTION");
-        $this->db->where("PROP_OFFER_STATUS='pend'");
-        $query = $this->db->get();
-         */
+    function maxBudgetRequestedByCampus(){
          
-        $query = $this->db->query("SELECT MAX(P1.PROP_BUDGET_REQUESTED)AS MAX_BUDGET, INSTITUTION AS INSTIT FROM TBL_PROPOSAL P1 INNER JOIN TBL_PROP_PRI_COURSES CS USING(PROPID)WHERE P1.PROP_OFFER_STATUS='pend' GROUP BY CS.INSTITUTION");
-        var_dump($query->result_array());
+        $query = $this->db->query("SELECT MAX(P1.PROP_BUDGET_REQUESTED) AS Maximum_Budget, INSTITUTION AS Institution FROM TBL_PROPOSAL P1 INNER JOIN TBL_PROP_PRI_COURSES CS USING(PROPID) GROUP BY CS.INSTITUTION ORDER BY INSTITUTION");
+        //var_dump($query->result_array());
+        return $query->result_array();
+    }
+    
+    
+    /*  For each campus, find total number of pending proposals 
+        SELECT COUNT(*) AS TOTAL_PEND_PROPOSALS,
+        TBL_PROP_PRI_COURSES.INSTITUTION AS INSTIT  
+        FROM TBL_PROPOSAL 
+        INNER JOIN TBL_PROP_PRI_COURSES USING(PROPID)
+        WHERE PROP_OFFER_STATUS ='pend'
+        GROUP BY TBL_PROP_PRI_COURSES.INSTITUTION;
+     */    
+    function numberOfPendingProposalsByCampus(){
+         
+        $query = $this->db->query("SELECT COUNT(*) AS TOTAL_PENDING_PROPOSALS, TBL_PROP_PRI_COURSES.INSTITUTION AS INSTITUTION FROM TBL_PROPOSAL INNER JOIN TBL_PROP_PRI_COURSES USING(PROPID) WHERE PROP_OFFER_STATUS ='pend' GROUP BY TBL_PROP_PRI_COURSES.INSTITUTION ORDER BY TBL_PROP_PRI_COURSES.INSTITUTION");
+        //var_dump($query->result_array());
+        return $query->result_array();
+    }
+    
+    
+    /*  For each campus, find total number of warded proposals 
+        SELECT COUNT(*) AS TOTAL_PEND_PROPOSALS,
+        TBL_PROP_PRI_COURSES.INSTITUTION AS INSTIT  
+        FROM TBL_PROPOSAL 
+        INNER JOIN TBL_PROP_PRI_COURSES USING(PROPID)
+        WHERE PROP_OFFER_STATUS ='awrd'
+        GROUP BY TBL_PROP_PRI_COURSES.INSTITUTION;
+     * 
+     */
+    function numberOfAwardedProposalsByCampus(){
+         
+        $query = $this->db->query("SELECT COUNT(*) AS TOTAL_PENDING_PROPOSALS, TBL_PROP_PRI_COURSES.INSTITUTION AS INSTITUTION FROM TBL_PROPOSAL INNER JOIN TBL_PROP_PRI_COURSES USING(PROPID) WHERE PROP_OFFER_STATUS ='awrd' GROUP BY TBL_PROP_PRI_COURSES.INSTITUTION ORDER BY TBL_PROP_PRI_COURSES.INSTITUTION");
+        //var_dump($query->result_array());
+        return $query->result_array();
+    }
+    
+    
+    /*  Find the number of proposals for each term 
+        SELECT COUNT(*) AS NUM_OF_PROPOSALS,
+        P.PROP_OFFER_TERM  FROM TBL_PROPOSAL P 
+        GROUP BY P.PROP_OFFER_TERM; 
+     */
+    function numberOfPendingProposalsByTerm(){
+        $query = $this->db->query("SELECT COUNT(*) AS NUMBER_OF_PROPOSALS,
+        P.PROP_OFFER_TERM AS PROPOSED_OFFER_TERM  FROM TBL_PROPOSAL P 
+        GROUP BY P.PROP_OFFER_TERM ORDER BY P.PROP_OFFER_TERM");
+        return $query->result_array();
+    }
+    
+    
+    /*  Find the number of warded proposals for each term
+        SELECT COUNT(*) AS NUM_OF_PROPOSALS,
+        P.PROP_OFFER_TERM AS OFFER_TERM
+        FROM TBL_PROPOSAL P 
+        WHERE P.PROP_OFFER_STATUS='awrd'
+        GROUP BY P.PROP_OFFER_TERM; 
+     */    
+    function numberOfAwardedProposalsByTerm(){
+        $query = $this->db->query("SELECT COUNT(*) AS NUMBER_OF_PROPOSALS,
+        P.PROP_OFFER_TERM AS OFFERED_TERM
+        FROM TBL_PROPOSAL P 
+        WHERE P.PROP_OFFER_STATUS='awrd'
+        GROUP BY P.PROP_OFFER_TERM ORDER BY P.PROP_OFFER_TERM");
         return $query->result_array();
     }
 }

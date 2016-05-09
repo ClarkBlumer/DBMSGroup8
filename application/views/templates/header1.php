@@ -80,11 +80,11 @@ CodeIgniter/BootStrap Template
 
                                     <li role="separator" class="divider"></li>
 
-                                    <li><a href="<?php echo base_url('index.php/Reports/maxBudgetRequestedByCampus') ?>">Maximum funding requested by campus</a></li>
-                                    <li><a href="<?php echo base_url('index.php/Reports/numberOfPendingProposalsByCampus') ?>">Number of pending proposals by campus</a></li>
-                                    <li><a href="<?php echo base_url('index.php/Reports/numberOfAwardedProposalsByCampus') ?>">Number of awarded proposals by campus</a></li>
-                                    <li><a href="<?php echo base_url('index.php/Reports/numberOfPendingProposalsByTerm') ?>">Number of proposals by term</a></li>
-                                    <li><a href="<?php echo base_url('index.php/Reports/numberOfAwardedProposalsByTerm') ?>">Number of awarded proposals by term</a></li>
+                                    <li><a href="#">funding requested to campuses</a></li>
+                                    <li><a href="#">funding awarded to campuses</a></li>
+                                    <li><a href="#">courses delivered by primary campus</a></li>
+                                    <li><a href="#">courses by discipline </a></li>
+                                    <li><a href="#">enrollment of students per term</a></li>
                                 </ul>
                             </li>
 
