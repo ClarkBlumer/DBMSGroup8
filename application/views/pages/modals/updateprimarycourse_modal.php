@@ -12,7 +12,9 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Update Primary Course</h4>
             </div>
-            <div class="modal-body">
+            <div id="updatepricourse" class="modal-body">
+                <?php echo validation_errors(); ?>
+
                 <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/proposalcourses/updateprimarycourse" method="post">
                     <input type="hidden" name="PRI_SEQ_NUM" value="<?php echo $privalue['PRI_SEQ_NUM'];?>">
                     <div class="panel panel-green">
@@ -124,6 +126,7 @@
                             </div>
                         </div>
                     </div>
+                    <div id="alert-msg"></div>
                     <button type="submit" class="btn btn-warning">Submit</button>
                 </form>
             </div>
@@ -136,3 +139,30 @@
     </div>
 </div>    
 </div>
+
+<script>
+$(function(){
+    $('#updatepricourse').submit(function(event){
+        event.preventDefault();
+        var subject = $('#SUBJECT').val();
+        var catalog_num = $('#CATALOG_NUM').val();
+        
+        $.ajax({
+            type: 'POST',
+            url: 'proposalcourses/updatePrimaryCourse',
+            data: {
+                'subject': subject,
+                'catalog_num': catalog_num
+            },
+            dataType: 'html',
+            success: function(results){
+                if (subject.length > 30){
+                    $('#aler-msg').html('Subject cannot exceed 30 chars, dumbass');
+                    return false;
+                }
+            }
+            
+        });
+    });
+});
+</script>

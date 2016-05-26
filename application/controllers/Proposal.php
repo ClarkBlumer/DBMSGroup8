@@ -19,10 +19,13 @@ class Proposal extends CI_Controller{
         $this->load->model('DropDownValues_model');
         $this->load->model('ProposalCourses_model');
         $this->load->model('Proposal_model');
+        $this->load->library('form_validation');
     }
     
     public function index(){
         $data['dropdowns'] = $this->getDropDowns();
+        
+        
 
         $this->load->view('templates/header',$data);
         $this->load->view('pages/proposal', $data);
@@ -35,9 +38,16 @@ class Proposal extends CI_Controller{
     }
     
     public function insert(){
-
-        $data = ArrayToUpper::arrayToUp($this->input->post());
-       
+    //$this->form_validation->set_rules('submitted_by', 'Submitted By', 'required');    
+    $data = ArrayToUpper::arrayToUp($this->input->post());    
+    if ($this->form_validation->run('proposal') == FALSE){
+        $this->index();
+        
+        
+    } else {
+        
+    
+        
         $proposalid = $this->Proposal_model->insertProposal($data);
 
         $propid = [];
@@ -61,42 +71,49 @@ class Proposal extends CI_Controller{
         $this->load->view('templates/header',$data);
         $this->load->view('pages/proposalcourses',$data);
         $this->load->view('templates/footer',$data);
+    }
 
     }
+    
     
     public function update(){
         
         $data = ArrayToUpper::arrayToUp($this->input->post());
  
+        if ($this->form_validation->run('proposal') == FALSE){
+            $this->index();
         
         
-        $proposalid = $this->Proposal_model->updateProposal($data);
+        } else {
+        
+            $proposalid = $this->Proposal_model->updateProposal($data);
 
-        $propid = [];
-         foreach ($proposalid as $value) {
+            $propid = [];
+             foreach ($proposalid as $value) {
 
-            $propid = $value;
+                $propid = $value;
+            }
+
+
+            $this->session->set_userdata('USERID', self::userid);
+            $this->session->set_userdata('PROPID',$propid['PROPID']);
+
+            $data = $this->Proposal_model->getProposal();
+            $data['proposal'] = $data;
+            $clob = $this->Proposal_model->processClob($data['proposal']);
+            if ($clob != null){
+                $data['propclobtext'] = $clob->load();
+            }
+
+            $data['dropdowns'] = $this->getDropDowns();
+            $data['primarycourses'] = $this->ProposalCourses_model->getPrimaryCourses();
+            $data['secondarycourses'] = $this->ProposalCourses_model->getSecondaryCourses();
+
+
+            $this->load->view('templates/header',$data);
+            $this->load->view('pages/proposalcourses',$data);
+            $this->load->view('templates/footer',$data);
         }
-        
-
-        $this->session->set_userdata('USERID', self::userid);
-        $this->session->set_userdata('PROPID',$propid['PROPID']);
-       
-        $data = $this->Proposal_model->getProposal();
-        $data['proposal'] = $data;
-        $clob = $this->Proposal_model->processClob($data['proposal']);
-        if ($clob != null){
-            $data['propclobtext'] = $clob->load();
-        }
-
-        $data['dropdowns'] = $this->getDropDowns();
-        $data['primarycourses'] = $this->ProposalCourses_model->getPrimaryCourses();
-        $data['secondarycourses'] = $this->ProposalCourses_model->getSecondaryCourses();
-        
-        
-        $this->load->view('templates/header',$data);
-        $this->load->view('pages/proposalcourses',$data);
-        $this->load->view('templates/footer',$data);
 
     }
     

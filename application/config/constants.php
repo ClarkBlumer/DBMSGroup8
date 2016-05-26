@@ -83,3 +83,36 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+
+/*Custom Constants
+ * 
+ */
+define('CS_SEC_CRSE', 'BBCRSSHARE.CS_SEC_CRSE'); 
+define('CS_PRI_CRSE', 'BBCRSSHARE.CS_PRI_CRSE'); 
+
+//Custom table template
+define ('TBLTEMPLATE', 
+        serialize (
+            array (
+                       'table_open'          => '<table border="0" cellpadding="4" cellspacing="0">',
+
+                        'heading_row_start'   => '<tr>',
+                        'heading_row_end'     => '</tr>',
+                        'heading_cell_start'  => '<th>',
+                        'heading_cell_end'    => '</th>',
+
+                        'row_start'           => '<tr>',
+                        'row_end'             => '</tr>',
+                        'cell_start'          => '<td>',
+                        'cell_end'            => '</td>',
+
+                        'row_alt_start'       => '<tr>',
+                        'row_alt_end'         => '</tr>',
+                        'cell_alt_start'      => '<td>',
+                        'cell_alt_end'        => '</td>',
+
+                        'table_close'         => '</table>'
+                ) 
+            )
+        );

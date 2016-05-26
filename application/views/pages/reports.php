@@ -3,9 +3,10 @@ $cols = array_keys($reports[0]);
 ?>
 
 <div class="container">
+    <h3> <?php echo $title; ?></h3>
     <div class="col-lg-12" id="tb">
-        <table class="table table-bordered table-hover" style="width:100%">
-            <tr><h3> <?php echo $title; ?></h3></tr>
+        <table class="datatable table table-bordered table-hover" style="width:100%">
+            <thead>
             <tr>
 
                 <?php 
@@ -15,7 +16,7 @@ $cols = array_keys($reports[0]);
                 }
                 ?>
             </tr>
-
+            </thead>
                 <?php 
                 foreach ($reports as $val) { ?>
                   <tr>  

@@ -43,20 +43,36 @@ class ProposalCourses extends CI_Controller{
     }
     
     public function insertPrimaryCourse(){
-        $data = ArrayToUpper::arrayToUp($this->input->post());
-        $priseqnum = $this->ProposalCourses_model->insertPrimaryCourse($data);
+        if ($this->form_validation->run('prop_courses') == FALSE){
+            $this->index();
         
-        foreach ($priseqnum as $value){
-            $priseq = $value;
+        
+        } else {
+            $data = ArrayToUpper::arrayToUp($this->input->post());
+            $priseqnum = $this->ProposalCourses_model->insertPrimaryCourse($data);
+
+            foreach ($priseqnum as $value){
+                $priseq = $value;
+            }
+            $this->session->set_userdata('PRI_SEQ_NUM', $priseq['PRI_SEQ_NUM']);
+            $this->index();
         }
-        $this->session->set_userdata('PRI_SEQ_NUM', $priseq['PRI_SEQ_NUM']);
-        $this->index();
     }
-    
+    public function loadPrimaryCourse(){
+      
+        $this->load->view('pages/updateprimarycourse', $data);
+    }
     public function updatePrimaryCourse(){
-        $data = ArrayToUpper::arrayToUp($this->input->post());
-        $this->ProposalCourses_model->updatePrimaryCourse($data);
-        $this->index();
+        if ($this->form_validation->run('prop_courses') == FALSE){
+            
+        
+        } else {
+            $data = ArrayToUpper::arrayToUp($this->input->post());
+            $this->ProposalCourses_model->updatePrimaryCourse($data);
+            echo("succes-close"); //placeholder, debug
+            $this->index();
+            
+        }
     }
     
     public function insertSecondaryCourse(){

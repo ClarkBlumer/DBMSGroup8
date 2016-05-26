@@ -24,9 +24,9 @@ class Reports extends CI_Controller{
     public function index($data)
     {                
         //Load header/body/footer
-        $this->load->view('templates/header',$data);
+        $this->load->view('templates/header1',$data);
         $this->load->view('pages/reports',$data);
-        $this->load->view('templates/footer',$data);
+        $this->load->view('templates/footer1',$data);
     }
     
     public function maxBudgetRequestedByCampus(){

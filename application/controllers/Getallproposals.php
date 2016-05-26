@@ -31,8 +31,8 @@ class Getallproposals extends CI_Controller {
 		
 
 		
-        $this->load->view('templates/header',$data);
+        $this->load->view('templates/header1',$data);
         $this->load->view('pages/listedproposals',$data);
-        $this->load->view('templates/footer',$data);
+        $this->load->view('templates/footer1',$data);
     }  
 }

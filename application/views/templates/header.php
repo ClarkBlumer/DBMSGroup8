@@ -12,6 +12,23 @@ CodeIgniter/BootStrap Template
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <script src="<?php echo base_url("assets/js/custom.js"); ?>"></script>
+        
+        <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+        <script>
+            tinymce.init({
+              selector: 'textarea',
+                plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table contextmenu paste code'
+                ],
+                  toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                  content_css: [
+                    '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+                    '//www.tinymce.com/css/codepen.min.css'
+                ]
+            });
+        </script>
    
         <!--Loading CSS for UM System Header-->
         <link href="http://www.umsystem.edu/css/umsbar.css" rel="stylesheet" type="text/css" />
@@ -25,6 +42,7 @@ CodeIgniter/BootStrap Template
         <link href="<?php echo base_url('assets/css/plugins/morris.css'); ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/font-awesome.min.css'); ?>" rel="stylesheet">
         <link href="<?php echo base_url("assets/css/custom.css"); ?>" rel="stylesheet" type="text/css" />
+        <!--<link href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
 
         
         <!--Loading custom bootstrap css-->
@@ -34,6 +52,9 @@ CodeIgniter/BootStrap Template
         
 <!--PIE Chart: Primary Course Budget by Campus -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
     
     
 <!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
@@ -44,10 +65,6 @@ CodeIgniter/BootStrap Template
 
 <!-- Inline CSS based on choices in "Settings" tab -->
 <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
-  
-    
-   
-
 
     </head>
     <body>
@@ -61,10 +78,8 @@ CodeIgniter/BootStrap Template
         <!--End UMS Header Bar-->
         
         <!--Start Course Share Menu Nav-->
-        <div class="container">
-            <div class="page-header">
-                <h1>UM Intercampus Course Share</h1>
-            </div>
+
+
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -107,7 +122,8 @@ CodeIgniter/BootStrap Template
                     </div>
                 </div>
               </nav>
-        </div>
+      
+
 
 <!--End Course Share Menu Nav!!!-->
 

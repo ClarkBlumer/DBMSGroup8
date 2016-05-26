@@ -2,8 +2,8 @@
 <div class="container">
 
     <div class="col-lg-12" id="tb">
-      <h2>Proposal statistics </h2>
-      <table  class="table table-bordered table-hover" style="width:100%">
+      <h2>Proposals</h2>
+      <table  class="datatable table table-striped table-bordered table-hover" style="width:100%">
         <thead>
           <tr>
             <th>Proposal ID</th>
@@ -33,11 +33,11 @@
             <td><?php echo $array['PROP_OFFER_STATUS']; ?></td>
             <td><?php echo $array['SUBMITTED_BY']; ?></td>
             <td><?php echo $array['SUBMIT_DATE']; ?></td>
-            <!--<td><?php echo $array['INSERT_BY']; ?></td>
+            <!--<td><?php/* echo $array['INSERT_BY']; ?></td>
             <td><?php echo $array['INSERT_DATE']; ?></td>
             <td><?php echo $array['MOD_BY']; ?></td>
             <td><?php echo $array['MOD_DATE']; ?></td>
-			<td><?php //echo $array['PROP_DESCR']; ?></td>-->	
+			<td><?php //echo $array['PROP_DESCR'];*/ ?></td>-->	
 			
           </tr>
 		<?php
@@ -51,6 +51,8 @@
       </table>
 
     </div>
+    
+
 
 
     

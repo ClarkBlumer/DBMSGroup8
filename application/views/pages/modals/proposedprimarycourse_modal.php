@@ -45,7 +45,7 @@
                                 </fieldset>
                                 <fieldset class="col-xs-3">
                                     <label class="control-label " for="SUBJECT">Subject</label>
-                                    <input name="subject" id="SUBJECT" type="text" class="form-control input-sm">
+                                    <input name="subject" id="SUBJECT" type="text" value="<?php echo set_value('subject'); ?>"class="form-control input-sm">
                                 </fieldset>
                                 <fieldset class="col-xs-3">     
                                     <label class="control-label" for="CATALOG_NUM">Catalog Number</label>   

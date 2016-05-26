@@ -38,36 +38,11 @@ $('.multi-field-wrapper').each(function() {
     });
 });
 </script>
-<script>
-$('.date-picker').datepicker();
 
-$(".date-picker").on("change", function () {
-    var id = $(this).attr("id");
-    var val = $("label[for='" + id + "']").text();
-    $("#msg").text(val + " changed");
-
-</script>
 	
     </body>
     
-<script>
-$(document).ready(function () {
-    toggleFields(); //call this first so we start out with the correct visibility depending on the selected form values
-    //this will call our toggleFields function every time the selection value of our underAge field changes
-    $("#propOfferStatus").change(function () {
-        toggleFields();
-    });
 
-});
-
-function toggleFields() {
-    if ($("#propOfferStatus").val() === "Awarded")
-        $("#awardTerm").show();
-    else{
-        $("#awardTerm").hide();
-        $("#awardTerm").val("");
-}   }
-</script>
 <!--Date Picker javascript-->
 <!-- Extra JavaScript/CSS added manually in "Settings" tab -->
 <!-- Include jQuery -->
@@ -77,6 +52,7 @@ function toggleFields() {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
+<!--date picker-->
 <script>
     $(document).ready(function(){
         var date_input=$('input[name="submit_date"]'); //our date input has the name "date"
@@ -92,4 +68,13 @@ function toggleFields() {
 </script>
 
 </html>
+
+
+<script type="text/javascript" class="init">
+  $(document).ready(function() {
+    $('.datatable').dataTable();
+  } );          
+</script>
+
+
 
