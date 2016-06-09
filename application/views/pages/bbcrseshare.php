@@ -18,13 +18,13 @@ var_dump($secInstitution);?>
     <?php } ?>
 </select>
 
-<select id="priStrm" name="PriStrm" oninput='getPriSubject(this.value)'></select>
+<select id="priStrm1" name="PriStrm" oninput='getPriSubject(this.value)'></select>
 
-<select id="priSubject" name="PriSubject" oninput='getPriCatalogNum(this.value)'></select>
+<select id="priSubject1" name="PriSubject" oninput='getPriCatalogNum(this.value)'></select>
 
-<select id="priCatalogNum" name="PriCatalogNum" oninput="getPriSectionNum(this.value)"></select>
+<select id="priCatalogNum1" name="PriCatalogNum" oninput="getPriSectionNum(this.value)"></select>
 
-<select id="priSectionNum" name="PriSectionNum"></select>
+<select id="priSectionNum1" name="PriSectionNum"></select>
 
 <!--Secondary Shared courses-->
 <select id="secInstition" name="SecInstitution" oninput='getSecStrm(this.value)'>
@@ -78,14 +78,17 @@ var_dump($secInstitution);?>
     
     function creatOption(e, result){
         console.log("Get element id: "+e.id);
-        if (e.id == 'priStrm' || e.id == 'secStrm'){
+        console.log("element id + select counter: "+e.id);
+        console.log("priStrm"+selectCounter);
+        if (e.id == 'priStrm'+selectCounter || e.id == 'secStrm'+selectCounter){
             var ele = e;
-            ele.options.length = 0;
-            ele.insertBefore(new Option('',''),ele.firstChild);
+            e.options.length = 0;
+            e.insertBefore(new Option('',''),ele.firstChild);
             for (var i = 0; i < result.length; i++){
                 console.log(result[i]);
-                ele.options[i+1] = new Option(result[i].DESCRSHORT);
-                ele.options[i+1].value = result[i].STRM;
+                console.log("wow:");
+                e.options[i+1] = new Option(result[i].DESCRSHORT);
+                e.options[i+1].value = result[i].STRM;
             }    
         } else {
             var ele = e;
@@ -114,10 +117,12 @@ var myDiv = document.getElementById("myDiv");
 var array = ["Volvo","Saab","Mercades","Audi"];
 
 //Create and append select list
-var selectList = document.createElement("select");
-selectList.id = "mySelect";
-myDiv.appendChild(selectList);
-
+var priInstitSelectList = document.createElement("select");
+priInstitSelectList.id = "priInstitution"+selectCounter;
+priInstitSelectList.name = "priInstitution";
+priInstitSelectList.addEventListener("input", function(){getPriStrm(this.value)});
+myDiv.appendChild(priInstitSelectList);
+console.log(priInstitSelectList.id);
 //Create and append the options
         $.ajax({
             url: '<?php echo base_url().'index.php/bbcrseshare/getPriInstitution/';?>',
@@ -126,8 +131,8 @@ myDiv.appendChild(selectList);
             success: function(result){
                 console.log("JSON: ");
                 console.log(result);
-                selectList.options.length = 0;
-                selectList.insertBefore(new Option('',''),selectList.firstChild);
+                priInstitSelectList.options.length = 0;
+                priInstitSelectList.insertBefore(new Option('',''),priInstitSelectList.firstChild);
 
                 for (var i = 0; i < result.length; i++){
                     console.log(result[i]);
@@ -136,16 +141,25 @@ myDiv.appendChild(selectList);
                     console.log("Assign keys to keys: "+keys);
                     console.log("Key Value: "+result[i][keys]);
 
-                    selectList.options[i+1] = new Option(result[i][keys]);
-                    selectList.options[i+1].value = result[i][keys];
+                    priInstitSelectList.options[i+1] = new Option(result[i][keys]);
+                    priInstitSelectList.options[i+1].value = result[i][keys];
                 }                
 
             }
         });
  
-      
-      
+var priStrmSelect = document.createElement("select");
+priStrmSelect.id = "priStrm"+selectCounter;
+priStrmSelect.name = "priStrm";
 
+myDiv.appendChild(priStrmSelect);
+/*
+      
+var priSubject = document.createElement("select");
+priStrmSelect.id = "priSubject";
+priStrmSelect.name = "priSubject";
+myDiv.appendChild(priSubject);
+*/      
     
     }
 //Get primary terms based on institution selection   
@@ -161,7 +175,7 @@ myDiv.appendChild(selectList);
             success: function(result){
                 console.log("JSON: ");
                 console.log(result);
-                creatOption(document.getElementById("priStrm"), result);
+                creatOption(document.getElementById("priStrm"+selectCounter), result);
 
             }
         });
