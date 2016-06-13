@@ -41,6 +41,7 @@ class BBCrseShare extends CI_Controller{
         //echo "<h1>this is a test</h1>";
         echo json_encode($this->input->post());
     }
+    
     //Gets the approved primary and secondary courses from BBCRSSHARE tables
     public function getBBCrsShareCourses(){
         $data['bbCrseSharePri'] = $this->BBCrseShare_Model->getBBCrseSharePri();
@@ -49,6 +50,18 @@ class BBCrseShare extends CI_Controller{
         $data['secInstitution'] = $this->BBCrseShare_Model->getSecInstit();
         
         $this->load->view('pages/bbcrseshare',$data);
+    }
+    
+    public function getDropDownData(){
+        $array = $this->input->post('parameters');
+        if ($array === null || !$array){
+            echo json_encode($array);
+            echo json_encode("This is gettting rediculous!!!!");
+        } else {
+        $result = $this->BBCrseShare_Model->getDropDownData($array);
+        
+        echo json_encode($array);
+        }
     }
     
     public function getPriInstitution() {

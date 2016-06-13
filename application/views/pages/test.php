@@ -1,6 +1,6 @@
 <h1>
 <?php
-echo $subject;
+var_dump($result);
 
 ?>
 </h1>

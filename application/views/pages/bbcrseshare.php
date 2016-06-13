@@ -9,7 +9,7 @@ var_dump($secInstitution);?>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 <title>Display Page</title>
 </head>
-
+<!--
 <form method="POST" action="<?php echo base_url();?>index.php/test/arraytest">
 <select id="priInstition" name="PriInstitution" oninput='getPriStrm(this.value)'>
     <option value=""></option>
@@ -27,6 +27,7 @@ var_dump($secInstitution);?>
 <select id="priSectionNum1" name="PriSectionNum"></select>
 
 <!--Secondary Shared courses-->
+<!--
 <select id="secInstition" name="SecInstitution" oninput='getSecStrm(this.value)'>
     <option value=""></option>
     <?php foreach ($secInstitution as $instit){ ?>
@@ -46,12 +47,13 @@ var_dump($secInstitution);?>
 <button onclick="testarray">testarray</button>
     <input type="submit"/>    
 </form>
-
+-->
 <div id="myDiv"></div>
 
 <script type="text/javascript">
     document.body.onload = createInputRow;
     
+    var baseURL = "<?php echo base_url().'index.php/bbcrseshare/getPriInstitution/';?>";
     var selectedPriInstitution;
     var selectedPriTerm;
     var selectedPriSubject;
@@ -63,9 +65,13 @@ var_dump($secInstitution);?>
     var selectedSecSubject;
     var selectedSecCatalogNum;
     
+    var param = [];
+    var ajaxArray = [];
+    
     var divCounter = 2;
     var selectCounter = 1;
     var postdata = [];
+    
     function testarray(){
 
         $.ajax({
@@ -78,30 +84,25 @@ var_dump($secInstitution);?>
     
     function creatOption(e, result){
         console.log("Get element id: "+e.id);
-        console.log("element id + select counter: "+e.id);
-        console.log("priStrm"+selectCounter);
+                
         if (e.id == 'priStrm'+selectCounter || e.id == 'secStrm'+selectCounter){
             var ele = e;
             e.options.length = 0;
             e.insertBefore(new Option('',''),ele.firstChild);
             for (var i = 0; i < result.length; i++){
-                console.log(result[i]);
-                console.log("wow:");
                 e.options[i+1] = new Option(result[i].DESCRSHORT);
                 e.options[i+1].value = result[i].STRM;
             }    
         } else {
             var ele = e;
+            
             ele.options.length = 0;
             ele.insertBefore(new Option('',''),ele.firstChild);
             
             for (var i = 0; i < result.length; i++){
-                console.log(result[i]);
-                console.log("Keys: "+Object.keys(result[i]));
+                
                 var keys = Object.keys(result[i]);
-                console.log("Assign keys to keys: "+keys);
-                console.log("Key Value: "+result[i][keys]);
-
+                
                 ele.options[i+1] = new Option(result[i][keys]);
                 ele.options[i+1].value = result[i][keys];
             }
@@ -111,63 +112,161 @@ var_dump($secInstitution);?>
     function createInputRow(){
         // create a new div element 
       // and give it some content 
-var myDiv = document.getElementById("myDiv");
+        var myDiv = document.getElementById("myDiv");
 
-//Create array of options to be added
-var array = ["Volvo","Saab","Mercades","Audi"];
 
-//Create and append select list
-var priInstitSelectList = document.createElement("select");
-priInstitSelectList.id = "priInstitution"+selectCounter;
-priInstitSelectList.name = "priInstitution";
-priInstitSelectList.addEventListener("input", function(){getPriStrm(this.value)});
-myDiv.appendChild(priInstitSelectList);
-console.log(priInstitSelectList.id);
-//Create and append the options
+        var priInstitSelectList = document.createElement("select");
+        priInstitSelectList.id = "priInstitution"+selectCounter;
+        priInstitSelectList.name = "priInstitution";
+        priInstitSelectList.addEventListener("input", function(){getPriStrm(this.value)});
+        myDiv.appendChild(priInstitSelectList);
+        console.log(priInstitSelectList.id);
+    //Create and append the options
+            $.ajax({
+                //url: '<?php echo base_url().'index.php/bbcrseshare/getSharedCourseDropDownVal/';?>'+param,
+
+                url: '<?php echo base_url().'index.php/bbcrseshare/getPriInstitution/';?>',
+                type: 'POST',
+                dataType: 'json',
+                success: function(result){
+                    console.log("JSON: ");
+                    console.log(result);
+                    priInstitSelectList.options.length = 0;
+                    priInstitSelectList.insertBefore(new Option('',''),priInstitSelectList.firstChild);
+
+                    for (var i = 0; i < result.length; i++){
+                        console.log(result[i]);
+                        console.log("Keys: "+Object.keys(result[i]));
+                        var keys = Object.keys(result[i]);
+                        console.log("Assign keys to keys: "+keys);
+                        console.log("Key Value: "+result[i][keys]);
+
+                        priInstitSelectList.options[i+1] = new Option(result[i][keys]);
+                        priInstitSelectList.options[i+1].value = result[i][keys];
+                    }                
+
+                }
+            });
+
+        var priStrmSelect = document.createElement("select");
+        priStrmSelect.id = "priStrm"+selectCounter;
+        priStrmSelect.name = "priStrm";
+        priStrmSelect.addEventListener("input", function(){getPriSubject(this.value)});
+
+        myDiv.appendChild(priStrmSelect);
+
+        var priSubjectSelect = document.createElement("select");
+        priSubjectSelect.id = "priSubject"+selectCounter;
+        priSubjectSelect.name = "priSubject";
+        priSubjectSelect.addEventListener("input", function(){getPriCatalogNum(this.value)});
+
+
+        myDiv.appendChild(priSubjectSelect);
+
+        var priCatalogNumSelect = document.createElement("select");
+        priCatalogNumSelect.id = "priCatalogNum"+selectCounter;
+        priCatalogNumSelect.name = "priCatalogNum";
+        priCatalogNumSelect.addEventListener("input", function(){getPriSectionNum(this.value)});
+
+        myDiv.appendChild(priCatalogNumSelect);
+
+        var priSectionNumSelect = document.createElement("select");
+        priSectionNumSelect.id = "priSectionNum"+selectCounter;
+        priSectionNumSelect.name = "priSectionNum";
+        //priSectionNumSelect.addEventListener("input", function(){getPriSectionNum(this.value)});
+
+        myDiv.appendChild(priSectionNumSelect);
+
+
+
+        /*
+
+        var priSubject = document.createElement("select");
+        priStrmSelect.id = "priSubject";
+        priStrmSelect.name = "priSubject";
+        myDiv.appendChild(priSubject);
+        */      
+
+    }
+    /*
+    function ajaxCall(param){
         $.ajax({
-            url: '<?php echo base_url().'index.php/bbcrseshare/getPriInstitution/';?>',
+            url: baseURL+
+            
             type: 'POST',
             dataType: 'json',
             success: function(result){
-                console.log("JSON: ");
+                console.log("get Section JSON: ");
                 console.log(result);
-                priInstitSelectList.options.length = 0;
-                priInstitSelectList.insertBefore(new Option('',''),priInstitSelectList.firstChild);
-
-                for (var i = 0; i < result.length; i++){
-                    console.log(result[i]);
-                    console.log("Keys: "+Object.keys(result[i]));
-                    var keys = Object.keys(result[i]);
-                    console.log("Assign keys to keys: "+keys);
-                    console.log("Key Value: "+result[i][keys]);
-
-                    priInstitSelectList.options[i+1] = new Option(result[i][keys]);
-                    priInstitSelectList.options[i+1].value = result[i][keys];
-                }                
+                creatOption(document.getElementById("priSectionNum"+selectCounter), result);
 
             }
-        });
- 
-var priStrmSelect = document.createElement("select");
-priStrmSelect.id = "priStrm"+selectCounter;
-priStrmSelect.name = "priStrm";
-
-myDiv.appendChild(priStrmSelect);
-/*
-      
-var priSubject = document.createElement("select");
-priStrmSelect.id = "priSubject";
-priStrmSelect.name = "priSubject";
-myDiv.appendChild(priSubject);
-*/      
+        });        
+    }
+    */
     
+    function getDropDownData(param){
+    console.log("IN GET DROP DOWN DATA");
+    console.log("   element ID: "+ param['priFieldID']+" alternate method: "+param.priFieldId);
+    var test = [];
+    console.log("Parameters");
+    console.log(param);
+    console.log('<?php echo base_url().'index.php/bbcrseshare/getDropDownData/';?>'+param)
+    test['test1'] = "test1 value";
+        $.ajax({
+            
+            url: '<?php echo base_url().'index.php/bbcrseshare/getDropDownData/';?>',
+            method: 'POST',
+            data: {param: param},
+            dataType: 'json',
+            success: function(result){
+                console.log("ajax JSON: ");
+                //console.log(test);
+                console.log(result);
+                //console.log("elementID: "+param['priFieldId']);
+                //creatOption(document.getElementById(param.priFieldId), result);
+                var errorPara = document.createElement("P");
+                var errorText = document.createTextNode("Result array: ");
+                var resultText = document.createTextNode(result);
+                errorPara.appendChild(errorText);
+                document.body.appendChild(errorPara);
+                document.body.appendChild(resultText);
+
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+
+                console.log("elementID: "+param['priFieldId']);
+                var errorPara = document.createElement("P");
+                var errorText = document.createTextNode(jqXHR.responseText);
+                errorPara.appendChild(errorText);
+                document.body.appendChild(errorPara);
+            }        
+        });
+        console.log("   OUT OF AJAX CALL");
     }
 //Get primary terms based on institution selection   
     function getPriStrm(str){
         console.log("institution: "+str);
         selectedPriInstitution = str;
+        priCourse = new Array();
+        priCourse['INSTITUTION'] = selectedPriInstitution;
+        param['priCourse'] = priCourse;
         
-        console.log("getpristrm institution: "+selectedPriInstitution);
+        priField = new Array();
+        priField['STRM'] = 'STRM';
+        priField['DESCRSHORT'] = 'DESCRSHORT';
+            
+        
+        param['priField'] = priField;
+
+        
+        console.log("param array strm: ");
+        console.log(param);
+        
+        //getDropDownData(param);
+        
         $.ajax({
             url: '<?php echo base_url().'index.php/bbcrseshare/getPriStrm/';?>'+selectedPriInstitution,
             type: 'POST',
@@ -179,14 +278,29 @@ myDiv.appendChild(priSubject);
 
             }
         });
+        
     }
 
 //get primary subject based on institution and term
     function getPriSubject(str){
         selectedPriTerm = encodeURIComponent(str);
+        //selectedPriTerm = str;
+        priCourse = [];
+        priCourse['INSTITUTION'] = selectedPriInstitution;
+        priCourse['STRM'] = selectedPriTerm;
+        param['priCourse'] = priCourse;
         
- 
-        console.log("institution: "+selectedPriInstitution+" strm: "+str);
+        priField = [];
+        priField['SUBJECT'] = 'SUBJECT';
+        
+        param['priField'] = priField;
+        
+        param['priFieldId'] = document.getElementById("priSubject"+selectCounter).id;
+
+        console.log("param array subject: ");
+        console.log(param);
+        getDropDownData(param);
+/*
         $.ajax({
             url: '<?php echo base_url().'index.php/bbcrseshare/getPriSubject/';?>'+selectedPriInstitution+'/'+selectedPriTerm,
             //url: '<?php echo base_url().'index.php/test/arraytest';?>',
@@ -196,10 +310,11 @@ myDiv.appendChild(priSubject);
             success: function(result){
                 console.log("JSON: ");
                 console.log(result);
-                creatOption(document.getElementById("priSubject"), result);
+                creatOption(document.getElementById("priSubject"+selectCounter), result);
      
             }
         });
+*/        
     }
 
 //get primary catalog numbers based on institution, term and subject
@@ -207,8 +322,18 @@ myDiv.appendChild(priSubject);
         
         selectedPriSubject = encodeURIComponent(str);
         //selectedPriSubject = str;
-        console.log("Encoded Subject: "+selectedPriSubject);
-        console.log('<?php echo base_url().'index.php/bbcrseshare/getPriCatalogNum/';?>'+selectedPriInstitution+'/'+selectedPriTerm+'/'+selectedPriSubject)
+        priCourse = new Array();
+        priCourse['INSTITUTION'] = selectedPriInstitution;
+        priCourse['STRM'] = selectedPriTerm;
+        priCourse['SUBJECT'] = selectedPriSubject;
+        param['priCourse'] = priCourse;
+        priField = new Array();
+        priField['CATALOG_NBR'] = 'CATALOG_NBR';
+        
+        param['priField'] = priField;
+        console.log("param array subject: ");
+        console.log(param);
+
         $.ajax({
             //url: uri_dec,
             url: '<?php echo base_url().'index.php/bbcrseshare/getPriCatalogNum/';?>'+selectedPriInstitution+'/'+selectedPriTerm+'/'+selectedPriSubject,
@@ -217,7 +342,7 @@ myDiv.appendChild(priSubject);
             success: function(result){
                 console.log("JSON: ");
                 console.log(result);
-                creatOption(document.getElementById("priCatalogNum"), result);
+                creatOption(document.getElementById("priCatalogNum"+selectCounter), result);
 
             }
         });
@@ -225,17 +350,29 @@ myDiv.appendChild(priSubject);
     
 //get primary section based n institution, term, subject and catalog number
     function getPriSectionNum(str){
-        selectedPriSection = encodeURIComponent(str);
-        console.log(selectedPriSection);
+        selectedPriCatalogNum = encodeURIComponent(str);
+        priCourse = new Array();
+        priCourse['INSTITUTION'] = selectedPriInstitution;
+        priCourse['STRM'] = selectedPriTerm;
+        priCourse['SUBJECT'] = selectedPriSubject;
+        priCourse['CATALOG_NBR'] = selectedPriCatalogNum;
+        param['priCourse'] = priCourse;
+        priField = new Array();
+        priField['CLASS_SECTION'] = 'CLASS_SECTION';
+        
+        param['priField'] = priField;
+        console.log("param array section: ");
+        console.log(param);
+     
         $.ajax({
-            url: '<?php echo base_url().'index.php/bbcrseshare/getPriSectionNum/';?>'+selectedPriInstitution+'/'+selectedPriTerm+'/'+selectedPriSubject+'/'+selectedPriSection,
+            url: '<?php echo base_url().'index.php/bbcrseshare/getPriSectionNum/';?>'+selectedPriInstitution+'/'+selectedPriTerm+'/'+selectedPriSubject+'/'+selectedPriCatalogNum,
             
             type: 'POST',
             dataType: 'json',
             success: function(result){
                 console.log("get Section JSON: ");
                 console.log(result);
-                creatOption(document.getElementById("priSectionNum"), result);
+                creatOption(document.getElementById("priSectionNum"+selectCounter), result);
 
             }
         });
@@ -244,6 +381,7 @@ myDiv.appendChild(priSubject);
     function getSecStrm(str){
         console.log(str);
         selectedSecInstitution = encodeURIComponent(str);
+     
         $.ajax({
             url: '<?php echo base_url().'index.php/bbcrseshare/getPriStrm/';?>'+str,
             type: 'POST',

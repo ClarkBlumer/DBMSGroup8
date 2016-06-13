@@ -18,6 +18,45 @@ class BBCrseShare_Model extends CI_Model {
         $this->load->database();
     }
     
+    public function getDropDownData($param){
+        if ($param === null || !$param){
+            return "parameters are empty";
+        }
+        
+        $priCourse = $param['priCourse'];
+        $priField = $param['priField'];
+        
+        if ($priField != null || !empty($priField)){
+            foreach ($priField as $key => $value) {
+                $this->db->select($value);
+            }
+        } else {
+            return "NO priField in parameters";
+        }
+        
+        
+        
+        
+        
+        if ($priCourse != null || !empty($priCourse)){
+            
+            foreach ($priCourse as $key => $value) {
+                $this->db->where($key, $value);    
+            }
+        } else {
+            return "NO priCourse in parameters";
+        }
+ 
+                
+        $this->db->distinct();
+        $this->db->from(CS_PRI_CRSE);
+        
+        $query = $this->db->get();
+        return $query->result_array();
+        
+        
+    }
+    
     public function getBBCrseSharePri(){
         $this->db->select("*");
         $this->db->from(CS_PRI_CRSE);
@@ -170,7 +209,7 @@ class BBCrseShare_Model extends CI_Model {
         
         return $query->result_array();
     }    
-    
+    /*
     public function getDropDownData($d){
         $this->db->select('STRM, DESCRSHORT');
         $this->db->distinct('STRM');
@@ -182,4 +221,6 @@ class BBCrseShare_Model extends CI_Model {
         
         return $query->result_array();
     }
+     * 
+     */
 }
