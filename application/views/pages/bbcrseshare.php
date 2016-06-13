@@ -299,8 +299,8 @@ var_dump($secInstitution);?>
 
         console.log("param array subject: ");
         console.log(param);
-        getDropDownData(param);
-/*
+//        getDropDownData(param);
+
         $.ajax({
             url: '<?php echo base_url().'index.php/bbcrseshare/getPriSubject/';?>'+selectedPriInstitution+'/'+selectedPriTerm,
             //url: '<?php echo base_url().'index.php/test/arraytest';?>',
@@ -314,7 +314,7 @@ var_dump($secInstitution);?>
      
             }
         });
-*/        
+       
     }
 
 //get primary catalog numbers based on institution, term and subject
